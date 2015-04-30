@@ -1,0 +1,32 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Nicholas Frechette's Blog
+tagline:             'Raw bits'
+description:         'A space to explore software ideas.'
+url:                 http://nfrechette.github.io
+baseurl:             ''
+paginate:            5
+
+# About/contact
+author:
+  name:              Nicholas Frechette
+  url:               http://nfrechette.github.io
+  email:             zeno490@gmail.com
+
+# Custom vars
+#version:             1.0.0
+
+# Front matter defaults
+defaults:
+  -
+    scope:
+      path:          '' # the whole site
+      type:          'posts'
+    values:
+      comments:      true
+
