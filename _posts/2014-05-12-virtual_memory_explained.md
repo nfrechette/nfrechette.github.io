@@ -61,7 +61,7 @@ Generally speaking, if mixed page sizes are used, it is generally recommended to
 
 ### Virtual memory secondary storage
 
-The fact that modern hardware allows pages to be mapped but not present in physical memory enables modern kernels to spill memory onto secondary storage to artificially increase the amount of memory available up to the limits of that secondary storage.
+The fact that modern hardware allows virtual memory to be mapped in your process without mapping all the required pages to physical memory enables modern kernels to spill memory onto secondary storage to artificially increase the amount of memory available up to the limits of that secondary storage.
 
 As is common knowledge, the most common form of secondary storage is the swap file on your hard drive.
 
