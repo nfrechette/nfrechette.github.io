@@ -71,6 +71,14 @@ In this light, a number of improvements can be made by stripping the overflow an
 
 Another option is to remove the branches added by the overflow and out of memory checks and simply ensure the internal state does not change instead. There is very little logic and as such an early out branch could very well save very little in the rare case it is taken and at the same time, since it is rarely taken, we always end up performing most of the logic anyway.
 
+Last but not least, `Reallocate` support is often not required and could trivially be stripped as well.
+
+### Performance
+
+Due to its simplicity, it offers great performance. All operations are *O(1)* and only amount to a few instructions.
+
+On most 32 bit platforms, the size of an instance should be 24 bytes if `size_t` is used. On 64 bit platforms, the size should be 48 bytes with `size_t`. Both versions can be made even smaller with smaller integral types such as `uint16_t` (which would be very appropriate since this allocator is predominantly used with small buffers) or by stripping support for `Reallocate`. As such, either version will comfortably fit inside a single typical cache line of 64 bytes.
+
 ### Conclusion
 
 Despite its simple internals, the linear allocator is an important building block. It serves as an ideal example for a number of sibling allocators we will see in the next few posts which involve similar internal logic and edge cases.
