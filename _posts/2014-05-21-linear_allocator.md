@@ -13,9 +13,11 @@ The internal logic is fairly simple:
 * `Deallocate` does nothing
 * `Reallocate` first checks if the allocation being resized is the last performed allocation and if it is, we return the same pointer and update our current allocation offset.
 
-There is very little work to do for all these functions which makes it very fast. `Deallocate` does nothing because in practice, it makes little sense to support it and other allocators are often better suited when freeing memory is required. The only sane implementation we could do is similar to how `Reallocate` works by checking if the memory being freed is the last allocation (last in, first out). Because we work with a pre-allocated memory buffer, `Reallocate` does not need to perform a copy if the last allocation is being resized and there is enough free space left regardless of whether it grows or shrinks.
+There is very little work to do for all these functions which makes it very fast. `Deallocate` does nothing because in practice, it makes little sense to support it and other allocators are often better suited when freeing memory at the pointer level is required. The only sane implementation we could do is similar to how `Reallocate` works by checking if the memory being freed is the last allocation (last in, first out). Because we work with a pre-allocated memory buffer, `Reallocate` does not need to perform a copy if the last allocation is being resized and there is enough free space left regardless of whether it grows or shrinks.
 
-Interestingly, you can almost free memory by using `Reallocate` and using a new size of 0 but in practice, the alignment used for the allocation would remain lost forever (if it was originally mis-aligned).
+Freeing memory is achieved by calling `Reset` on the allocator. This resets everything to the original state.
+
+Interestingly, you can almost free memory at the pointer level by using `Reallocate` and using a new size of 0 but in practice, the alignment used for the allocation would remain lost forever (if it was originally mis-aligned).
 
 Critical to this allocator is that it adds no overhead per allocation and it does not modify the pre-allocated memory buffer. Not all allocators will have these properties and I will always mention this important bit. This makes it ideal for low level systems or for working with read-only memory.
 
@@ -51,7 +53,7 @@ I wrote earlier that this allocator can be used with read-only memory which is a
 
 ### What we can’t use it for
 
-Due to the fact that we do not add per allocation overhead, we cannot properly support freeing memory while supporting variable alignment. When support for freeing memory is needed, other allocators are better suited.
+Due to the fact that we do not add per allocation overhead, we cannot properly support freeing memory at the pointer level while supporting variable alignment. When support for freeing memory is needed, other allocators are better suited.
 
 This allocator is also generally a poor fit for very large memory buffers. Due to the fact that we need to pre-allocate it up front, we bear the full cost regardless of how much actual memory we allocate internally.
 
