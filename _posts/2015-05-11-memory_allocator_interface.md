@@ -2,7 +2,7 @@
 layout: post
 title: A memory allocator interface
 ---
-[As previously discussed]({% post_url 2014-05-01-cpp_stl_container_deficiencies %}), the memory allocator integration into C++ STL containers is far from ideal.
+[As previously discussed]({% post_url 2015-05-01-cpp_stl_container_deficiencies %}), the memory allocator integration into C++ STL containers is far from ideal.
 
 [Attempts to improve on it](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2554.pdf) have been made but I have yet to meet anyone satisfied with the current state of things.
 
@@ -17,7 +17,7 @@ There appears to be two main approaches when it comes to memory allocator interf
 
 The first, as previously discussed, has a number of downsides but on the up side, it is the fastest since all allocation calls are likely to either be inline or at least be a static branch.
 
-The second, while much more flexible, introduces indirection and as [previously discussed]({% post_url 2014-05-05-caches_everywhere %}), is slower and generally less performant. Not only do we introduce an extra cache miss (and likely TLB miss) but we introduce an indirect branch which the CPU will not be able to prefetch.
+The second, while much more flexible, introduces indirection and as [previously discussed]({% post_url 2015-05-05-caches_everywhere %}), is slower and generally less performant. Not only do we introduce an extra cache miss (and likely TLB miss) but we introduce an indirect branch which the CPU will not be able to prefetch.
 
 Can we do better?
 
