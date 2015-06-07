@@ -30,3 +30,7 @@ defaults:
     values:
       comments:      true
 
+# Gems
+gems:
+  - jekyll-redirect-from
+
