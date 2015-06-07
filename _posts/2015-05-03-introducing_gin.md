@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Introducing the 'gin' library
+redirect_from: /2014/05/03/introducing_gin
 ---
 `gin` aims to be a playground for high performance C++ ideas all under the MIT license. `gin` is currently empty but it will not remain so for long!
 

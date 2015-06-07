@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Caches everywhere
+redirect_from: /2014/05/05/caches_everywhere
 ---
 The modern computer is littered with caches to help improve performance. Each cache has its own unique role. A solid understanding of these caches is critical in writing high performance software in any programming language. I will describe the most important ones present on modern hardware but it is not meant to be an exhaustive list.
 

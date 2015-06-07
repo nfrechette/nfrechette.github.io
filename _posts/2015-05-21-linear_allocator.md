@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Linear allocator
+redirect_from: /2014/05/21/linear_allocator
 ---
 The first memory allocator we will cover is by far the simplest and serves as an introduction to the material. Today we cover the [linear memory allocator](https://github.com/nfrechette/gin/blob/master/include/gin/linear_allocator.h).
 
