@@ -13,10 +13,9 @@ The internal logic is fairly simple:
 * `Allocate` simply increments a value indicating the current buffer offset.
 * `Deallocate` does nothing
 * `Reallocate` first checks if the allocation being resized is the last performed allocation and if it is, we return the same pointer and update our current allocation offset.
+* `Reset` is used to free all allocated memory and return the allocator to its original initialized state.
 
 There is very little work to do for all these functions which makes it very fast. `Deallocate` does nothing because in practice, it makes little sense to support it and other allocators are often better suited when freeing memory at the pointer level is required. The only sane implementation we could do is similar to how `Reallocate` works by checking if the memory being freed is the last allocation (last in, first out). Because we work with a pre-allocated memory buffer, `Reallocate` does not need to perform a copy if the last allocation is being resized and there is enough free space left regardless of whether it grows or shrinks.
-
-Freeing memory is achieved by calling `Reset` on the allocator. This resets everything to the original state.
 
 Interestingly, you can almost free memory at the pointer level by using `Reallocate` and using a new size of 0 but in practice, the alignment used for the allocation would remain lost forever (if it was originally mis-aligned).
 
@@ -86,7 +85,7 @@ On most 32 bit platforms, the size of an instance should be 24 bytes if `size_t`
 
 Despite its simple internals, the linear allocator is an important building block. It serves as an ideal example for a number of sibling allocators we will see in the next few posts which involve similar internal logic and edge cases.
 
-Next up, we will cover a variation: the virtual memory linear allocator.
+Next up, we will cover a variation: [the virtual memory aware linear allocator]({% post_url 2015-06-11-vmem_linear_allocator  %}).
 
 ### Alternate names
 
