@@ -1,7 +1,6 @@
 ---
 layout: post
 title: A memory allocator interface
-redirect_from: /2014/05/11/memory_allocator_interface
 ---
 [As previously discussed]({% post_url 2015-05-01-cpp_stl_container_deficiencies %}), the memory allocator integration into C++ STL containers is far from ideal.
 

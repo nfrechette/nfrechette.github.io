@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Virtual memory explained
-redirect_from: /2014/05/12/virtual_memory_explained
 ---
 Virtual memory is present on most hardware platforms and it is surprisingly simple. However, it is often poorly understood. It works so well and seamlessly that few inquire about its true nature.
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: All about data
-redirect_from: /2014/04/25/all_about_data
 ---
 The modern computers of today are an amazing and complex creation. From the smallest cellphones up to your super charged desktop PC, each and everyone of them is in reality a mixture of many smaller specialized computers working in concert.
 

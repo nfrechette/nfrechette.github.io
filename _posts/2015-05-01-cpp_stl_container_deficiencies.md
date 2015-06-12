@@ -1,7 +1,6 @@
 ---
 layout: post
 title: C++ STL container deficiencies
-redirect_from: /2014/05/01/cpp_stl_container_deficiencies
 ---
 In the AAA video game community, it is common to reimplement containers to fix a number of deficiencies. EA STL being a very good example of this. You can find a document [here](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2271.html) that explains in great detail the reasoning behind it. Some of the points are a bit dated and have been fixed with C++11 or will be fixed in C++14. I will not repeat them here but I will add some of my own.
 

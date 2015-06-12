@@ -31,6 +31,6 @@ defaults:
       comments:      true
 
 # Gems
-gems:
-  - jekyll-redirect-from
+#gems:
+#  - jekyll-redirect-from
 
