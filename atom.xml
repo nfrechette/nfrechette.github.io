@@ -16,6 +16,9 @@ layout: null
  </author>
 
  {% for post in site.posts %}
+  {% if post.layout == 'redirect' %}
+   {% continue %}
+  {% endif %}
  <entry>
    <title>{{ post.title }}</title>
    <link href="{{ site.url }}{{ post.url }}"/>
