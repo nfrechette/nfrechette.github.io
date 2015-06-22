@@ -16,7 +16,7 @@ layout: null
  </author>
 
  {% for post in site.posts %}
-  {% if post.layout == 'redirect' %}
+  {% if post.layout == 'redirected' %}
    {% continue %}
   {% endif %}
  <entry>
