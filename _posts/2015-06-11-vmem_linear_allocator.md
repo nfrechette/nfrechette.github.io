@@ -56,7 +56,7 @@ Once again, this is a very simply and perhaps even toy allocator. However it ser
 
 Fundamentally, linear allocators are a variation of a much more interesting and important allocator: the stack frame allocator. In essence, linear allocators are stack frame allocators where only a single frame is supported. Pushing of the frame happens at initialization and popping happens when we reset or at destruction.
 
-Next up, we will cover the ever so useful: stack frame allocator.
+Next up, we will cover the ever so useful: [stack frame allocators]({% post_url 2016-05-08-stack_frame_allocators %}).
 
 ### Alternate names
 

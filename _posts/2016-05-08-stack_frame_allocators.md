@@ -51,7 +51,7 @@ Generally speaking, the performance is enhanced compared to a generalized heap a
 
 ### Conclusion
 
-Up next we will cover a simple variant: the greedy stack frame allocator.
+Up next we will cover a simple variant: [the greedy stack frame allocator]({% post_url 2016-05-09-greedy_stack_frame_allocator %}).
 
 ### Alternate names
 
