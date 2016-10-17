@@ -50,7 +50,7 @@ Generally, a stack frame allocator will often manage less than 4GB of memory as 
 
 This is our first usable allocator and it is a powerful one. On older, slower hardware where taking locks and using a general malloc/free was expensive, I used a thread local stack allocator to great success in the performance sensitive portions of the code. Its simplicity and flexibility makes it ideal to replace allocators of containers that end up on the stack which might often reallocate memory.
 
-Next up, we will cover a virtual memory aware variant better suited for high performance AAA video games where the upper bound is generally known or can be reliably approximated. This second variant will be the last variant we will cover in this allocator family.
+Next up, we will cover a [virtual memory aware variant]({% post_url 2016-10-17-vmem_stack_frame_allocator %}) better suited for high performance AAA video games where the upper bound is generally known or can be reliably approximated. This second variant will be the last variant we will cover in this allocator family.
 
 Note that it is often desirable to avoid the allocator to grow unbounded in memory in the presence of spikes and a common way to deal with this is to free some segments when we pop frames by keeping a free list with a small number of entries (slack). This is easily achieved with an hysteresis constraint. Alternatively, at a specific point in the code, you could call a function on the allocator to free some of its slack (e.g: at the start or end of a frame).
 
