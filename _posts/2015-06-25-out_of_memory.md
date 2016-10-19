@@ -74,3 +74,5 @@ Ultimately, only 2 or 3 bug reports ever spoke of this weird behaviour and by th
 
 These hacks are a poor substitute for a real fix but with the pressures of the real world, they are often a necessary and realistic option. Do you have a similar war story?
 
+[**Back to table of contents**]({% post_url 2016-10-18-memory_allocators_toc %})
+

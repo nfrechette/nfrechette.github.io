@@ -92,3 +92,5 @@ The most common alternate name for this allocator is called the *arena* allocato
 
 *Note that if you know a better name or alternate names for this allocator, feel free to contact me.*
 
+[**Back to table of contents**]({% post_url 2016-10-18-memory_allocators_toc %})
+

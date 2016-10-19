@@ -66,3 +66,5 @@ To my knowledge, there is no alternate name for this allocator since it isn’t 
 
 [Reddit thread](http://www.reddit.com/r/programming/comments/39gl0d/memory_allocators_explained_the_virtual_memory/)
 
+[**Back to table of contents**]({% post_url 2016-10-18-memory_allocators_toc %})
+

@@ -60,3 +60,6 @@ This memory allocator is often abbreviated to simply ‘Stack Allocator’. Ther
 *Note that if you know a better name or alternate names for this allocator, feel free to contact me.*
 
 [Reddit thread](https://www.reddit.com/r/programming/comments/4ie1xv/memory_allocators_explained_the_stack_frame/)
+
+[**Back to table of contents**]({% post_url 2016-10-18-memory_allocators_toc %})
+

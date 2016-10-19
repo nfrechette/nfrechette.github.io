@@ -55,3 +55,6 @@ Next up, we will cover a [virtual memory aware variant]({% post_url 2016-10-17-v
 Note that it is often desirable to avoid the allocator to grow unbounded in memory in the presence of spikes and a common way to deal with this is to free some segments when we pop frames by keeping a free list with a small number of entries (slack). This is easily achieved with an hysteresis constraint. Alternatively, at a specific point in the code, you could call a function on the allocator to free some of its slack (e.g: at the start or end of a frame).
 
 [Reddit thread](https://www.reddit.com/r/programming/comments/4ihr38/memory_allocators_explained_the_greedy_stack/)
+
+[**Back to table of contents**]({% post_url 2016-10-18-memory_allocators_toc %})
+
