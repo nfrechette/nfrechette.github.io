@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Virtual memory aware stack frame allocator
+title: Virtual Memory Aware Stack Frame Allocator
 ---
 Today we cover the second variant: the virtual memory aware stack frame allocator ([code](https://github.com/nfrechette/gin/blob/master/include/gin/vmem_stack_frame_allocator.h)). This is a fairly popular incarnation of the [stack frame allocator pattern]({% post_url 2016-05-08-stack_frame_allocators %}) and I have seen quite a few implementations in the wild in line with this toy implementation. Similar in spirit to the [virtual memory aware linear allocator]({% post_url 2015-06-11-vmem_linear_allocator %}), here again we gain in simplicity and performance by leveraging the virtual memory system.
 

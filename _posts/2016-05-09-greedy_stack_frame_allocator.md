@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Greedy stack frame allocator
+title: Greedy Stack Frame Allocator
 ---
 Today we cover the first stack frame allocator variant: the greedy stack frame allocator ([code](https://github.com/nfrechette/gin/blob/master/include/gin/stack_frame_allocator.h)). It takes the term greedy from how it manages free segments after popping a frame. To better understand how this allocator works, you should first read up on the [stack frame allocator family]({% post_url 2016-05-08-stack_frame_allocators %}).
 

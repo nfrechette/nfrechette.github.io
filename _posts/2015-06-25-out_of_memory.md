@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Out of memory
+title: Out of Memory
 ---
 I have been playing *Game of War: Fire Age* for some time now and a peculiar issue keeps recurring which prompted this post: the game often runs out of memory.
 

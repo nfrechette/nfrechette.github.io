@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Memory allocators: table of contents"
+title: "Memory Allocators: Table of Contents"
 ---
 It is perhaps a bit late but I am starting to have quite a few posts on the topic of memory allocators and navigation was beginning to be a bit complex.
 

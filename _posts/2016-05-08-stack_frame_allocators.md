@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Stack frame allocators
+title: Stack Frame Allocators
 ---
 This allocator family is quite possibly one of the most common memory management technique. 
 
