@@ -44,7 +44,7 @@ These things must all be taken into account when designing or selecting a compre
 
 *Note: All images taken from Unity 5*
 
-Up next: Terminology
+[Up next: Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

@@ -15,7 +15,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
 # Table of Content
 
 * [Preface]({% post_url 2016-10-25-anim_compression_preface %})
-* Terminology
+* [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
 * Animation data
 * Measuring compression accuracy
 * Error compensation
