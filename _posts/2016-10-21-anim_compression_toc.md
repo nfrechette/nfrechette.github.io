@@ -16,17 +16,18 @@ If time permits, and if I can get approval from various relevant parties, I migh
 
 * [Preface]({% post_url 2016-10-25-anim_compression_preface %})
 * [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
-* Animation data
-* Measuring compression accuracy
-* Error compensation
-* Range reduction
-* Main compression families
-  * Simple quantization
+* [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
+* Measuring Compression Accuracy
+* Constant Tracks
+* Range Reduction
+* Main Compression Families
+  * Simple Quantization
   * Sub-sampling
-  * Signal based
-  * Curve fitting
-  * Linear key reduction
-* Case studies
+  * Linear Key Reduction
+  * Curve Fitting
+  * Signal Based
+* Error Compensation
+* Case Studies
   * Unity 5
   * Unreal 4
 

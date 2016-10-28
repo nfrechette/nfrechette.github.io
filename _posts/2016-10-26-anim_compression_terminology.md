@@ -105,7 +105,7 @@ A [quaternion](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation) i
 
 The most important thing to know about them is that for a quaternion to represent a rotation, it must be normalized (unit length). And obviously, it is made up of 4 scalar float numbers.
 
-Up next: Animation Data
+[Up next: Animation Data]({% post_url 2016-10-27-anim_compression_data %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
