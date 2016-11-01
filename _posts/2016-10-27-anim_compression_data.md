@@ -82,7 +82,7 @@ Generally, we will only compress sampled keys from our original source sequence 
 
 To properly adapt to these conditions, our compression algorithm needs to be adaptive in nature: it needs to use more bits when they are needed for high velocity moments, and use fewer bits when they aren’t needed. As we will see later, there are various techniques to tackle this.
 
-Up next: Measuring Accuracy
+[Up next: Measuring Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

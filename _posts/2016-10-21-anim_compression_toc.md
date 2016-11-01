@@ -17,9 +17,10 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Preface]({% post_url 2016-10-25-anim_compression_preface %})
 * [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
 * [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
-* Measuring Compression Accuracy
+* [Measuring Compression Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
 * Constant Tracks
 * Range Reduction
+* Uniform Segmenting
 * Main Compression Families
   * Simple Quantization
   * Sub-sampling
