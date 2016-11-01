@@ -75,17 +75,12 @@ As we will see in a later post, these properties can be leveraged to reduce our 
 
 Generally, we will only compress sampled keys from our original source sequence and as such the velocity information is partially lost. However, it remains relevant for a number of reasons:
 
-* If the velocity is fast and irregular, the sampled transforms will be deemed high frequency in nature
+* High velocity sequences (or moments) will typically compress poorly and these are quite common when they come from an offline simulation (e.g. cloth or hair simulation) or motion capture (e.g. facial animation).
+* Smooth and low velocity clips will generally compress best and thankfully these are also the most common. Most hand authored sequences will fall in this category.
 * Most character animation sequences have low velocity motion for most bones (they move slowly and smoothly)
 * Many bone tracks have no velocity due to the fact that they are constant and it is also common for bones to be animated only for certain parts of a clip
 
-For the first point, there is not much we can do but some techniques will make that problem worse (e.g. sub-sampling, error compensation).
-
-High frequency sequences will typically compress poorly and these are quite common when they come from an offline simulation (e.g. cloth or hair simulation) or motion capture (e.g. facial animation).
-
-Smooth and low velocity clips will generally compress best and thankfully these are also the most common. Most hand authored sequences will fall in this category.
-
-To properly adapt to these conditions, our compression algorithm needs to be adaptive in nature: it needs to use more bits when they are needed for high velocity or high frequency moments, and use fewer bits when they aren’t needed. As we will see later, there are various techniques to tackle this.
+To properly adapt to these conditions, our compression algorithm needs to be adaptive in nature: it needs to use more bits when they are needed for high velocity moments, and use fewer bits when they aren’t needed. As we will see later, there are various techniques to tackle this.
 
 Up next: Measuring Accuracy
 
