@@ -4,6 +4,8 @@ title: "Animation Compression: Constant Tracks"
 ---
 One of the primary advantage of storing bone transforms in local space as opposed to object space is that it reduces dramatically the amount of data that changes. For example, if we have two bones connected, and they have their local rotation animated, we end up with two animated tracks in local space, but three tracks in object space. This is true because the rotation changes from the root bone will cause a translation offset on the second bone.
 
+It is also the case that many bones are never animated by a majority of clips. For example, inverse kinematic (IK) bones are only ever animated when they are required (e.g. object pick up) and facial bones are typically used by cinematic clips or overlay clips. When bones aren’t animated, they will be by definition constant in our raw data.
+
 Consequently, it is often the case that tracks are constant. In general, character animations end up animating many more rotation tracks than they do for translation or scale. As such, translation and scale tracks often end up entirely constant in a clip. Taking advantage of this can be done in one of two ways:
 
 * Implicitly: linear key reduction will typically reduce such tracks to two keys since everything else can be interpolated (curve fitting and wavelet benefit similarly from this)
