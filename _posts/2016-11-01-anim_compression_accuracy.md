@@ -46,7 +46,7 @@ Both Unity and Unreal measure accuracy in ways that are sub-optimal and fail to 
 
 A number of compression algorithms will use the error metric function to attempt to converge to a solution (e.g. linear key reduction). As such, if the metric is imprecise or poorly represents the true error, it is very likely that the end result will be poor. And indeed, in my experience, many linear key reduction algorithms out there use a local space error metric which can and sometimes leads to important keys being removed where the error accrued on the distant children is unacceptable (e.g. a pelvis key being removed can translate into a large error at the fingertip). The typical way to combat this side-effect is to tweak the local error metric such that it becomes even more conservative and ends up retaining the desired key. This translates directly in the memory footprint increasing.
 
-Up next: Constant Tracks
+[Up next: Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
