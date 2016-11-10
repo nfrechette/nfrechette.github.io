@@ -42,7 +42,7 @@ Range reduction allows us to focus our precision on the range of values that act
 
 Do note that the extra range information does add up and for very short clips (e.g. 4 key frames) this extra overhead might yield a higher overall memory footprint. These are typically uncommon enough that it is simpler to accept that occasional loss in exchange for simpler decompression that can assume that all tracks use range reduction.
 
-Up next: Uniform Segmenting
+[Up next: Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

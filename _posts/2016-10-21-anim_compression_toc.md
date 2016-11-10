@@ -20,7 +20,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Measuring Compression Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
 * [Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
 * [Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
-* Uniform Segmenting
+* [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
 * Main Compression Families
   * Simple Quantization
   * Sub-sampling
