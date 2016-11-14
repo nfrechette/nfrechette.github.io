@@ -12,7 +12,7 @@ Over the years, a number of techniques have emerged to address the problem of ch
 
 Note that simple quantization and sub-sampling can be and often are used in tandem with the other three compression families although they can be used entirely on their own.
 
-Up next: Error Compensation
+Up next: Simple Quantization
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
