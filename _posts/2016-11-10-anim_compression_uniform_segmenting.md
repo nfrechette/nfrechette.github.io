@@ -35,7 +35,7 @@ Segmenting a clip into blocks does add some amount of memory overhead:
 
 However, the upsides are almost aways worth the hassle and overhead.
 
-Up next: Main Compression Families
+[Up next: Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
