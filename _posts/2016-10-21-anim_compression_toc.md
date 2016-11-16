@@ -22,7 +22,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
 * [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
 * [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
-  * Simple Quantization
+  * [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
   * Sub-sampling
   * Linear Key Reduction
   * Curve Fitting
