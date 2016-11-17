@@ -4,6 +4,8 @@ title: "Animation Compression: Simple Quantization"
 ---
 Simple quantization is perhaps the simplest compression technique out there. It is used for pretty much everything, not just for character animation compression.
 
+# How It Works
+
 It is fundamentally very simple:
 
 *  Take some floating point value
@@ -25,6 +27,8 @@ Reconstruction is the reverse process and is again very simple:
 *  Our normalized value becomes: `2608.0 / 32767.0 = 0.08`
 *  Our de-quantized value is: `0.08 * PI = 0.25`
 
+# Edge Cases
+
 There is of course some subtlety to consider. For one, proper rounding needs to be considered. Not all [rounding modes are equivalent](http://number-none.com/product/Scalar%20Quantization/) and there are [so many](http://www.eetimes.com/document.asp?doc_id=1274485)!
 
 The safest bet and a good default for compression purposes, is to use symmetrical arithmetic rounding. This is particularly important when quantizing to a signed integer value but if you only use unsigned integers, asymmetrical arithmetic rounding is just fine.
@@ -37,15 +41,19 @@ Another subtlety is whether to use signed integers or unsigned integers. In prac
 
 Another point to consider is: what is the maximum number of bits we can use with this implementation? A single precision floating point value can only accurately represent up to 6-9 significant digits as such the upper bound appears to be around 19 bits for an unsigned integer. Higher than this and the quantization method will need to change to an exponential scale, similar to how [depth buffers are often encoded in RGB textures](http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/). Further research is needed on the nuances of both approaches.
 
+# In The Wild
+
 The main question remaining is how many bits to use for our integers. Most standalone implementations in the wild use the simple quantization to replace a purely raw floating point format. Tracks will often be encoded on a hardcoded number of bits, typically **16** which is generally enough for rotation tracks as well as range reduced translation and scale tracks.
 
 Most implementations that don’t exclusively rely on simple quantization but use it for extra memory gains again typically use a hardcoded number of bits. Here again **16** bits is a popular choice but sometimes as low as **12** bits is used. This is common for linear key reduction and curve fitting. Wavelet based implementations will typically use anywhere between **8** and **16** bits per coefficient quantized and these will vary per sub-band as we will see when we cover this topic.
 
 The resulting memory footprint and the error introduced are both a function of the number of bits used by the integer representation.
 
+This technique is also very commonly used alongside other compression techniques. For example, the remaining keys after linear key reduction will generally be quantized as will curve control points after curve fitting.
+
 *My GDC presentation goes in further depth on this topic, its content will find its way here in due time.*
 
-Up next: Sub-sampling
+[Up next: Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
