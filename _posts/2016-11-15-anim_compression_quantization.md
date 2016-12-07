@@ -27,6 +27,8 @@ Reconstruction is the reverse process and is again very simple:
 *  Our normalized value becomes: `2608.0 / 32767.0 = 0.08`
 *  Our de-quantized value is: `0.08 * PI = 0.25`
 
+If we need to sample a certain time `T` for which we do not have a key (e.g. in between two existing keys), we typically linearly interpolate between the two. This is just fine because key frames are supposed to be fairly close in time and the interpolation is unlikely to introduce any visible error.
+
 # Edge Cases
 
 There is of course some subtlety to consider. For one, proper rounding needs to be considered. Not all [rounding modes are equivalent](http://number-none.com/product/Scalar%20Quantization/) and there are [so many](http://www.eetimes.com/document.asp?doc_id=1274485)!
@@ -50,6 +52,14 @@ Most implementations that don’t exclusively rely on simple quantization but us
 The resulting memory footprint and the error introduced are both a function of the number of bits used by the integer representation.
 
 This technique is also very commonly used alongside other compression techniques. For example, the remaining keys after linear key reduction will generally be quantized as will curve control points after curve fitting.
+
+# Performance
+
+This algorithm is very fast to decompress. Only two key frames need to be decompressed and interpolated. Each individual track is trivially decompressed and interpolated. It is also terribly easy to make the data very processor cache friendly: all we need to do is sort our data by key frame, followed by sorting it by track. With such a layout, all our data for a single key frame will be contiguous and densely packed and the next key frame we will interpolate will follow as well contiguously in memory. This makes it very easy for prefetching to happen either within the hardware or manually in software.
+
+For example, suppose we have **50** animated tracks (a reasonable number for a normal AAA character), each with **3** components, stored on 16 bits (**2** bytes) per component. We end up with `50 * 3 * 2 = 300 bytes` for a single key frame. This yields a small number of cache lines on a modern processor: `ceil(300 / 64) = 5`. Twice that amount needs to be read to sample our clip.
+
+Due in large part to the cache friendly nature of this algorithm, it is quite possibly the fastest to decompress.
 
 *My GDC presentation goes in further depth on this topic, its content will find its way here in due time.*
 
