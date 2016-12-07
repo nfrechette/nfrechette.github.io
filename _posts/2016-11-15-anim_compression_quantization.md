@@ -47,11 +47,11 @@ Another point to consider is: what is the maximum number of bits we can use with
 
 The main question remaining is how many bits to use for our integers. Most standalone implementations in the wild use the simple quantization to replace a purely raw floating point format. Tracks will often be encoded on a hardcoded number of bits, typically **16** which is generally enough for rotation tracks as well as range reduced translation and scale tracks.
 
-Most implementations that don’t exclusively rely on simple quantization but use it for extra memory gains again typically use a hardcoded number of bits. Here again **16** bits is a popular choice but sometimes as low as **12** bits is used. This is common for linear key reduction and curve fitting. Wavelet based implementations will typically use anywhere between **8** and **16** bits per coefficient quantized and these will vary per sub-band as we will see when we cover this topic.
+Most implementations that don’t exclusively rely on simple quantization but use it for extra memory gains again typically use a hardcoded number of bits. Here again **16** bits is a popular choice but sometimes as low as **12** bits is used. This is common for [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) and curve fitting. Wavelet based implementations will typically use anywhere between **8** and **16** bits per coefficient quantized and these will vary per sub-band as we will see when we cover this topic.
 
 The resulting memory footprint and the error introduced are both a function of the number of bits used by the integer representation.
 
-This technique is also very commonly used alongside other compression techniques. For example, the remaining keys after linear key reduction will generally be quantized as will curve control points after curve fitting.
+This technique is also very commonly used alongside other compression techniques. For example, the remaining keys after [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) will generally be quantized as will curve control points after curve fitting.
 
 # Performance
 

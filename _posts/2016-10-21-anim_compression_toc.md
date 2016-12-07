@@ -24,7 +24,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
   * [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
   * [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
-  * Linear Key Reduction
+  * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
   * Curve Fitting
   * Signal Processing
 * Error Compensation

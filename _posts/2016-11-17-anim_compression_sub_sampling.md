@@ -33,11 +33,11 @@ The problem of keys not lining up is of course absent if your source animation d
 
 In the wild, this used to be a very popular technique on older generation hardware such as the Xbox 360 and the PlayStation 3 (and older). It was very common to keep most of your main character animations with a high sample rate of say 30 FPS, while keeping most of your NPC animations at a lower sample rate of say 15 FPS. Any specific animation that required high accuracy would not be sub-sampled and this selection process was done by hand, making its usage somewhat error prone.
 
-Due to its simplicity, it is also commonly used alongside other compression techniques (e.g. linear key reduction) to further reduce the memory footprint.
+Due to its simplicity, it is also commonly used alongside other compression techniques (e.g. [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})) to further reduce the memory footprint.
 
 However, nowadays this technique is seldom used in large part because we aren’t as constrained by the memory footprint as we used to be and in part because we strive to push the animation quality ever higher.
 
-Up next: Linear Key Reduction
+[Up next: Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

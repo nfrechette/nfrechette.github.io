@@ -10,7 +10,7 @@ For example, in theory our translation track range is infinite but in practice, 
 
 First we start with some animated translation track.
 
-![Animated Track](/public/range_reduction_track.jpg)
+![Animated Track](/public/range_reduction_track.png)
 
 Using this track as an example, we first find the minimum and maximum value that will bound our range: `[16, 40]`
 
@@ -18,7 +18,7 @@ Using these, we can calculate the range extent: `40 - 16 = 24`
 
 Now, we have everything we need to re-normalize our track. For every key: `normalized value = (input value - range minimum) / range extent`
 
-![Normalized Track](/public/range_reduction_normalized_track.jpg)
+![Normalized Track](/public/range_reduction_normalized_track.png)
 
 Reconstructing our input value becomes trivial: `input value = (normalized value * range extent) + range minimum`
 
