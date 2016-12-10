@@ -10,7 +10,7 @@ Splitting large clips (such as cinematics) into smaller blocks allows us to use 
 
 # Easier Seeking
 
-For some compression algorithms, seeking is slow because it involves searching for the keys or control points surrounding the particular time `T` we are trying to sample. Techniques exist to speed this up by using optimal sorting but it adds complexity. With blocks sufficiently small (e.g. 16 key frames), optimal sorting might not be required nor the usage of a cursor (cursors are used by these algorithms to keep track of the last sampling performed to accelerate the search of the next sampling). See the posts about [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) and curve fitting for details.
+For some compression algorithms, seeking is slow because it involves searching for the keys or control points surrounding the particular time `T` we are trying to sample. Techniques exist to speed this up by using optimal sorting but it adds complexity. With blocks sufficiently small (e.g. 16 key frames), optimal sorting might not be required nor the usage of a cursor (cursors are used by these algorithms to keep track of the last sampling performed to accelerate the search of the next sampling). See the posts about [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) and [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}) for details.
 
 With uniform segmenting, finding which blocks we need is very fast in large part because there are typically few blocks for most clips.
 
@@ -31,7 +31,7 @@ Segmenting a clip into blocks does add some amount of memory overhead:
 * Each clip will now need to store a mapping of which block is where in memory.
 * If [range reduction]({% post_url 2016-11-09-anim_compression_range_reduction %}) is done per block as well, each block now includes range information.
 * Blocks might need a header with some flags or other relevant information.
-* And for some compression algorithms such as curve fitting, it might force us to insert extra control points or to retain more key frames.
+* And for some compression algorithms such as [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}), it might force us to insert extra control points or to retain more key frames.
 
 However, the upsides are almost aways worth the hassle and overhead.
 
