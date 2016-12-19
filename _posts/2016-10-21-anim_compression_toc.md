@@ -26,7 +26,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
   * [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
   * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
   * [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
-  * Signal Processing
+  * [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 * Error Compensation
 * Case Studies
   * Unity 5
