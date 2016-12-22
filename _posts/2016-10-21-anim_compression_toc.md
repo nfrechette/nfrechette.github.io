@@ -27,7 +27,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
   * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
   * [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
   * [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
-* Error Compensation
+* [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
 * Case Studies
   * Unity 5
   * Unreal 4

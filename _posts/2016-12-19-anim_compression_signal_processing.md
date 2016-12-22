@@ -105,7 +105,7 @@ On [Thief](https://en.wikipedia.org/wiki/Thief_(2014_video_game)), our small cac
 
 As is now obvious, the signal processing algorithms should be avoided in favour of simpler algorithms that are easier to implement, maintain, and end up just as competitive when properly implemented.
 
-Up next: Error Compensation
+[Up next: Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 
