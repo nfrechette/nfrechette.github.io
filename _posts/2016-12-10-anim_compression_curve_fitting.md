@@ -28,6 +28,10 @@ As with [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduc
 
 One important distinction is that while [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) only needed two keys per track to reconstruct our desired value at a particular time `T`, with curve fitting we might need more. For example, [Catmull-Rom](https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Catmull.E2.80.93Rom_spline) splines require four control points. This makes it more likely to increase the amount of cache lines we need to read when we sample our clip. For this reason, and the fact that a spline interpolation function is more expensive to execute, decompression should be slower than with [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) but without access to a solid implementation, the fact that it might be slower is only an educated guess at this point.
 
+# Additional Reading
+
+*  [Bezier Curves](http://jamie-wong.com/post/bezier-curves/)
+
 [Up next: Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
