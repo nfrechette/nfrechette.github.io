@@ -97,7 +97,7 @@ Performance wise, decompression times are likely to be high in [Unreal 4](https:
 
 Memory wise, the linear key reduction algorithm should be fairly conservative but it could be minimally improved by ditching the local space [error metric]({% post_url 2016-11-01-anim_compression_accuracy %}). Coupled with the bitwise compression, it should yield a reasonable memory footprint (*although it could be further improved by using more advanced quantization techniques as I will show at the GDC 2017*).
 
-Up next: Unity 5
+[Up next: Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

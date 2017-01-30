@@ -32,5 +32,5 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
 * [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
   * [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
-  * Unity 5
+  * [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
 
