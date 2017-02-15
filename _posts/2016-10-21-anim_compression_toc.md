@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Table of Contents"
+toc: "Animation Compression"
 ---
 I will soon present at the [GDC 2017](http://www.gdconf.com/) a new approach to character animation compression. While the topic is warm and fresh in my memory, I thought it would do me some good to take a break from [memory allocators]({% post_url 2016-10-18-memory_allocators_toc %}) and talk about the various approaches to this. I also happen to have some free time ahead of me before I find and start my next contract.
 
