@@ -25,6 +25,7 @@ If time permits, and if I can get approval from various relevant parties, I migh
 * [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
 * [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
   * [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
+  * *Advanced Quantization (Coming soon post-GDC!)*
   * [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
   * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
   * [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
