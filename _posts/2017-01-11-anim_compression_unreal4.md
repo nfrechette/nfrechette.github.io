@@ -2,11 +2,12 @@
 layout: post
 title: "Animation Compression: Unreal 4"
 ---
-[![Unreal 4 2017](https://img.youtube.com/vi/WC6Xx_jLXmg/0.jpg)](https://www.youtube.com/watch?v=WC6Xx_jLXmg "Unrael 4 2017")
+[![Unreal 4 2017](https://img.youtube.com/vi/WC6Xx_jLXmg/0.jpg)](https://www.youtube.com/watch?v=WC6Xx_jLXmg "Unreal 4 2017")
 
 [Unreal 4](https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_4) offers a wide range of [documented](https://docs.unrealengine.com/latest/INT/Engine/Animation/Sequences/) character animation compression settings.
 
 It offers the following compression algorithms:
+
 *   [Least Destructive](http://nfrechette.github.io/2017/01/11/anim_compression_unreal4/#least_destructive)
 *   [Remove Every Second Key](http://nfrechette.github.io/2017/01/11/anim_compression_unreal4/#second_key)
 *   [Remove Trivial Keys](http://nfrechette.github.io/2017/01/11/anim_compression_unreal4/#trivial_keys)
@@ -38,6 +39,7 @@ This takes advantage of the fact that very often [tracks are constant](http://nf
 This compression setting aims to retain every single key and encodes them with various variations. It is a custom flavor of [simple quantization](http://nfrechette.github.io/2016/11/15/anim_compression_quantization/) and will use the same format for every track in the clip. You can select one format per track type: rotation, translation, and scale.
 
 These are the possible formats:
+
 *   **None:** Full precision.
 *   **Float 96:** Full precision is used for translation and scale. For rotations, a quaternion component is dropped and the rest are stored with full precision.
 *   **Fixed 48:** For rotations, a quaternion component is dropped and the rest is stored on **16** bits per component.

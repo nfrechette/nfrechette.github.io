@@ -3,7 +3,7 @@ layout: post
 title: "Animation Compression: Table of Contents"
 toc: "Animation Compression"
 ---
-Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I’ve been developing this decades new approach and I was lucky enough to be invited to talk about the various implementations I’ve found at the [2017 Game Developers Conference(GDC)](http://www.gdconf.com/).
+Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I've been developing a novel twist to an older technique and I was lucky enough to be invited to talk about it at the [2017 Game Developers Conference (GDC)](http://www.gdconf.com/).
 
 The amount of material available regarding animation compression is surprisingly thin and often poorly detailed. My hope for this series is to serve as a reference for anyone looking to improve upon or implement efficient character animation compression techniques.
 

@@ -26,7 +26,7 @@ It must have been quite slow to decompress and should probably be avoided.
 ## Streaming Curve
 Streaming curves are proper curves that use [Hermite coefficients](https://en.wikipedia.org/wiki/Cubic_Hermite_spline). A track is split into intervals and each interval is encoded as a distinct spline. This allows discontinuities between intervals. For example, a camera cut or teleporting the root in a cinematic. Each interval has a small header of **8** bytes and each control point is stored in full floating point precision plus an index. This is likely overkill. Full floating point precision is typically far too much for encoding rotations and using [simple quantization](http://nfrechette.github.io/2016/11/15/anim_compression_quantization/) to store them on 16 bits per component or less could provide significant memory savings.
 
-The resulting control points are sorted by time followed by track to render them in a cache as efficient as possible which is a very good thing. At decompression, a cursor or cache is used to avoid repeatedly searching for our control points when playback is continuous and predictable. For these two reasons streaming curves are very fast to decompress in the average use case.
+The resulting control points are sorted by time followed by track to render them as cache as efficient as possible which is a very good thing. At decompression, a cursor or cache is used to avoid repeatedly searching for our control points when playback is continuous and predictable. For these two reasons streaming curves are very fast to decompress in the average use case.
 
 ## Dense Curve
 What [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) calls a dense curve I would call a raw format. The original source data is sampled at a fixed interval such as **30 FPS** and nothing more is done to it as far as I am aware. The data is sorted to make it cache efficient by time and track. No [linear key reduction](http://nfrechette.github.io/2016/12/07/anim_compression_key_reduction/) is performed or attempted. The sampled values are not quantized and are simply stored with full precision.
@@ -83,8 +83,8 @@ Exposing a single error threshold per track type is very common and provides a s
 >
 >  In fact, the only reduction setting I found that didn’t caused teleportations was :
 >
->  Position : 0.1
->  Rotation : 0.1
+>  Position : 0.1  
+>  Rotation : 0.1  
 >  Scale : 0 (as there is never any animated scale)
 >
 >  But this is still causing huge file sizes :(
