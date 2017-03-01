@@ -3,36 +3,31 @@ layout: post
 title: "Animation Compression: Table of Contents"
 toc: "Animation Compression"
 ---
-I will soon present at the [GDC 2017](http://www.gdconf.com/) a new approach to character animation compression. While the topic is warm and fresh in my memory, I thought it would do me some good to take a break from [memory allocators]({% post_url 2016-10-18-memory_allocators_toc %}) and talk about the various approaches to this. I also happen to have some free time ahead of me before I find and start my next contract.
+Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I've been developing a novel twist to an older technique and I was lucky enough to be invited to talk about it at the [2017 Game Developers Conference (GDC)](http://www.gdconf.com/).
 
-While I will not be able to cover the presentation content prior to the conference, I will cover as much material as I can while leading up to it and eventually it will make its way on here.
+The amount of material available regarding animation compression is surprisingly thin and often poorly detailed. My hope for this series is to serve as a reference for anyone looking to improve upon or implement efficient character animation compression techniques.
 
-This post is meant as a table of content that will link to all the relevant topics I will cover. It will be updated as time goes by and as material is published.
+Each post is self-contained and detailed enough to be approachable to a wide audience.
 
-I will do my best to keep this series of posts self contained and detailed enough to be approachable to a wide audience. The amount of material out there regarding animation compression is surprisingly very thin or often poorly detailed. My hope is for this series to serve as a reference for anyone curious about this topic and looking at improving or implementing these techniques.
+*[GDC 2017 Presentation](http://schedule.gdconf.com/session/simple-and-powerful-animation-compression)*
 
-If time permits, and if I can get approval from various relevant parties, I might go ahead and implement some of these techniques into an actual production ready library.
+# Table of Contents
 
-*[Upcoming GDC 2017 Presentation](http://schedule.gdconf.com/session/simple-and-powerful-animation-compression)*
-
-# Table of Content
-
-* [Preface]({% post_url 2016-10-25-anim_compression_preface %})
-* [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
-* [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
-* [Measuring Compression Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
-* [Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
-* [Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
-* [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
-* [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
-  * [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
-  * *Advanced Quantization (Coming soon post-GDC!)*
-  * [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
-  * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
-  * [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
-  * [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
-* [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
-* [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
-  * [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
-  * [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
-
+*   [Preface]({% post_url 2016-10-25-anim_compression_preface %})
+*   [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
+*   [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
+*   [Measuring Compression Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
+*   [Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
+*   [Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
+*   [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
+*   [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
+    *   [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
+    *   *Advanced Quantization (Coming soon post-GDC!)*
+    *   [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
+    *   [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
+    *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
+    *   [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
+*   [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
+*   [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
+    *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
+    *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
