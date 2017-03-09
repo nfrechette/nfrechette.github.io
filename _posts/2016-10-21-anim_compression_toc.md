@@ -3,13 +3,11 @@ layout: post
 title: "Animation Compression: Table of Contents"
 toc: "Animation Compression"
 ---
-Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I've been developing a novel twist to an older technique and I was lucky enough to be invited to talk about it at the [2017 Game Developers Conference (GDC)](http://www.gdconf.com/).
+Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I've been developing a novel twist to an older technique and I was lucky enough to be invited to talk about it at the [2017 Game Developers Conference (GDC)](http://www.gdconf.com/). This gave me the sufficient motivation to write this series.
 
 The amount of material available regarding animation compression is surprisingly thin and often poorly detailed. My hope for this series is to serve as a reference for anyone looking to improve upon or implement efficient character animation compression techniques.
 
 Each post is self-contained and detailed enough to be approachable to a wide audience.
-
-*[GDC 2017 Presentation](http://schedule.gdconf.com/session/simple-and-powerful-animation-compression)*
 
 # Table of Contents
 
@@ -31,3 +29,4 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
     *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
+*   [GDC 2017 Presentation]({% post_url 2017-03-08-anim_compression_gdc2017 %})

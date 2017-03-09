@@ -115,5 +115,6 @@ Furthermore, rotation tracks could be encoded in a better format than a full qua
 
 From what I could find nobody seemed to complain about animation decompression performance at runtime. This is mostly likely a direct result of the cache friendly data format and the usage of a cursor for [streaming curves](http://nfrechette.github.io/2017/01/30/anim_compression_unity5/#streaming_curve).
 
+[Up next: GDC 2017 Presentation]({% post_url 2017-03-08-anim_compression_gdc2017 %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
