@@ -20,7 +20,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
 *   [Main Compression Families]({% post_url 2016-11-13-anim_compression_families %})
     *   [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
-    *   *Advanced Quantization (Coming soon post-GDC!)*
+    *   [Advanced Quantization]({% post_url 2017-03-12-anim_compression_advanced_quantization %})
     *   [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
     *   [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
     *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})

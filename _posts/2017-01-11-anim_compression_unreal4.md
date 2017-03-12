@@ -88,7 +88,7 @@ In memory, every compression setting has a layout that is naive with the data so
 
 Performance wise, decompression times are likely to be high in [Unreal 4](https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_4) in large part due to the memory layout not being cache friendly and the lack of an acceleration structure such as a cursor when linear key reduction is used; and it is likely used often with the *Automatic* setting. This is an obvious area where it could improve.
 
-Memory wise, the linear key reduction algorithm should be fairly conservative but it could be minimally improved by ditching the local space [error metric](http://nfrechette.github.io/2016/11/01/anim_compression_accuracy/). Coupled with the bitwise compression it should yield a reasonable memory footprint; *although it could be further improved by using more advanced quantization techniques as covered at the GDC 2017*.
+Memory wise, the linear key reduction algorithm should be fairly conservative but it could be minimally improved by ditching the local space [error metric](http://nfrechette.github.io/2016/11/01/anim_compression_accuracy/). Coupled with the bitwise compression it should yield a reasonable memory footprint; although it could be further improved by using more [advanced quantization]({% post_url 2017-03-12-anim_compression_advanced_quantization %}) techniques.
 
 [Up next: Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
 

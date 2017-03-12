@@ -63,7 +63,7 @@ Due in large part to the cache friendly nature of this algorithm, it is quite po
 
 *My GDC presentation goes in further depth on this topic, its content will find its way here in due time.*
 
-[Up next: Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
+[Up next: Advanced Quantization]({% post_url 2017-03-12-anim_compression_advanced_quantization %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
 

@@ -5,7 +5,7 @@ title: "Animation Compression: Main Compression Families"
 Over the years, a number of techniques have emerged to address the problem of character animation compression. These can be roughly broken down into a handful of general families:
 
 * [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %}): Simply storing our key values on fewer bits
-* *Advanced Quantization (Coming soon post-GDC!)*
+* [Advanced Quantization]({% post_url 2017-03-12-anim_compression_advanced_quantization %}): Super charge our simple quantization with a variable bit rate
 * [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %}): Varying the sampling rate to reduce the number of key frames
 * [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}): Removing keys that can be linearly interpolated from their neighbours
 * [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}): Calculating a curve that approximates our keys
