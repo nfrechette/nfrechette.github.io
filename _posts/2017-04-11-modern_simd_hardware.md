@@ -11,7 +11,7 @@ I spent a significant amount of time last year optimizing cloth simulation code 
 Due to the large amount of code, charts, and information required to properly explain everything, this topic will be split into several parts:
 
 *  [Hardware highlights](#hardware_highlights)
-*  Matrix multiplication (coming soon)
+*  [Matrix multiplication]({% post_url 2017-04-13-modern_simd_matrix_multiplication %})
 *  And much more to come…
 
 # <a name="hardware_highlights"></a>Hardware highlights
