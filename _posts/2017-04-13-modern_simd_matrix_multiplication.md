@@ -264,5 +264,5 @@ This keeps things simple for the user: all variants return the result in a 3rd a
 
 As always with optimizations, it is important to measure often and to never blindly make a change without measuring first.
 
-*A PR will be submitted to the DirectX Math library once a proper course of action has been discussed with the maintainer*
+*DirectX Math commit [d1aa003](https://github.com/Microsoft/DirectXMath/commit/d1aa00372040715cebdd5bf599314ef6a4fbe713)*
 
