@@ -170,7 +170,7 @@ The version 4 **regexp2** variant uses 5 XMM registers and totals 17 instruction
 
 # <a name="results"></a>The results
 
-For our purposes, each test will be run **1000000** times and the cumulative time will be considered to be **1** sample. We will repeat this to gather **100** samples. To avoid skewing in our data that might result from various external sources (CPU frequency changes, other OS work, etc.), we will retain and use the **80th** percentile from our dataset. Due to the simple nature of the code, this should be good enough for us to draw meaningful conclusions.
+For our purposes, each test will be run **1000000** times and the cumulative time will be considered to be **1** sample. We will repeat this to gather **100** samples. To avoid skewing in our data that might result from various external sources (CPU frequency changes, other OS work, etc.), we will retain and use the **80th** percentile from our dataset. Due to the simple nature of the code, this should be good enough for us to draw meaningful conclusions. All measurements are in **milliseconds**.
 
 All of my raw results are parsed with a simple python script to extract the desired percentile and format it in a table form. The script can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/parse_stats.py).
 
