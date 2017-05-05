@@ -128,7 +128,7 @@ I was able to come up with six distinct implementations of the matrix multiplica
 
 ## Reference
 
-The reference implementation is quite large as such I will not include the full source here but the code can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply_Ref.h).
+The reference implementation is quite large as such I will not include the full source here but the code can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_Ref.h).
 
 The reference **regexp2** variant uses 10 XMM registers and totals 70 instructions.
 
@@ -142,7 +142,7 @@ We load a row from **M1**, extract each component, and replicate it into the 4 l
 
 <script src="https://gist.github.com/nfrechette/a5343e01b4820d63ae5d9a0a791033e1.js"></script>
 
-The code for this variant can be found [here](https://github.com/nfrechette/DirectXMath/blob/dev/DirectXMathTest/MatrixMultiply_V0.h).
+The code for this variant can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_V0.h).
 
 The version 0 **regexp2** variant uses 7 XMM registers and totals 58 instructions.
 
@@ -150,7 +150,7 @@ The version 0 **regexp2** variant uses 7 XMM registers and totals 58 instruction
 
 Another change we can perform is inspired from [this post](http://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly) on StackOverflow. I rewrote the assembly into C++ code that uses intrinsics to try and keep it comparable.
 
-Two versions were written: version 2 uses load/shuffle ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply_V2.h)) and version 1 uses broadcast ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply_V1.h)).
+Two versions were written: version 2 uses load/shuffle ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_V2.h)) and version 1 uses broadcast ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_V1.h)).
 
 Branching was notoriously slow on the old consoles, it will be interesting to see how newer hardware performs.
 
