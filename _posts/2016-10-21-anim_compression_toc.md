@@ -30,3 +30,8 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
     *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
 *   [GDC 2017 Presentation]({% post_url 2017-03-08-anim_compression_gdc2017 %})
+
+# ACL: An open source solution
+
+My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own.
+See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl)!
