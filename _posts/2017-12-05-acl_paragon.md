@@ -91,6 +91,6 @@ Despite having a maximum error that is entirely unacceptable, it turns out that 
 
 As is apparent now, ACL performs admirably in a myriad of scenarios and continues to improve month after month. Real world data now confirms it. Half the memory footprint of Unreal is not insignificant even for a PC or PS4 game: less data to load into memory means faster streaming, less data to transfer means faster game download and installation times, and it can correlate with faster decompression performance too. For many PS4 and XB1 games, **200 MB** is perhaps small enough to load them all into memory up front and never stream them from disk afterwards.
 
-As I continue to improve ACL, I will update the graphs and numbers with the latest significant releases. I also expect the improvements that I made to Unreal's own animation compression over the last few months to be part of the future release and when that happens I will again update everything.
+As I continue to improve ACL, I will update the graphs and numbers with the latest significant releases. I also expect the improvements that I made to Unreal's own animation compression over the last few months to be part of a future release and when that happens I will again update everything.
 
 Special thanks to [Raymond Barbiero](https://keybase.io/visualphoenix) for his very valuable feedback and to the continued support of many others!
