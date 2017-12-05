@@ -6,11 +6,11 @@ While investigating precision issues with [ACL]( https://github.com/nfrechette/a
 
 # Dot product
 
-Calculating the dot product between two vectors is a very common operation used for all sorts of things. In an animation compression library, it’s primary use is normalizing [quaternions]( https://en.wikipedia.org/wiki/Quaternion). Due to the nature of the code, accuracy is very important as it can impact the final compressed size as well as the resulting decompression error.
+Calculating the dot product between two vectors is a very common operation used for all sorts of things. In an animation compression library, it’s primary use is normalizing [quaternions](https://en.wikipedia.org/wiki/Quaternion). Due to the nature of the code, accuracy is very important as it can impact the final compressed size as well as the resulting decompression error.
 
-[SSE 4]( https://en.wikipedia.org/wiki/SSE4) introduced a dot product instruction: `DPPS`. It allows the generated code to be more concise and compact by using fewer registers and instructions. I won’t speak to its performance here but sadly; its accuracy is not good enough for us by a tiny, yet important, sliver.
+[SSE 4](https://en.wikipedia.org/wiki/SSE4) introduced a dot product instruction: `DPPS`. It allows the generated code to be more concise and compact by using fewer registers and instructions. I won’t speak to its performance here but sadly; its accuracy is not good enough for us by a tiny, yet important, sliver.
 
-For the purpose of this blog post, we will use the following nearly normalized quaternion as an example: `{ X, Y, Z, W } = { -0.6767403483, 0.7361232042, 0.0120376134, -0.0006215832 }`. This is a real quaternion from a real clip of the [Carnegie-Mellon University (CMU) motion capture database]( http://mocap.cs.cmu.edu/) that proved to be problematic. With doubles, the dot product is **1.0000001612809224**.
+For the purpose of this blog post, we will use the following nearly normalized quaternion as an example: `{ X, Y, Z, W } = { -0.6767403483, 0.7361232042, 0.0120376134, -0.0006215832 }`. This is a real quaternion from a real clip of the [Carnegie-Mellon University (CMU) motion capture database](http://mocap.cs.cmu.edu/) that proved to be problematic. With doubles, the dot product is **1.0000001612809224**.
 
 Using plain C++ yields the following code and assembly (compiled with AVX support under Visual Studio 2015 with an x64 target):
 <script src="https://gist.github.com/nfrechette/745866253ad7a664bd97af1e008060a2.js"></script>
