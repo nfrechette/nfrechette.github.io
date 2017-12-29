@@ -34,7 +34,7 @@ I focused on reproducing the decompression logic as close as possible. The origi
 
 ## Not quite 1.0
 
-The first obstacle to using *fixed point* arithmetic is the fact that our quantized values do not map **1:1**. Many engines dequantize values code that looks like this (including Unreal 4 and ACL):
+The first obstacle to using *fixed point* arithmetic is the fact that our quantized values do not map **1:1**. Many engines dequantize with code that looks like this (including Unreal 4 and ACL):
 
 <script src="https://gist.github.com/nfrechette/28a61b389e3483c224da53333662ccd0.js"></script>
 
