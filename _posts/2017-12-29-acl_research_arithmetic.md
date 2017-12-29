@@ -12,9 +12,9 @@ In order to fully test *float64* arithmetic, I templated a few things to abstrac
 
 ![Float32 VS Float64 Stat Summary](/public/acl/arithmetic_float32_float64_summary.png)
 
-As it turns out, the small accuracy loss from *float32* arithmetic has a barely measurable impact on the memory footprint for CMU and a **0.6%** reduction for Paragon. However, the compression (and decompression) time is much slower.
+As it turns out, the small accuracy loss from *float32* arithmetic has a barely measurable impact on the memory footprint for CMU and a **0.6%** reduction for Paragon. However, the compression (and decompression) time is much faster.
 
-The max error for CMU and Paragon is slightly improved for the majority of the clips but not by a significant margin and **4** exotic Paragon clips end up with a worse error.
+With *float64*, the max error for CMU and Paragon is slightly improved for the majority of the clips but not by a significant margin and **4** exotic Paragon clips end up with a worse error.
 
 ![Float32 VS Float64 Max Error Distribution](/public/acl/arithmetic_max_error_distribution.png)
 
@@ -34,11 +34,11 @@ I focused on reproducing the decompression logic as close as possible. The origi
 
 ## Not quite 1.0
 
-The first obstacle to using *fixed point* arithmetic is the fact that our quantized values do not map **1:1**. Many engines will dequantize values as follow (including Unreal 4 and ACL):
+The first obstacle to using *fixed point* arithmetic is the fact that our quantized values do not map **1:1**. Many engines dequantize values code that looks like this (including Unreal 4 and ACL):
 
 <script src="https://gist.github.com/nfrechette/28a61b389e3483c224da53333662ccd0.js"></script>
 
-This is great in that it allows us to exactly represent both **0.0** and **1.0**. A case could be made to use a multiplication instead but it doesn't matter for us in the context of accuracy. With *fixed point* arithmetic we want to use all of our bits to represent the fractional part between those two values. This means the range of values we support is: **[0.0 ... 1.0[**.
+This is great in that it allows us to exactly represent both **0.0** and **1.0**, we can support the full range we care about: **[0.0 .. 1.0]**. A case could be made to use a multiplication instead but it doesn't matter all that much for the present discussion. With *fixed point* arithmetic we want to use all of our bits to represent the fractional part between those two values. This means the range of values we support is: **[0.0 ... 1.0)**. This is because both **0.0** and **1.0** have the same fractional value of **0** and as such we cannot tell them apart without an extra bit to represent the integral part.
 
 <script src="https://gist.github.com/nfrechette/d25f334afa7da3a6650ab19d3e8dec17.js"></script>
 
