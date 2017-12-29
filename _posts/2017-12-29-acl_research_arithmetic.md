@@ -64,7 +64,7 @@ It does lose out a tiny bit of accuracy but it is barely measurable. In order to
 
 Many variants were implemented: some performed the segment range expansion with *fixed point* arithmetic and the clip range expansion with *float32* arithmetic and others do everything with *fixed point*. A mix of *32* bit and *64* bit arithmetic was also tried to compare the accuracy and performance tradeoff.
 
-Generally, the *32* bit variants had a much higher accuracy loss by **1-2** orders of magnitude. It isn't clear how much this would impact the overall memory footprint on CMU and Paragon. The *64* bit variants had comparable accuracy to *float32* arithmetic but ended up using more registers and more instructions. This often degraded the performance to the point of making them entirely uncompetitive in this synthetic test. Only a single variant came close to the original *float32* performance but it could never beat the fast coercion derivative.
+Generally, the *32* bit variants had a much higher loss of accuracy by **1-2** orders of magnitude. It isn't clear how much this would impact the overall memory footprint on CMU and Paragon. The *64* bit variants had comparable accuracy to *float32* arithmetic but ended up using more registers and more instructions. This often degraded the performance to the point of making them entirely uncompetitive in this synthetic test. Only a single variant came close to the original *float32* performance but it could never beat the fast coercion derivative.
 
 The fastest *32* bit variant is as follow:
 
