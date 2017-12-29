@@ -18,7 +18,7 @@ The max error for CMU and Paragon is slightly improved for the majority of the c
 
 ![Float32 VS Float64 Max Error Distribution](/public/acl/arithmetic_max_error_distribution.png)
 
-Consequently, it is my opinion that *float32* is the superior choice between the two. The small increase in accuracy and reduction in memory footprint is not significant enough to outweigh the degradation of the performance. Even though the *float64* code path isn't as optimized, it will remain slower due to the individual instructions being slower and the increased number of registers needed.
+Consequently, it is my opinion that *float32* is the superior choice between the two. The small increase in accuracy and reduction in memory footprint is not significant enough to outweigh the degradation of the performance. Even though the *float64* code path isn't as optimized, it will remain slower due to the individual instructions being slower and the increased number of registers needed. It's possible the performance might be improved considerably with AVX and so this is something we'll keep in mind going forward.
 
 # Fixed point arithmetic
 
