@@ -10,7 +10,7 @@ Thanks for reading!
 # Video Game Credits
 
 *  Your next game? Contact me!
-*  Up coming AAA game, unannounced, Additional Programming
+*  Shadow of the Tomb Raider (2018), Additional Programming
 *  [Deus Ex: Mankind Divided](https://en.wikipedia.org/wiki/Deus_Ex:_Mankind_Divided) (2016), Additional Programming
 *  [Hitman](https://en.wikipedia.org/wiki/Hitman_(2016_video_game)) (2016), Additional Programming
 *  [Bierzerkers](http://store.steampowered.com/app/348460/) (2016), Additional Programming
