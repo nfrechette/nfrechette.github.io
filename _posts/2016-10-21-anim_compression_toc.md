@@ -26,6 +26,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
     *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
     *   [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 *   [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
+*   [Bind Pose Additive]({% post_url 2018-05-08-anim_compression_additive_bind %})
 *   [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
     *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
