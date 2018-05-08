@@ -61,7 +61,7 @@ It is worth noting that because these two additive spaces differ only by how the
 
 Measuring the impact is simple: I simply enabled all three modes one by one and compressed all of the [Carnegie-Mellon University](https://github.com/nfrechette/acl/blob/develop/docs/cmu_performance.md) motion capture database as well as all of the [Paragon](https://github.com/nfrechette/acl/blob/develop/docs/paragon_performance.md) data set. Decompression performance was not measured on its own but the compression time will serve as a hint as to how it would perform.
 
-Everything has been measured with my desktop using Visual Studio 2015 with AVX support enabled with up to **4** clips being compressed in parallel. All measurements were performed with the upcoming *ACL v0.8* release.
+Everything has been measured with my desktop using *Visual Studio 2015* with *AVX* support enabled with up to **4** clips being compressed in parallel. All measurements were performed with the upcoming *ACL v0.8* release.
 
 ![CMU Results](/public/acl/acl_cmu_bind_additive_results.png)
 
@@ -69,7 +69,7 @@ CMU has no scale and it is thus no surprise that the additive 0 and 1 formats pe
 
 ![Paragon Results](/public/acl/acl_paragon_bind_additive_results.png)
 
-Paragon shows vastly different results. The memory footprint reduces by about **7.9%** which is quite significant. The max error reduces as well and improves. Again, we can see both additive 0 and 1 perform the same. The relative space clearly loses out here and fails to show significant gains to compensate for the dramatically worse compression performance.
+Paragon shows the results I was expecting. The memory footprint reduces by about **7.9%** which is quite significant and the max error improves as well. Again, we can see both additive methods performing equally well. The relative space clearly loses out here and fails to show significant gains to compensate for the dramatically worse compression performance.
 
 ## Conclusion
 
