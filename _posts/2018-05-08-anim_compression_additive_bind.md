@@ -6,7 +6,23 @@ A common trick when compressing an animation clip is to store it relative to the
 
 Now that the [Animation Compression Library](https://github.com/nfrechette/acl) supports additive animation clips, I thought it would be a good idea to test this claim once more.
 
-Additive animation clips heavily depend on the animation runtime and ACL now supports [three variants](https://github.com/nfrechette/acl/blob/develop/docs/additive_clips.md):
+## How it works
+
+The concept is very simple to implement:
+
+*  Before compression happens, the bind pose is removed from the clip by subtracting it from every key.
+*  Then, the clip is compressed as usual.
+*  Finally, after we decompress a pose, we simply add back the bind pose.
+
+The transformation is lossless aside from whatever loss happens as a result of floating point precision. It has two primary side effects.
+
+The first is that bone translations end up having a much shorter range of motion. For example, a walking character might have the pelvic bone about **60cm** up from the ground (and root bone). The range of motion will thus circle around this large value for the whole track. Removing the bind pose brings the track closer to zero since the bind pose value of that bone is likely very near **60cm**. Smaller floating point values generally retain higher accuracy. The principle is identical to normalizing a track within its range.
+
+The second impacts constant tracks. If the pelvic bone is not animated in a clip, it will retain some constant value. This value is often the bind pose itself. When this happens, removing the bind pose yields the identity rotation and translation. Since these values are trivial to reconstruct at runtime, instead of having to store the constant floating point values, we can store a simple bit set.
+
+As a result, hand animated clips with the bind pose removed often find themselves with a lower memory footprint following compression.
+
+Mathematically speaking, how the bind pose is added or removed can be done in a number of ways, much like additive animation clips. While additive animation clips heavily depend on the animation runtime, ACL now supports [three variants](https://github.com/nfrechette/acl/blob/develop/docs/additive_clips.md):
 
 *  Relative space
 *  Additive space 0
@@ -65,7 +81,7 @@ Everything has been measured with my desktop using *Visual Studio 2015* with *AV
 
 ![CMU Results](/public/acl/acl_cmu_bind_additive_results.png)
 
-CMU has no scale and it is thus no surprise that the additive 0 and 1 formats perform the same. The memory footprint and the max error remain overall largely identical but as expected the compression time degrades. No gain is observed from this technique which further reinforces the claim that this data set is not entirely representative of hand authored animation clips used in most games.
+CMU has no scale and it is thus no surprise that the two additive formats perform the same. The memory footprint and the max error remain overall largely identical but as expected the compression time degrades. No gain is observed from this technique which further highlights how this data set differs from hand authored animations.
 
 ![Paragon Results](/public/acl/acl_paragon_bind_additive_results.png)
 
