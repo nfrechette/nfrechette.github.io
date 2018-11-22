@@ -18,7 +18,7 @@ Install [Virtual Box](https://www.virtualbox.org/). Virtual Box is a virtual mac
 
 ### Step 2
 
-Download a Virtual Box image from the [Internet Explorer Developer website](http://dev.modern.ie/tools/vms/). These images are legal versions of Windows provided by Microsoft to allow developers to test various Internet Explorer versions on various Windows versions. They expire after 90 days and cannot be activated but that doesn’t matter to us since we’ll only really use it for as long as the download of the ISO takes.
+Download a Virtual Box image from the [Internet Explorer Developer website](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/). These images are legal versions of Windows provided by Microsoft to allow developers to test various Internet Explorer versions on various Windows versions. They expire after 90 days and cannot be activated but that doesn’t matter to us since we’ll only really use it for as long as the download of the ISO takes.
 
 Simply grab the image for the platform that you have (Mac or Linux). Note that most images are 32 bit which will only allow you to later download the 32 bit ISO. At the time of writing, the Windows 10 image is 64 bit but requires [the following fix](https://stackoverflow.com/questions/30212542/the-ie11-windows-10-vm-for-virtualbox-on-osx-doesnt-start) to work properly.
 
