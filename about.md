@@ -10,7 +10,7 @@ Thanks for reading!
 # Video Game Credits
 
 *  Your next game? Contact me!
-*  Shadow of the Tomb Raider (2018), Additional Programming
+*  [Shadow of the Tomb Raider](https://en.wikipedia.org/wiki/Shadow_of_the_Tomb_Raider) (2018), Additional Programming
 *  [Deus Ex: Mankind Divided](https://en.wikipedia.org/wiki/Deus_Ex:_Mankind_Divided) (2016), Additional Programming
 *  [Hitman](https://en.wikipedia.org/wiki/Hitman_(2016_video_game)) (2016), Additional Programming
 *  [Bierzerkers](http://store.steampowered.com/app/348460/) (2016), Additional Programming
@@ -20,3 +20,7 @@ Thanks for reading!
 *  [Spore Hero](https://en.wikipedia.org/wiki/Spore_Hero) (2009), Generalist Programmer
 *  [FaceBreaker](https://en.wikipedia.org/wiki/FaceBreaker) (2008), Test Engineer
 
+# Publications
+
+* [New Animation Features in Unreal Engine](https://www.youtube.com/watch?v=tWVZ6KO4lRs), GDC 2019
+* [Simple and Powerful Animation Compression](https://nfrechette.github.io/2017/03/08/anim_compression_gdc2017/), GDC 2017
