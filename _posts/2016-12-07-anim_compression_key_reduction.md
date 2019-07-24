@@ -2,7 +2,6 @@
 layout: post
 title: "Animation Compression: Linear Key Reduction"
 ---
-
 With [simple key quantization]({% post_url 2016-11-15-anim_compression_quantization %}), if we needed to sample a certain time `T` for which we did not have a key (e.g. in between two existing keys), we linearly interpolated between the two.
 
 A natural extension of this is of course to remove keys or key frames which can be entirely linearly interpolated from their neighbour keys as long as we introduce minimal or no visible error.
@@ -72,6 +71,13 @@ Using a cursor is conceptually very simple. Most clips play linearly and predict
 Note that it is also quite possible that by using the above sorting trick that it could speed up the search but I cannot speak to the accuracy of this statement at this time.
 
 Even though we can reach a smaller memory footprint with linear key reduction compared to [simple key quantization]({% post_url 2016-11-15-anim_compression_quantization %}), the amount of cache lines we’ll need to touch when decompressing is most likely going to be higher. Along with the need to search for key neighbours, these facts makes it slower to decompress using this algorithm. It remains popular due to the reduced memory footprint which was very important on older consoles (e.g. PS2 and PS3 era) as well as due to its obvious simplicity.
+
+See the following posts for more details:
+
+*   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
+*   Pitfalls of linear sample reduction: Part 2
+*   Pitfalls of linear sample reduction: Part 3
+*   Pitfalls of linear sample reduction: Part 4
 
 [Up next: Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
 

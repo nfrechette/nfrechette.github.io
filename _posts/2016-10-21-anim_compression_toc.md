@@ -22,7 +22,11 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
     *   [Simple Quantization]({% post_url 2016-11-15-anim_compression_quantization %})
     *   [Advanced Quantization]({% post_url 2017-03-12-anim_compression_advanced_quantization %})
     *   [Sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %})
-    *   [Linear Key Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
+    *   [Linear Sample Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
+        *   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
+        *   Pitfalls of linear sample reduction: Part 2
+        *   Pitfalls of linear sample reduction: Part 3
+        *   Pitfalls of linear sample reduction: Part 4
     *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
     *   [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 *   [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
@@ -35,4 +39,4 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 # ACL: An open source solution
 
 My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own.
-See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl)!
+See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl) as well as its *Unreal Engine 4* [plugin](https://github.com/nfrechette/acl-ue4-plugin)!
