@@ -10,11 +10,11 @@ The [first post]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %}) show
 
 Another area where it struggles is decompression performance. When we want to sample a clip at a particular point in time, we have to search and find the closest samples in order to interpolate them. *Unreal Engine* lays out the data per track: the indices for all the retained samples are followed by their sample values.
 
-![Offset map](offset_map.jpg)
+![Offset map](/public/offset_map.jpg)
 
 This comes with a major performance drawback: each track will incur a cache miss for the sample indices in order to find the neighbors and another cache miss to read the two samples we need to interpolate. This is *very* slow. Each memory access will be random, preventing the hardware prefetcher from hiding the memory access latency. Even if we manage to prefetch it by hand, we still touch a very large number of cache lines. Equally worse, each cache line is only used partially as they also contain data we will not need. In the end, a significant portion of our CPU cache will be evicted with data that will only be read once.
 
-![Sorted uniform samples](sorted_uniform_samples.jpg)
+![Sorted uniform samples](/public/sorted_uniform_samples.jpg)
 
 In contrast, ACL retains every sample and sorts them by time (sample index). This ensures that all the samples we need at a particular point in time are contiguous in memory. Sampling our clip becomes very fast:
 
@@ -29,7 +29,7 @@ Sorting is clearly the key to fast decompression.
 
 Back in 2017, if you searched for ''*animation compression*'', the most popular blog posts were [one by Bitsquid](http://bitsquid.blogspot.com/2011/10/low-level-animation-part-2.html) which advocates using curve fitting with sorted samples for fast and cache friendly decompression and [a post by Riot Games](https://technology.riotgames.com/news/compressing-skeletal-animation-data) about trying the same technique with some success.
 
-![Sorted samples](sorted_samples.jpg)
+![Sorted samples](/public/sorted_samples.jpg)
 
 Without getting into the details too much (the two posts above explain it quite well), you sort the samples by the time you need them *at* (**NOT** by their sample time) and you keep track from frame to frame where and what you last decompressed from the compressed byte stream. Once decompressed, samples are stored (often raw, unpacked) in a persistent context object that is reused from frame to frame. This allows you to touch the least possible amount of *compressed* contiguous data every frame by unpacking only the new samples that you need to interpolate at the current desired time. Once all your samples are unpacked inside the context, interpolation is *very* fast. You can use tons of tricks like *Structure of Arrays*, wider SIMD registers with AVX, and you can easily interpolate two or three samples at a time in order to use all available registers and minimize pipeline stalls. This requires keeping a context object around all the time but it is by far the fastest way to interpolate a compressed animation because you can avoid unpacking samples that have already been cached.
 
