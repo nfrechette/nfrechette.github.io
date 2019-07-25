@@ -21,7 +21,7 @@ To speed it up, two important changes were made:
 
 This brought a significant win. As mentioned at the [Games Developer Conference 2019](https://youtu.be/tWVZ6KO4lRs?t=1256), the introduction of the white list brought the time to compress *Fortnite* (while cooking for the *Xbox One*) from **6h 25mins** down to **1h 50mins**, a speed up of **3.5x**. Executing them in parallel lowered this even more, down to **40mins** or about **2.75x** faster. Overall, it ended up **9.6x** faster.
 
-While none of this impacted the codecs or the API in any way, *UE 4.21* also saw significant changes to the codec API. The reason for this will be the subject of my next blog post: failed optimization attempts and the lessons learned from them. In particular, I will show why removing samples that can be reconstructed through interpolation has significant drawbacks. Sometimes despite your best intentions and research, things just don't pan out.
+While none of this impacted the codecs or the API in any way, *UE 4.21* also saw significant changes to the codec API. The reason for this will be the subject of my [next blog post]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %}): failed optimization attempts and the lessons learned from them. In particular, I will show why removing samples that can be reconstructed through interpolation has significant drawbacks. Sometimes despite your best intentions and research, things just don't pan out.
 
 ## The juicy numbers
 

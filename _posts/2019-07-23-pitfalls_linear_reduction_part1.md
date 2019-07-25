@@ -66,4 +66,4 @@ Most of the *Paragon* clips are short. Roughly **60%** of them need only a singl
 
 **Overall, segmenting worked but it was very underwhelming within the UE4 codecs. It did not deliver what I had hoped it would and what I had seen with ACL.**
 
-In an effort to fix the decompression performance regression, a context object was introduced, adding even more complexity. A context object persists from frame to frame for each clip being played back. It allows data to be reused from a previous decompression call to speed up the next call. It is also necessary in order to support sorting the samples which I tried next and will be covered in my next post.
+In an effort to fix the decompression performance regression, a context object was introduced, adding even more complexity. A context object persists from frame to frame for each clip being played back. It allows data to be reused from a previous decompression call to speed up the next call. It is also necessary in order to support sorting the samples which I tried next and will be covered in my [next post]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %}).
