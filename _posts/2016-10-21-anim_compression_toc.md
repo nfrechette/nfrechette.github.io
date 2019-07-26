@@ -25,7 +25,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
     *   [Linear Sample Reduction]({% post_url 2016-12-07-anim_compression_key_reduction %})
         *   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
         *   [Pitfalls of linear sample reduction: Part 2]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
-        *   Pitfalls of linear sample reduction: Part 3
+        *   [Pitfalls of linear sample reduction: Part 3]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
         *   Pitfalls of linear sample reduction: Part 4
     *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
     *   [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})

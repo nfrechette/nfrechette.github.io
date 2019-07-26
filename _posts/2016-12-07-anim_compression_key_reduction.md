@@ -76,7 +76,7 @@ See the following posts for more details:
 
 *   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
 *   [Pitfalls of linear sample reduction: Part 2]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
-*   Pitfalls of linear sample reduction: Part 3
+*   [Pitfalls of linear sample reduction: Part 3]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
 *   Pitfalls of linear sample reduction: Part 4
 
 [Up next: Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})

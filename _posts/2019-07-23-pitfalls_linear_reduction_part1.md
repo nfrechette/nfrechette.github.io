@@ -9,8 +9,8 @@ I am now refactoring Unreal’s codec API to natively support animation compress
 The UE4 codecs rely heavily on [linear sample reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}): samples in a time series that can be linearly interpolated from their neighbors are removed to achieve compression. This technique is very common but it introduces a number of nuances that are often overlooked. We will look at some of these in this multi-part series:
 
 *  Splitting animation sequences into independent segments doesn't work too well
-*  Sorting the samples in a CPU cache friendly memory layout has far reaching implications
-*  The added memory overhead when samples are removed is fairly large
+*  [Sorting the samples in a CPU cache friendly memory layout has far reaching implications]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
+*  [The added memory overhead when samples are removed is fairly large]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
 *  Empirical data shows that in practice not many samples are removed
 
 TL;DR: As codecs grow in complexity, they can sometimes have unintended side-effects and ultimately be outperformed by simpler codecs.

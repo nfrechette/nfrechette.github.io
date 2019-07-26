@@ -4,7 +4,7 @@ title: "Pitfalls of linear sample reduction: Part 2"
 ---
 <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
-**A quick recap:** animation clips are formed from a set of time series called tracks. Tracks have a fixed number of samples per second and each track has the same length. The [Animation Compression Library](https://github.com/nfrechette/acl) retains every sample while the most commonly used *Unreal Engine* codecs use the popular method of removing samples that can be linearly interpolated from their neighbors.
+**A quick recap:** animation clips are formed from a set of time series called tracks. Tracks have a fixed number of samples per second and each track has the same length. The [Animation Compression Library](https://github.com/nfrechette/acl) retains every sample while the most commonly used *Unreal Engine* codecs use the popular method of [removing samples that can be linearly interpolated]({% post_url 2016-12-07-anim_compression_key_reduction %}) from their neighbors.
 
 The [first post]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %}) showed how removing samples negates some of the benefits that come from segmenting, rendering the technique a lot less effective.
 
@@ -79,4 +79,4 @@ Overall, sorting the samples retained increased slightly the compressed size, it
 
 Although the technique appeared very attractive as presented by *Bitsquid*, it ended up being quite underwhelming. This was made all the more apparent by my parallel efforts with ACL that retained every sample yet achieved remarkable results with little to no complexity. ACL has consistent and fast decompression performance regardless of the playback rate, playback direction, or sample rate and it does this without the need for a persistent context.
 
-When linear sample reduction is used, both sorted and unsorted algorithms have significant drawbacks when it comes to decompression performance and memory usage. While both techniques require extra metadata that increases their memory footprint, if enough samples are removed, the overhead can be offset to yield a net win. The next post will look into how many samples need to be removed in order to beat ACL which retains all of them.
+When linear sample reduction is used, both sorted and unsorted algorithms have significant drawbacks when it comes to decompression performance and memory usage. While both techniques require extra metadata that increases their memory footprint, if enough samples are removed, the overhead can be offset to yield a net win. The [next post]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %}) will look into how many samples need to be removed in order to beat ACL which retains all of them.
