@@ -31,6 +31,8 @@ All numbers will be rounded up to the nearest byte and cache line.
 
 All three algorithms use linear interpolation and as such require two poses to interpolate our final result.
 
+*See the annex at the end of the post for how the math breaks down*
+
 ### The shared base
 
 Some features are always a win and will be assumed present in our three algorithms:
@@ -68,8 +70,8 @@ Although the UE4 codecs do not support variable bit rates the way ACL does, we w
 
 |                        | Bytes touched | Cache lines touched | Compressed size |
 | ---------------------- | ------------- | ------------------- | --------------- |
-| **With segmenting**    | 39988         | 625                 | 7695 KB         |
-| **Without segmenting** | 38179         | 597                 | 11503 KB        |
+| **With segmenting**    | 39990         | 625                 | 7695 KB         |
+| **Without segmenting** | 38172         | 597                 | 11503 KB        |
 
 As we can see, while segmenting reduces considerably the overall memory footprint (by 33%), it does contribute to quite a few extra cache lines being touched (4.7% more) during decompression despite the animated pose being 36% smaller. This highlights how normalizing the samples within the range of each segment increases their overall accuracy and reduces the number of bits required to maintain it.
 
@@ -85,11 +87,11 @@ These estimates are very conservative. In practice, the offsets are required to 
 | ------------------------------------ | ------------- | ------------------- | --------------- |
 | **Sample times**                     | 2020          | 1010                | 1964 KB         |
 | **Sample count with segmenting**     | 1010          | 16                  | 123 KB          |
-| **Sample values with segmenting**    | 7575          | 1010                | 7365 KB         |
-| **Total with segmenting**            | 43039         | 2546                | 10334 KB        |
+| **Sample values with segmenting**    | 7575          | 1010                | 7346 KB         |
+| **Total with segmenting**            | 43039         | 2546                | 10315 KB        |
 | **Sample count without segmenting**  | 1010          | 16                  | 1 KB            |
-| **Sample values without segmenting** | 11615         | 1010                | 11292 KB        |
-| **Total without segmenting**         | 40009         | 2435                | 13405 KB        |
+| **Sample values without segmenting** | 11615         | 1010                | 11470 KB        |
+| **Total without segmenting**         | 40009         | 2435                | 13583 KB        |
 
 When our samples are unsorted, it becomes obvious why decompression is quite slow. The number of cache lines touched is staggering: 2435 cache lines which represents 153 KB! This scales linearly with the number of animated tracks. We can also see that despite the added overhead of segmenting, the overall memory footprint is lower (by 23%) but not by as much as ACL.
 
@@ -104,8 +106,8 @@ Our context will only store animated tracks to keep it as small as possible. We 
 |                             | Bytes touched | Cache lines touched |
 | --------------------------- | ------------- | ------------------- |
 | **Context values @ 96 bps** | 24240         | 379                 |
-| **Context values @ 46 bps** | 12625         | 198                 |
-| **Context values @ 30 bps** | 14645         | 230                 |
+| **Context values @ 46 bps** | 12808         | 198                 |
+| **Context values @ 30 bps** | 14626         | 230                 |
 
 Right off the bat, it is clear that if we want interpolation to be as fast as possible (with no unpacking), our context is quite large and requires evicting quite a bit of CPU cache. To keep the context footprint as low as possible, going forward we will assume that we store the values packed inside it. Storing packed samples into our context comes with challenges. Each segment will have a different pose size and as such we either need to resize the context or allocate it with the largest pose size. When packed in the compressed byte stream, each sample is often bit aligned and copying into another bit aligned buffer is more expensive than a regular `memcpy` operation. Keeping the context size low requires some work.
 
@@ -113,14 +115,12 @@ Right off the bat, it is clear that if we want interpolation to be as fast as po
 
 |                                          | Bytes touched | Cache lines touched | Compressed size |
 | ---------------------------------------- | ------------- | ------------------- | --------------- |
-| **Compressed values with segmenting**    | 5808          | 91                  | 11292 KB        |
-| **Compressed values without segmenting** | 7828          | 123                 | 15220 KB        |
-| **Total with segmenting**                | 45817         | 720                 | 12174 KB        |
-| **Total without segmenting**             | 45817         | 720                 | 15246 KB        |
+| **Compressed values with segmenting**    | 5798          | 91                  | 11274 KB        |
+| **Compressed values without segmenting** | 7919          | 123                 | 15398 KB        |
+| **Total with segmenting**                | 45788         | 720                 | 12156 KB        |
+| **Total without segmenting**             | 46091         | 720                 | 15424 KB        |
 
 *Note that the compressed size above does not consider the footprint of the context required at runtime to decompress but the bytes and cache lines touched do.*
-
-Surprisingly, the same number of bytes and cache lines are touched whether we have segmenting enabled or not for this clip. This may not always be the case though.
 
 Compared to the unsorted algorithm, the memory overhead goes up quite a bit: the constant struggle between size and speed.
 
@@ -132,12 +132,12 @@ If instead we keep the context at full precision and unpack samples once into it
 
 |                                 | Bytes touched | Cache lines touched | Compressed size |
 | ------------------------------- | ------------- | ------------------- | --------------- |
-| **Uniform with segmenting**     | 39988         | 625                 | 7695 KB         |
-| **Unsorted with segmenting**    | 43039         | 2546                | 10334 KB        |
-| **Sorted with segmenting**      | 45817         | 720                 | 12174 KB        |
-| **Uniform without segmenting**  | 38179         | 597                 | 11503 KB        |
-| **Unsorted without segmenting** | 40009         | 2435                | 13405 KB        |
-| **Sorted without segmenting**   | 45817         | 720                 | 15246 KB        |
+| **Uniform with segmenting**     | 39990         | 625                 | 7695 KB         |
+| **Unsorted with segmenting**    | 43039         | 2546                | 10315 KB        |
+| **Sorted with segmenting**      | 45788         | 720                 | 12156 KB        |
+| **Uniform without segmenting**  | 38172         | 597                 | 11503 KB        |
+| **Unsorted without segmenting** | 40009         | 2435                | 13583 KB        |
+| **Sorted without segmenting**   | 46091         | 720                 | 15424 KB        |
 
 ACL retains every sample and touches the least amount of memory and it applies the lower CPU cache pressure. However, so far our estimates assumed that all samples were retained and as such, we cannot make a determination as to whether or not it also wins on the overall memory footprint. What we can do however, is determine how many samples we need to drop in order to match it.
 
@@ -148,3 +148,73 @@ With sorted samples, we have to drop roughly 40% of our samples in order to matc
 It is worth noting that most of these numbers remain true if cubic interpolation is used instead. While the context object will double in size and thus require more cache lines to be touched during decompression, the total compressed size will remain the same if the same number of samples are retained.
 
 The fourth and last blog post in the series will look at how many samples are actually removed in *Paragon* and *Fortnite*. This will complete the puzzle and paint a clear picture of the strengths and weaknesses of linear sample reduction techniques.
+
+### Annex
+
+Inputs:
+
+* `num_segments = 124`
+* `num_samples_per_track = 1991`
+* `num_tracks = 1082`
+* `num_animated_tracks = 1010`
+* `num_constant_tracks = 71`
+* `bytes_per_sample_with_segmenting = 3.74`
+* `bytes_per_sample_without_segmenting = 5.84`
+* `num_animated_samples = num_samples_per_track * num_animated_tracks = 2010910`
+* `num_pose_to_interpolate = 2`
+
+Shared math:
+
+* `bitset_size = num_tracks / 8 = 136 bytes`
+* `constant_values_size = num_constant_tracks * sizeof(float) * 3 = 852 bytes`
+* `range_values_size = num_animated_tracks * sizeof(float) * 6 = 24240 bytes`
+* `clip_shared_size = bitset_size * 2 + constant_values_size + range_values_size = 25364 bytes = 25 KB`
+* `bit_rates_size = num_animated_tracks * 1 = 1010 bytes`
+* `bit_rates_size_total_with_segmenting = bit_rates_size * num_segments = 123 KB`
+* `segment_range_values_size = num_animated_tracks * 6 = 6060 bytes`
+* `segment_range_values_size_total = segment_range_values_size * num_segments = 734 KB`
+* `animated_pose_size_with_segmenting = bytes_per_sample_with_segmenting * num_animated_tracks = 3778 bytes`
+* `animated_pose_size_without_segmenting = bytes_per_sample_without_segmenting * num_animated_tracks = 5899 bytes`
+
+ACL math:
+
+* `acl_animated_size_with_segmenting = animated_pose_size_with_segmenting * num_samples_per_track = 7346 KB`
+* `acl_animated_size_without_segmenting = animated_pose_size_without_segmenting * num_samples_per_track = 11470 KB`
+* `acl_decomp_bytes_touched_with_segmenting = clip_shared_size + bit_rates_size + segment_range_values_size + acl_animated_pose_size_with_segmenting * num_pose_to_interpolate = 39990 bytes`
+* `acl_decomp_bytes_touched_without_segmenting = clip_shared_size + bit_rates_size + acl_animated_pose_size_without_segmenting * num_pose_to_interpolate = 38172 bytes`
+* `acl_size_with_segmenting = clip_shared_size + bit_rates_size_total_with_segmenting + segment_range_values_size_total + acl_animated_size_with_segmenting = 8106 KB` (actual size is lower due to the bytes per sample changing from segment to segment)
+* `acl_size_without_segmenting = clip_shared_size + bit_rates_size + acl_animated_size_without_segmenting = 11496 KB` (actual size is higher by a few bytes due to misc. clip overhead)
+
+Unsorted linear sample reduction math:
+
+* `unsorted_decomp_bytes_touched_sample_times = num_animated_tracks * 1 * num_pose_to_interpolate = 1010 bytes`
+* `unsorted_sample_times_size_total = num_animated_samples * 1 = 1964 KB`
+* `unsorted_sample_counts_size = num_animated_tracks * 1 = 1010 bytes`
+* `unsorted_sample_counts_size_total = unsorted_sample_counts_size * num_segments = 123 KB`
+* `unsorted_animated_size_with_segmenting = acl_animated_size_with_segmenting = 7346 KB`
+* `unsorted_animated_size_without_segmenting = acl_animated_size_without_segmenting = 11470 KB`
+* `unsorted_total_size_with_segmenting = clip_shared_size + bit_rates_size_total_with_segmenting + segment_range_values_size_total + unsorted_sample_times_size_total + unsorted_sample_counts_size_total + unsorted_animated_size_with_segmenting = 10315 KB`
+* `unsorted_total_size_without_segmenting = clip_shared_size + bit_rates_size_total + unsorted_sample_times_size_total + unsorted_sample_counts_size + unsorted_animated_size_without_segmenting = 13583 KB`
+* `unsorted_total_sample_size_with_segmenting = unsorted_sample_times_size_total + unsorted_animated_size_with_segmenting = 9310 KB`
+* `unsorted_total_sample_size_without_segmenting = unsorted_sample_times_size_total + unsorted_animated_size_without_segmenting = 13434 KB`
+* `unsorted_drop_rate_with_segmenting = (unsorted_total_size_with_segmenting - acl_size_with_segmenting) / unsorted_total_sample_size_with_segmenting = 28 %`
+* `unsorted_drop_rate_without_segmenting = (unsorted_total_size_without_segmenting - acl_size_without_segmenting) / unsorted_total_sample_size_without_segmenting = 15.5 %`
+
+Sorted linear sample reduction math:
+
+* `full_resolution_context_size = num_animated_tracks * num_pose_to_interpolate * sizeof(float) * 3 = 24240 bytes = 24 KB`
+* `with_segmenting_context_size = num_pose_to_interpolate * animated_pose_size_with_segmenting = 7556 bytes`
+* `without_segmenting_context_size = num_pose_to_interpolate * animated_pose_size_without_segmenting = 11798 bytes`
+* `with_segmenting_context_decomp_bytes_touched = with_segmenting_context_size + bit_rates_size + segment_range_values_size = 14626 bytes = 15 KB`
+* `without_segmenting_context_decomp_bytes_touched = without_segmenting_context_size + bit_rates_size = 12808 bytes = 13 KB`
+* `sorted_decomp_compressed_bytes_touched_with_segmenting = num_animated_tracks * sizeof(uint16) + animated_pose_size_with_segmenting = 5798 bytes`
+* `sorted_decomp_compressed_bytes_touched_without_segmenting = num_animated_tracks * sizeof(uint16) + animated_pose_size_without_segmenting = 7919 bytes`
+* `sorted_animated_size_with_segmenting = num_animated_samples * sizeof(uint16) + acl_animated_size_with_segmenting = 11274 KB`
+* `sorted_animated_size_without_segmenting = num_animated_samples * sizeof(uint16) + acl_animated_size_without_segmenting = 15398 KB`
+* `sorted_decomp_bytes_touched_with_segmenting = with_segmenting_context_decomp_bytes_touched + sorted_decomp_compressed_bytes_touched_with_segmenting + clip_shared_size = 45788 bytes = 45 KB`
+* `sorted_decomp_bytes_touched_without_segmenting = without_segmenting_context_decomp_bytes_touched + sorted_decomp_compressed_bytes_touched_without_segmenting + clip_shared_size = 46091 bytes = 46 KB`
+* `sorted_total_size_with_segmenting = clip_shared_size + bit_rates_size_total_with_segmenting + segment_range_values_size_total + sorted_animated_size_with_segmenting = 12156 KB`
+* `sorted_total_size_without_segmenting = clip_shared_size + bit_rates_size + sorted_animated_size_without_segmenting = 15424 KB`
+* `sorted_drop_rate_with_segmenting = (sorted_total_size_with_segmenting - acl_size_with_segmenting) / sorted_animated_size_with_segmenting = 40 %`
+* `sorted_drop_rate_without_segmenting = (sorted_total_size_without_segmenting - acl_size_without_segmenting) / sorted_animated_size_without_segmenting = 25.5 %`
+
