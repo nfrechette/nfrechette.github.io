@@ -11,7 +11,7 @@ The UE4 codecs rely heavily on [linear sample reduction]({% post_url 2016-12-07-
 *  Splitting animation sequences into independent segments doesn't work too well
 *  [Sorting the samples in a CPU cache friendly memory layout has far reaching implications]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
 *  [The added memory overhead when samples are removed is fairly large]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
-*  Empirical data shows that in practice not many samples are removed
+*  [Empirical data shows that in practice not many samples are removed]({% post_url 2019-07-31-pitfalls_linear_reduction_part4 %})
 
 TL;DR: As codecs grow in complexity, they can sometimes have unintended side-effects and ultimately be outperformed by simpler codecs.
 

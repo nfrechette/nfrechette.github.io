@@ -6,7 +6,7 @@ With [simple key quantization]({% post_url 2016-11-15-anim_compression_quantizat
 
 A natural extension of this is of course to remove keys or key frames which can be entirely linearly interpolated from their neighbour keys as long as we introduce minimal or no visible error.
 
-# How It Works
+## How It Works
 
 The process to remove keys is fairly straight forward:
 
@@ -48,7 +48,7 @@ Another interesting key is **#4**:
 
 It lies somewhat close to the value we could linearly interpolate from its neighbours: `value = lerp(0.6, 0.96, 0.5) = 0.78`. Whether the error introduced by removing it is acceptable or not is determined by our error metric function.
 
-# In The Wild
+## In The Wild
 
 This algorithm is perhaps the most common and popular out there. Both Unreal 4 and Unity 5 as well as many popular game engines support this format. They all use slight variations mostly in their error metric function but the principle remains the same. Sadly most implementations out there tend to use a poorly implemented error metric which tends to yield bad results in many instances. This typically stems from using a local error metric where each track type has a single error threshold. Of course the problem with this is that due to the hierarchical nature of our bone data, some bones need higher accuracy (e.g. pelvis, root). Some engines mitigate this by allowing a threshold per track or per bone but this requires some amount of tweaking to get right which is often undesirable and sub-optimal.
 
@@ -56,7 +56,7 @@ Twice in my career I had to implement a new animation compression algorithm and 
 
 From the implementations I have seen in the wild, it seems more popular to remove individual keys as opposed to removing whole key frames.
 
-# Performance
+## Performance
 
 Sadly due to the loss of data uniformity, the cache locality of the data we need suffers. Unlike for [simple key quantization]({% post_url 2016-11-15-anim_compression_quantization %}), we can no longer simply sort by key frame if we remove individual keys (you still can if you remove whole key frames though) to keep things cache efficient.
 
@@ -77,7 +77,7 @@ See the following posts for more details:
 *   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
 *   [Pitfalls of linear sample reduction: Part 2]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
 *   [Pitfalls of linear sample reduction: Part 3]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
-*   Pitfalls of linear sample reduction: Part 4
+*   [Pitfalls of linear sample reduction: Part 4]({% post_url 2019-07-31-pitfalls_linear_reduction_part4 %})
 
 [Up next: Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
 

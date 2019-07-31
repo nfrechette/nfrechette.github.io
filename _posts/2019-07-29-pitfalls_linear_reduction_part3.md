@@ -147,7 +147,7 @@ With sorted samples, we have to drop roughly 40% of our samples in order to matc
 
 It is worth noting that most of these numbers remain true if cubic interpolation is used instead. While the context object will double in size and thus require more cache lines to be touched during decompression, the total compressed size will remain the same if the same number of samples are retained.
 
-The fourth and last blog post in the series will look at how many samples are actually removed in *Paragon* and *Fortnite*. This will complete the puzzle and paint a clear picture of the strengths and weaknesses of linear sample reduction techniques.
+[The fourth]({% post_url 2019-07-31-pitfalls_linear_reduction_part4 %}) and last blog post in the series will look at how many samples are actually removed in *Paragon* and *Fortnite*. This will complete the puzzle and paint a clear picture of the strengths and weaknesses of linear sample reduction techniques.
 
 ### Annex
 
@@ -217,4 +217,3 @@ Sorted linear sample reduction math:
 * `sorted_total_size_without_segmenting = clip_shared_size + bit_rates_size + sorted_animated_size_without_segmenting = 15424 KB`
 * `sorted_drop_rate_with_segmenting = (sorted_total_size_with_segmenting - acl_size_with_segmenting) / sorted_animated_size_with_segmenting = 40 %`
 * `sorted_drop_rate_without_segmenting = (sorted_total_size_without_segmenting - acl_size_without_segmenting) / sorted_animated_size_without_segmenting = 25.5 %`
-

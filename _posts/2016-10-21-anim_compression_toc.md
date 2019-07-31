@@ -9,7 +9,7 @@ The amount of material available regarding animation compression is surprisingly
 
 Each post is self-contained and detailed enough to be approachable to a wide audience.
 
-# Table of Contents
+## Table of Contents
 
 *   [Preface]({% post_url 2016-10-25-anim_compression_preface %})
 *   [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
@@ -26,7 +26,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
         *   [Pitfalls of linear sample reduction: Part 1]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %})
         *   [Pitfalls of linear sample reduction: Part 2]({% post_url 2019-07-25-pitfalls_linear_reduction_part2 %})
         *   [Pitfalls of linear sample reduction: Part 3]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %})
-        *   Pitfalls of linear sample reduction: Part 4
+        *   [Pitfalls of linear sample reduction: Part 4]({% post_url 2019-07-31-pitfalls_linear_reduction_part4 %})
     *   [Curve Fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %})
     *   [Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 *   [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
@@ -36,7 +36,6 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
 *   [GDC 2017 Presentation]({% post_url 2017-03-08-anim_compression_gdc2017 %})
 
-# ACL: An open source solution
+## ACL: An open source solution
 
-My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own.
-See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl) as well as its *Unreal Engine 4* [plugin](https://github.com/nfrechette/acl-ue4-plugin)!
+My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own. See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl) as well as its *Unreal Engine 4* [plugin](https://github.com/nfrechette/acl-ue4-plugin)!
