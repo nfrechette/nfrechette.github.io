@@ -5,7 +5,18 @@ title: About
 
 I am a senior AAA video game consulting programmer with a passion for high performance computing. I love pushing the pedal to the floor: every byte and cycle matters. I am always looking for new work opportunities as such feel free to reach out to me via the navigation bar on the right.
 
-Thanks for reading!
+I am the author of the industry leading [Animation Compression Library (ACL)](https://github.com/nfrechette/acl) and I use it to perform in depth research and development on the topic. It is the only standalone library of its kind to solve this problem. It has the fastest compression and decompression performance while maintaining the lowest memory footprint without sacrifying accuracy. It currently runs on all mobile devices, consoles, and desktop. Many small and large game engines have integrated it and I also maintain an [Unreal Engine 4 plugin](https://github.com/nfrechette/acl-ue4-plugin). Ongoing work will bring it as an [extension to glTF](https://github.com/nfrechette/acl-gltf) in order to take the web by storm with a [WebAssembly module](https://github.com/nfrechette/acl-js) in 2020.
+
+I am also the author of the [Realtime Math](https://github.com/nfrechette/rtm) library. It is used extensively by ACL and is heavily optimized for modern devices. While it certainly isn't the only one of its kind, it does offer an edge over the competition. You can find out more [here](https://nfrechette.github.io/2019/01/19/introducing_realtime_math/).
+
+I routinely work with various companies to help bring ACL within their game engines. Some of them include Remedy Entertainment, Epic, Eidos Montreal, Ubisoft, and many others. Recent clients include: Autodesk, Epic, and Eidos Montreal.
+
+My various open source C++ projects put me in the top 1% in popularity on GitHub and I strive to maintain the highest quality possible by adering to modern development practices: code and commit linters, clean commit history, clean coding standards, unit tests, regression tests, static code analysis, and continuous integration to name a few.
+
+# Publications
+
+* [New Animation Features in Unreal Engine](https://www.youtube.com/watch?v=tWVZ6KO4lRs), GDC 2019
+* [Simple and Powerful Animation Compression](https://nfrechette.github.io/2017/03/08/anim_compression_gdc2017/), GDC 2017
 
 # Video Game Credits
 
@@ -19,8 +30,3 @@ Thanks for reading!
 *  [Army of Two: The 40th Day](https://en.wikipedia.org/wiki/Army_of_Two:_The_40th_Day) (2010), Additional Programming
 *  [Spore Hero](https://en.wikipedia.org/wiki/Spore_Hero) (2009), Generalist Programmer
 *  [FaceBreaker](https://en.wikipedia.org/wiki/FaceBreaker) (2008), Test Engineer
-
-# Publications
-
-* [New Animation Features in Unreal Engine](https://www.youtube.com/watch?v=tWVZ6KO4lRs), GDC 2019
-* [Simple and Powerful Animation Compression](https://nfrechette.github.io/2017/03/08/anim_compression_gdc2017/), GDC 2017
