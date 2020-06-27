@@ -2,7 +2,7 @@
 layout: post
 title: "Keep an eye out for buffer security checks"
 ---
-By default, Visual Studio enables the `/GS` compilation flag for [buffer security checks](https://docs.microsoft.com/en-us/cpp/build/reference/gs-buffer-security-check?view=vs-2019).
+By default, when compiling C++, Visual Studio enables the `/GS` flag for [buffer security checks](https://docs.microsoft.com/en-us/cpp/build/reference/gs-buffer-security-check?view=vs-2019).
 
 In functions that the compiler deems vulnerable to the stack getting overwritten, it adds buffer security checks. To detect if the stack has been tampered with during execution of the function, it first writes a sentinel value past the end of the reserved space the function needs. This sentinel value is random per process to avoid an attacker guessing its value. Just before the function exits, it calls a small function that validates the sentinel value: `__security_check_cookie()`.
 
