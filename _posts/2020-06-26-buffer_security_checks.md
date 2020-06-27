@@ -139,7 +139,7 @@ vsubps      xmm1,xmm0,xmm6
 vmovups     xmmword ptr [rsp+20h],xmm1
 lea         rcx,[rsp+20h]
 vzeroupper
-call        rtm::rtm_impl::vector4f_vector_length3::operator rtm::scalarf (07FF6FE50D590h)
+call        rtm::rtm_impl::vector4f_vector_length3::operator rtm::scalarf
 ```
 
 >  Side note, when AVX is enabled, Visual Studio often ends up attempting to use wider registers when they aren't needed, causing the addition of `vzeroupper` and other artifacts that can degrade performance.
@@ -148,7 +148,7 @@ call        rtm::rtm_impl::vector4f_vector_length3::operator rtm::scalarf (07FF6
 // inline operator scalarf() const
 // {
 sub         rsp,18h
-mov         rax,qword ptr [__security_cookie (07FF6FE552038h)]
+mov         rax,qword ptr [__security_cookie]
 xor         rax,rsp
 mov         qword ptr [rsp],rax
 // const scalarf len_sq = vector_length_squared3(input);
@@ -163,7 +163,7 @@ vsqrtss     xmm0,xmm0,xmm0
 // }
 mov         rcx,qword ptr [rsp]
 xor         rcx,rsp
-call        __security_check_cookie (07FF6FE53A140h)
+call        __security_check_cookie
 add         rsp,18h
 ret
 ```
