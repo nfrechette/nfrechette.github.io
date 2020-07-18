@@ -12,8 +12,8 @@ At runtime, decompressing animation data could not be easier:
 acl::decompression_context<custom_decompression_settings> context;
 context.initialize(compressed_data);
 
-// Seek 1.0 second into our compressed animation and don't use rounding
-// to interpolate
+// Seek 1.0 second into our compressed animation
+// and don't use rounding to interpolate
 context.seek(1.0f, acl::sample_rounding_policy::none);
 
 custom_writer writer(output_data);
@@ -38,32 +38,42 @@ There are many game engines out there each handling animation in their own speci
 ```c++
 struct decompression_settings
 {
-  // Whether or not to clamp the sample time when `seek(..)` is called. Defaults to true.
+  // Whether or not to clamp the sample time when `seek(..)`
+  // is called. Defaults to true.
   static constexpr bool clamp_sample_time() { return true; }
 
-  // Whether or not the specified track type is supported. Defaults to true.
-  // If a track type is statically known not to be supported, the compiler can strip
-  // the associated code.
-  static constexpr bool is_track_type_supported(track_type8 /*type*/) { return true; }
+  // Whether or not the specified track type is supported.
+  // Defaults to true.
+  // If a track type is statically known not to be supported,
+  // the compiler can strip the associated code.
+  static constexpr bool is_track_type_supported(track_type8 /*type*/)
+  { return true; }
 
   // Other stuff ...
 
   // Which version we should optimize for.
-  // If 'any' is specified, the decompression context will support every single version
-  // with full backwards compatibility.
-  // Using a specific version allows the compiler to statically strip code for all other
-  // versions. This allows the creation of context objects specialized for specific
-  // versions which yields optimal performance.
-  static constexpr compressed_tracks_version16 version_supported() { return compressed_tracks_version16::any; }
+  // If 'any' is specified, the decompression context will
+  // support every single version with full backwards
+  // compatibility.
+  // Using a specific version allows the compiler to
+  // statically strip code for all other versions.
+  // This allows the creation of context objects specialized
+  // for specific versions which yields optimal performance.
+  static constexpr compressed_tracks_version16 version_supported()
+  { return compressed_tracks_version16::any; }
 
-  // Whether the specified rotation/translation/scale format are supported or not.
+  // Whether the specified rotation/translation/scale format
+  // are supported or not.
   // Use this to strip code related to formats you do not need.
-  static constexpr bool is_rotation_format_supported(rotation_format8 /*format*/) { return true; }
+  static constexpr bool is_rotation_format_supported(rotation_format8 /*format*/)
+  { return true; }
 
   // Other stuff ...
 
-  // Whether rotations should be normalized before being output or not. Some animation
-  // runtimes will normalize in a separate step and do not need the explicit normalization.
+  // Whether rotations should be normalized before being
+  // output or not. Some animation runtimes will normalize
+  // in a separate step and do not need the explicit
+  // normalization.
   // Enabled by default for safety.
   static constexpr bool normalize_rotations() { return true; }
 };
@@ -75,10 +85,13 @@ Extending this is simple and clean:
 struct default_transform_decompression_settings : public decompression_settings
 {
   // Only support transform tracks
-  static constexpr bool is_track_type_supported(track_type8 type) { return type == track_type8::qvvf; }
+  static constexpr bool is_track_type_supported(track_type8 type)
+  { return type == track_type8::qvvf; }
 
-  // By default, we only support the variable bit rates as they are generally optimal
-  static constexpr bool is_rotation_format_supported(rotation_format8 format) { return format == rotation_format8::quatf_drop_w_variable; }
+  // By default, we only support the variable bit rates as
+  // they are generally optimal
+  static constexpr bool is_rotation_format_supported(rotation_format8 format)
+  { return format == rotation_format8::quatf_drop_w_variable; }
 
   // Other stuff ...
 };
@@ -103,10 +116,11 @@ template<compressed_tracks_version16 version>
 struct decompression_version_selector {};
 
 // Specialize for ACL 2.0's format
-template<>
-struct decompression_version_selector<compressed_tracks_version16::v02_00_00>
+template<> struct
+decompression_version_selector<compressed_tracks_version16::v02_00_00>
 {
-  static bool is_version_supported(compressed_tracks_version16 version) { return version == compressed_tracks_version16::v02_00_00; }
+  static bool is_version_supported(compressed_tracks_version16 version)
+  { return version == compressed_tracks_version16::v02_00_00; }
 
   template<class decompression_settings_type, class context_type>
   ACL_FORCE_INLINE static bool initialize(context_type& context, const compressed_tracks& tracks)
@@ -118,8 +132,8 @@ struct decompression_version_selector<compressed_tracks_version16::v02_00_00>
 };
 
 // Specialize to support all versions
-template<>
-struct decompression_version_selector<compressed_tracks_version16::any>
+template<> struct
+decompression_version_selector<compressed_tracks_version16::any>
 {
   static bool is_version_supported(compressed_tracks_version16 version)
   {
