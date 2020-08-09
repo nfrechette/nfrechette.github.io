@@ -24,6 +24,8 @@ For obvious reasons, these tracks compress very well. In the first case, we only
 
 In my experience, the number of constant tracks is closely correlated by the number of constant track components (e.g. a constant scale track is equivalent to three constant scale track components). As such any extra gains we might have from using a bit set per track component (instead of per track) is likely to be offset by the larger bit set size and the extra complexity will likely make decompression slower.
 
+[See also Animation Data in Numbers]({ post_url 2020-08-09-animation_data_numbers })
+
 [Up next: Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
