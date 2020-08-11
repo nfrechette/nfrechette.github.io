@@ -156,6 +156,6 @@ The clip metadata isn't as optimized and it contains more low hanging fruits to 
 
 A common optimization is to strip a number of frames from the animation data (aka sub-sampling or frame stripping). This is very destructive but can yield good memory savings. Since we know how much animated data we have and its relative footprint, we can compute ballpark numbers for how much smaller removing 70%, 50%, or 25% of our animated data might be. The numbers above represent the total compressed size after stripping and the reduction factor.
 
-In my next post, I'll explore the results of quantizing the constant sample values and the clip range values, stay tuned!
+In my next post, I'll explore the results of [quantizing the constant sample values and the clip range values]({% post_url 2020-08-11-clip_metadata_packing %}), stay tuned!
 
 [Animation Compression Table of Contents]({% post_url 2016-10-21-anim_compression_toc %})
