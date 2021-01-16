@@ -34,6 +34,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Bind Pose Additive]({% post_url 2018-05-08-anim_compression_additive_bind %})
 *   [Clip metadata packing]({% post_url 2020-08-11-clip_metadata_packing %})
 *   [Morph Target Animation Compression]({% post_url 2020-05-04-morph_target_compresion %})
+*   [Progressive Animation Streaming]({% post_url 2021-01-17-progressive_animation_streaming %})
 *   [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
     *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
