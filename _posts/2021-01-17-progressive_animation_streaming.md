@@ -2,7 +2,7 @@
 layout: post
 title: "Controlling animation quality through streaming"
 ---
-For a few years now, I've had ideas on how to leverage streaming to further improve compression with the [Animation Compression Library](https://github.com/nfrechette/acl). Thanks to the support of [NCSOFT](https://kr.ncsoft.com/en/index.do), I've been able to try them out and integrate progressive quality streaming for the upcoming 2.0 release next month.
+For a few years now, I've had ideas on how to leverage streaming to further improve compression with the [Animation Compression Library](https://github.com/nfrechette/acl). Thanks to the support of [NCSOFT](https://kr.ncsoft.com), I've been able to try them out and integrate progressive quality streaming for the upcoming 2.0 release next month.
 
 Progressive quality streaming is perfectly suited for modern games on high end consoles all the way down to mobile devices and web browsers. Its unique approach will empower animators to better control animation quality and when to pay the price for it.
 
@@ -14,7 +14,7 @@ A popular technique to deal with this is to use [sub-sampling]({% post_url 2016-
 
 By their nature, these techniques are indiscriminate and destructive: the data is permanently removed and cannot be recovered. Furthermore, if a specific key frame is of particular importance (e.g. highest point of a jump animation), it could end up being removed leading to undesirable artifacts. Despite these drawbacks, they remain very popular.
 
-In practice, some data within each animation cannot be removed (metadata, etc) and as I have documented in a [previous blog post]({% post_url 2020-08-09-animation_data_numbers %}), the animated portion of the data isn't always dominant. For that reason, frame stripping often yields a memory reduction around **40%** despite the fact that we remove every other key frame.
+In practice, some data within each animation cannot be removed (metadata, etc) and as I have documented in a [previous blog post]({% post_url 2020-08-09-animation_data_numbers %}), the animated portion of the data isn't always dominant. For that reason, frame stripping often yields a memory reduction around **30-40%** despite the fact that we remove every other key frame.
 
 ## Bandwidth is limited
 
@@ -44,7 +44,7 @@ This leads us to the next question: how do we partition our data? How do we dete
 
 To solve this second part of the problem, during compression ACL will tag each whole key frame with how much error removing it contributes. We use this information to construct a variant of [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) where only whole key frames are removed. However, in our case, they will simply be moved to the database instead of being lost forever. This allows us to quickly find the data we need when we sample our animation clip with a single search for which key frames we need. This helps keep the cost constant regardless of how many key frames or joints an animation clip has. By further limiting the number of key frames in a segment to a maximum of 32, finding the data we need boils down to a few bit scanning operations efficiently implemented in hardware.
 
-In order to calculate how much error removing a key frame contributes, we iterate over every key frame and measure the resulting error once we remove it. We'll pick the key frame with the lowest error, record its contribution, then repeat the process with the remaining frames. While not perfect and exhaustive, this allows us to approximate how important each key frame is. This error contribution is then stored as extra metadata within the animation clip. This metadata is only required to build the database and it is stripped when we do so.
+The algorithm is straightforward. We first assume that every key frame is retained. We'll pick the first that is movable (e.g. not first/last in a segment) and measure the resulting error when we remove it (both on itself and on its neighbors that might have already been removed). Any missing key frames are reconstructed using linear interpolation from their neighbors. To measure the error, we use the same [error metric]({% post_url 2016-11-01-anim_compression_accuracy %}) used to optimize the variable bit rates. We record how much error is contributed and we add back the key frame. We'll iterate over every key frame doing so. Once we have the contributing error of every key frame, we'll pick the lowest error and remove that key frame permanently. We'll then repeat the whole process with the remaining key frames. Each step will remove the key frame that contributes the least error until they are all removed. This yields us a sorted list of how important they are. While not perfect and exhaustive, this gives us a pretty good approximation. This error contribution is then stored as extra metadata within the animation clip. This metadata is only required to build the database and it is stripped when we do so.
 
 ![Calculating the error contribution step 1](/public/error_contribution_step1.jpg)
 
