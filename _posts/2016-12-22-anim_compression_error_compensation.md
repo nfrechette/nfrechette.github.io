@@ -61,6 +61,8 @@ Besides allowing our compression to be more aggressive, this technique does not 
 
 All three forms of error correction can be used with any compression algorithm but they all have a number of important down sides. For this reason, unless you need the compression to be very aggressive, I would advise against using these techniques. If you choose to do so, the first two appear to be the most appropriate due to their reduced runtime overhead. Note that if you really wanted to, all three techniques could be used simultaneously but that would most likely be very extreme.
 
+Note: I profiled with and without error compensation in Unreal Engine 4 and the results were underwhelming, see [here]({% post_url 2019-07-31-pitfalls_linear_reduction_part4 %}).
+
 [Up next: Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
 
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
