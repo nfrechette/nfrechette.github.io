@@ -29,7 +29,8 @@ defaults:
     values:
       comments:      true
 
-# Gems
-#gems:
+# Plugins
+plugins:
+  - jekyll-paginate
 #  - jekyll-redirect-from
 
