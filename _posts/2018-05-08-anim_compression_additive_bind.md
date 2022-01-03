@@ -2,7 +2,7 @@
 layout: post
 title: "How much does additive bind pose help?"
 ---
-A common trick when compressing an animation clip is to store it relative to the bind pose. The conventional wisdom is that this allows to [reduce the range of motion](http://nfrechette.github.io/2016/11/09/anim_compression_range_reduction/) of many bones, increasing the accuracy and the likelihood that constant bones will turn into the identity, and thus allowing a lower memory footprint as a result. I have implemented this specific feature many times in the past and the results were consistent: a memory reduction of **3-5%** was generally observed.
+A common trick when compressing an animation clip is to store it relative to the bind pose. The conventional wisdom is that this allows to [reduce the range of motion]({% post_url 2016-11-09-anim_compression_range_reduction %}) of many bones, increasing the accuracy and the likelihood that constant bones will turn into the identity, and thus allowing a lower memory footprint as a result. I have implemented this specific feature many times in the past and the results were consistent: a memory reduction of **3-5%** was generally observed.
 
 Now that the [Animation Compression Library](https://github.com/nfrechette/acl) supports additive animation clips, I thought it would be a good idea to test this claim once more.
 
