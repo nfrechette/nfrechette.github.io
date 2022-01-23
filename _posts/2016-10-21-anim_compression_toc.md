@@ -33,7 +33,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Error Compensation]({% post_url 2016-12-22-anim_compression_error_compensation %})
 *   Bind Pose Optimizations
     *   [Bind Pose Additive]({% post_url 2018-05-08-anim_compression_additive_bind %})
-    *   [Bind Pose Stripping]({% post_url todo %})
+    *   [Bind Pose Stripping]({% post_url 2022-01-23-anim_compression_bind_pose_stripping %})
 *   [Clip metadata packing]({% post_url 2020-08-11-clip_metadata_packing %})
 *   [Morph Target Animation Compression]({% post_url 2020-05-04-morph_target_compresion %})
 *   [Progressive Animation Streaming]({% post_url 2021-01-17-progressive_animation_streaming %})
