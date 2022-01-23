@@ -91,4 +91,6 @@ Paragon shows the results I was expecting. The memory footprint reduces by about
 
 Overall it seems clear that any potential gains from this technique are heavily data dependent. A nearly **8%** smaller memory footprint is nothing to spit at but in the grand scheme of things, it might no longer be worth it in 2018 when decompression performance is likely much more important, especially on mobile devices. It is not immediately clear to me if the reduction in memory footprint could save enough to translate into fewer cache lines being fetched but even so it seems unlikely that it would offset the extra cost of the math involved.
 
+See also the related [bind pose stripping]({% post_url 2022-01-23-anim_compression_bind_pose_stripping %}) optimization.
+
 [**Back to table of contents**]({% post_url 2016-10-21-anim_compression_toc %})
