@@ -38,6 +38,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Morph Target Animation Compression]({% post_url 2020-05-04-morph_target_compresion %})
 *   [Progressive Animation Streaming]({% post_url 2021-01-17-progressive_animation_streaming %})
 *   [Compressing looping animations]({% post_url 2022-04-03-anim_compression_looping %})
+*   [Manipulating the sampling time for fun and profit]({% post_url 2022-06-05-anim_compression_rounding_time %})
 *   [Case Studies]({% post_url 2016-12-23-anim_compression_case_studies %})
     *   [Unreal 4]({% post_url 2017-01-11-anim_compression_unreal4 %})
     *   [Unity 5]({% post_url 2017-01-30-anim_compression_unity5 %})
