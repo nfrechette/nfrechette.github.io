@@ -15,7 +15,9 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
 *   [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
     *   [Animation Data in Numbers]({ post_url 2020-08-09-animation_data_numbers })
-*   [Measuring Compression Accuracy]({% post_url 2016-11-01-anim_compression_accuracy %})
+*   Measuring Compression Accuracy
+    *   [Simulating mesh skinning]({% post_url 2016-11-01-anim_compression_accuracy %})
+    *   [Fast object space joint error estimation]({% post_url todo %})
 *   [Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
 *   [Range Reduction]({% post_url 2016-11-09-anim_compression_range_reduction %})
 *   [Uniform Segmenting]({% post_url 2016-11-10-anim_compression_uniform_segmenting %})
