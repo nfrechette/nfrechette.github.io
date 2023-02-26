@@ -48,4 +48,4 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 
 ## ACL: An open source solution
 
-My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own. See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl) as well as its *Unreal Engine 4* [plugin](https://github.com/nfrechette/acl-ue4-plugin)!
+My answer to the lack of open source implementations of the above algorithms and topics has prompted me to start my own. See all the code and much more over on GitHub for the [Animation Compression Library](https://github.com/nfrechette/acl) as well as its *Unreal Engine* [plugin](https://github.com/nfrechette/acl-ue4-plugin)!
