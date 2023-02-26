@@ -43,7 +43,7 @@ Both Unity and Unreal measure accuracy in ways that are sub-optimal and fail to 
 
 A number of compression algorithms use the error metric function to attempt to converge on a solution like linear key reduction, for example. If metrics are imprecise or poorly represent true error it is very likely that will be reflected in the end result. Many linear key reduction algorithms use a local space error metric which sometimes leads to important keys being removed from distant children of the point of error. For example, a pelvis key being removed can translate into a large error at the fingertip. The typical way to combat this side-effect is to use overly conservative error thresholds but this translates directly in the memory footprint increasing.
 
-[See also: Fast object space joint error estimation]({% post_url todo %})
+See also: [Dominance based error estimation]({% post_url 2023-02-26-dominance_based_error_estimation %})
 
 [Up next: Constant Tracks]({% post_url 2016-11-03-anim_compression_constant_tracks %})
 
