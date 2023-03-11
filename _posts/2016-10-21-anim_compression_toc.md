@@ -14,7 +14,7 @@ Each post is self-contained and detailed enough to be approachable to a wide aud
 *   [Preface]({% post_url 2016-10-25-anim_compression_preface %})
 *   [Terminology]({% post_url 2016-10-26-anim_compression_terminology %})
 *   [Animation Data]({% post_url 2016-10-27-anim_compression_data %})
-    *   [Animation Data in Numbers]({ post_url 2020-08-09-animation_data_numbers })
+    *   [Animation Data in Numbers]({% post_url 2020-08-09-animation_data_numbers %})
 *   Measuring Compression Accuracy
     *   [Simulating mesh skinning]({% post_url 2016-11-01-anim_compression_accuracy %})
     *   [Dominance based error estimation]({% post_url 2023-02-26-dominance_based_error_estimation %})
