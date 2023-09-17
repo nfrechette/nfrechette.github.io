@@ -43,3 +43,4 @@ bower_components
 *.lock
 GemFile
 .jekyll-cache
+.bundle
