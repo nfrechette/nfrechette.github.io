@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Dominance based error estimation"
+tags: [animation-compression]
 description: "As I've previously written about, the Animation Compression Library measures the error introduced through compression by approximating the skinning..."
 image: /public/acl/long_range_attachments.jpg
 twitter:

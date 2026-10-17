@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How much does additive bind pose help?"
+tags: [animation-compression]
 description: "A common trick when compressing an animation clip is to store it relative to the bind pose. The conventional wisdom is that this allows to reduce the range..."
 image: /public/acl/acl_cmu_bind_additive_results.png
 twitter:

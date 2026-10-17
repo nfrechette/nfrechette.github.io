@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Curve Fitting"
+tags: [animation-compression]
 description: "Curve fitting builds on what we last saw with linear key reduction. With it, we saw that we leveraged linear interpolation to remove keys that could easily..."
 image: /public/unity_curves.jpg
 twitter:

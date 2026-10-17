@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+{% comment %}
+  One page for each topic. A file in topics/ sets "topic" (the tag in the post front matter), "title", "order", and "description".
+{% endcomment %}
+{% assign topic_posts = site.posts | where_exp: "post", "post.tags contains page.topic" %}
+
+<div class="page">
+  <h1 class="page-title">{{ page.title }}</h1>
+  <p>{{ page.description }}</p>
+  <p>{{ topic_posts.size }} posts, from the newest to the oldest. <a href="{{ site.baseurl }}/archive/">All posts and topics</a></p>
+  {% include post_list.html posts=topic_posts %}
+</div>

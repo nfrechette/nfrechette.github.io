@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Sub-sampling"
+tags: [animation-compression]
 ---
 Once upon a time, sub-sampling was a very common compression technique but it is now mostly relegated to history books (and my boring blog!).
 

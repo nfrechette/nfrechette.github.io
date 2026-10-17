@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Unreal 4"
+tags: [animation-compression]
 excerpt: "<p><a href=\"https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_4\">Unreal 4</a> offers a wide range of <a href=\"https://dev.epicgames.com/documentation/unreal-engine/animation-sequences-in-unreal-engine\">documented</a> character animation compression settings.</p>"
 description: "Unreal 4 offers a wide range of documented character animation compression settings."
 image: https://img.youtube.com/vi/WC6Xx_jLXmg/0.jpg

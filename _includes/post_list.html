@@ -1,0 +1,15 @@
+{% comment %}
+  Lists the posts in include.posts by year. The archive page and the topic pages use it.
+{% endcomment %}
+{% assign years = include.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in years %}
+<h2 id="{{ year.name }}">{{ year.name }}</h2>
+<ul class="archive-list">
+  {% for post in year.items %}
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    <small>{{ post.date | date: "%d %b" }}</small>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}

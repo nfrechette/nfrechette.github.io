@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Math accuracy: Normalizing quaternions"
+tags: [math]
 ---
 While investigating precision issues with [ACL]( https://github.com/nfrechette/acl), I ran into two problems that I hadn’t seen documented elsewhere and that slightly surprised me.
 

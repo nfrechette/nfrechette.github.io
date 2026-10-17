@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Simple Quantization"
+tags: [animation-compression]
 description: "Simple quantization is perhaps the simplest compression technique out there. It is used for pretty much everything, not just for character animation..."
 ---
 Simple quantization is perhaps the simplest compression technique out there. It is used for pretty much everything, not just for character animation compression.

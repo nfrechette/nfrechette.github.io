@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Bind pose stripping"
+tags: [animation-compression]
 description: "A little over three years ago, I wrote about storing animation clips relative to the bind pose in order to improve the compression ratio."
 image: /public/acl/bind_pose_stripping_paragon_distribution.png
 twitter:

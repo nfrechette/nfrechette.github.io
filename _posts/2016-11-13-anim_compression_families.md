@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Main Compression Families"
+tags: [animation-compression]
 description: "Over the years, a number of techniques have emerged to address the problem of character animation compression."
 ---
 Over the years, a number of techniques have emerged to address the problem of character animation compression. These can be roughly broken down into a handful of general families:

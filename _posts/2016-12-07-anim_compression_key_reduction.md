@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Linear Key Reduction"
+tags: [animation-compression]
 description: "With simple key quantization, if we needed to sample a certain time T for which we did not have a key (e.g. in between two existing keys), we linearly..."
 image: /public/key_reduction.png
 twitter:

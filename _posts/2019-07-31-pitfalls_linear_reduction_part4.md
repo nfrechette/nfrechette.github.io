@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 4"
+tags: [animation-compression]
 description: "This fourth and final post in the series shows exactly how many samples are removed in practice."
 image: /public/samples_dropped_distribution.png
 twitter:

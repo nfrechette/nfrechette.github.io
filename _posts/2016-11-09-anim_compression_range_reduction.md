@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Range Reduction"
+tags: [animation-compression]
 image: /public/range_reduction_track.png
 twitter:
   card: summary_large_image

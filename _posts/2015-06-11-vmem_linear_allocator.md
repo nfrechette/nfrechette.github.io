@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Virtual Memory Aware Linear Allocator
+tags: [memory-allocation]
 description: "This allocator is a variant of the linear allocator we covered last time and again it serves to introduce a few important concepts to allocators."
 ---
 This allocator is a variant of the [linear allocator]({% post_url 2015-05-21-linear_allocator %}) we covered last time and again it serves to introduce a few important concepts to allocators. Today we cover the virtual memory aware linear memory allocator ([code](https://github.com/nfrechette/gin/blob/master/include/gin/vmem_linear_allocator.h)).

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 2"
+tags: [animation-compression]
 description: "Another area where it struggles is decompression performance. When we want to sample a clip at a particular point in time, we have to search and find the..."
 image: /public/offset_map.jpg
 twitter:

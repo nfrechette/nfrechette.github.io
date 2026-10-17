@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Arithmetic Accuracy and Performance"
+tags: [math, performance]
 description: "As I mentioned in my previous post, ACL still suffers from some less then ideal accuracy in some exotic situations."
 image: /public/acl/arithmetic_float32_float64_summary.png
 twitter:

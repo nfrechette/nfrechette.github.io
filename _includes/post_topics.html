@@ -1,0 +1,8 @@
+{%- comment -%}
+  Shows links to the topic pages of the tags in include.tags. The topic page gives the name of each topic.
+{%- endcomment -%}
+{%- for tag in include.tags -%}
+  {%- assign topic_page = site.pages | where: "topic", tag | first -%}
+  {%- if topic_page -%}<a class="post-topic" href="{{ site.baseurl }}{{ topic_page.url }}">{{ topic_page.title }}</a>{%- else -%}{{ tag }}{%- endif -%}
+  {%- unless forloop.last %}, {% endunless -%}
+{%- endfor -%}

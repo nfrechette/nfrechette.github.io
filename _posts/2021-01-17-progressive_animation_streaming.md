@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Controlling animation quality through streaming"
+tags: [animation-compression]
 description: "For a few years now, I've had ideas on how to leverage streaming to further improve compression with the Animation Compression Library."
 image: /public/error_contribution_step1.jpg
 twitter:

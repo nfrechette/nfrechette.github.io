@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Manipulating the sampling time for fun and profit"
+tags: [animation-compression]
 description: "The Animation Compression Library works with uniformly sampled animation clips. For each animated data track, every sample falls at a predictable and..."
 image: /public/uniform_sampling.jpg
 twitter:

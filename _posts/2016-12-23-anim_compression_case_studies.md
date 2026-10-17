@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Case Studies"
+tags: [animation-compression]
 description: "In order to keep the material concrete, we will take a deeper look at some popular video game engines."
 ---
 In order to keep the material concrete, we will take a deeper look at some popular video game engines. We will highlight the techniques that they use for character animation compression and where they shine or come short.

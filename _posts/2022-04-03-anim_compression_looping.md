@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Compressing looping animation clips"
+tags: [animation-compression]
 description: "Animations that loop have a unique property in that the last character pose must exactly match the first, for playback to be seamless as they wrap around."
 image: /public/acl/loop_clamp_mode.jpg
 twitter:

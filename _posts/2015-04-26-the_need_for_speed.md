@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The need for speed
+tags: [performance]
 ---
 The art of writing fast software is subtle and ever changing. Fundamentally, it is all about where your data comes from and how you access it.
 

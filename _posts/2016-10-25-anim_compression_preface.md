@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Preface"
+tags: [animation-compression]
 image: /public/unity_curves.jpg
 twitter:
   card: summary_large_image

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Introducing ACL"
+tags: [animation-compression, releases]
 description: "Over the years, I've had my fare share of discussions about animation compression and two things became obvious over time: we were all (re-)doing similar..."
 ---
 Over the years, I’ve had my fare share of discussions about animation compression and two things became obvious over time:

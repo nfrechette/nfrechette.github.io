@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Modern SIMD Programming in the SSE Era"
+tags: [performance, math]
 description: "For a very long time now with every new gaming console generation came a new set of hardware. New hardware meant new constraints which meant we had to..."
 ---
 For a very long time now with every new gaming console generation came a new set of hardware. New hardware meant new constraints which meant we had to revisit old optimization tricks, rules, and popular beliefs.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Morph target animation compression"
+tags: [animation-compression]
 description: "The Animation Compression Library v1.3 introduced support for compressing animated floating point tracks but it wasn't until now that I managed to get..."
 image: /public/morph_target_concept.jpg
 twitter:

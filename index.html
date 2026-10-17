@@ -13,7 +13,7 @@ title: Home
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+    <span class="post-date">{{ post.date | date_to_string }}{% if post.tags.size > 0 %} &middot; {% include post_topics.html tags=post.tags %}{% endif %}</span>
 
     {{ post.excerpt }}
     <p><a href="{{ site.baseurl }}{{ post.url }}">Read the full post</a></p>

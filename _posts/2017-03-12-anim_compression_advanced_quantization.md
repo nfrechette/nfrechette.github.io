@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Advanced Quantization"
+tags: [animation-compression]
 description: "I first spoke about this technique at the Game Developers Conference (GDC) in 2017 and the slides for that presentation can be found here."
 image: /public/advanced_quantization_initial.jpg
 twitter:

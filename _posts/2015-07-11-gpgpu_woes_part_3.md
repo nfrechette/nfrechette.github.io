@@ -1,6 +1,7 @@
 ---
 layout: post
 title: GPGPU woes part 3
+tags: [gpgpu]
 ---
 After fixing the [previous]({% post_url 2015-07-07-gpgpu_woes_part_2 %}) mind bending issue, we move on to the next issue.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Uniform Segmenting"
+tags: [animation-compression]
 ---
 Uniform segmenting is performed by splitting a clip into a number of blocks of equal or approximately equal size. This is done for a number of reasons.
 

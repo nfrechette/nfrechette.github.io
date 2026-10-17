@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 1"
+tags: [animation-compression]
 description: "Two years ago I worked with Epic to try to improve the Unreal Engine animation compression codecs. While I managed to significantly improve the compression..."
 image: /public/segmenting_explained.jpg
 twitter:

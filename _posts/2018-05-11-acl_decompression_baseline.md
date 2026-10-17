@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "ACL decompression performance"
+tags: [animation-compression, performance]
 description: "At long last I finally got around to measuring the decompression performance of ACL. This blog post will detail the baseline performance from which we will..."
 image: /public/acl/acl_decomp_v080_vs2015_x64_playback.png
 twitter:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Keep an eye out for buffer security checks"
+tags: [performance]
 ---
 By default, when compiling C++, Visual Studio enables the `/GS` flag for [buffer security checks](https://learn.microsoft.com/en-us/cpp/build/reference/gs-buffer-security-check).
 

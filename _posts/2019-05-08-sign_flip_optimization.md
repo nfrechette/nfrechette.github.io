@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Faster arithmetic by flipping signs"
+tags: [math, performance]
 ---
 
 Over the years, I picked up a number of tricks to optimize code. Today I'll talk about one of them.

@@ -400,6 +400,22 @@ tbody tr:nth-child(odd) th {
   white-space: nowrap;
 }
 
+/* Topic links on the archive page */
+.topic-list {
+  padding-left: 0;
+  list-style: none;
+}
+.topic-list li {
+  display: inline-block;
+  margin: 0 .5rem .5rem 0;
+  padding: .125rem .625rem;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+}
+.topic-list small {
+  color: #9a9a9a;
+}
+
 
 /*
  * Pagination

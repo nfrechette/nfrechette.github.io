@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Compressing Fortnite Animations"
+tags: [animation-compression]
 description: "New year, new stats! A few months ago, Epic agreed to let me use their Fortnite animations for my open source research with the Animation Compression..."
 image: /public/acl/fortnite_max_error_distribution.png
 twitter:

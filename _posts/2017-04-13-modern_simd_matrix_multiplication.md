@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Optimizing 4x4 matrix multiplication"
+tags: [math, performance]
 description: "In modern video games, the 4x4 matrix multiplication is an important cornerstone. It is used for a very long list of things: moving individual character..."
 image: /public/matrix_multiplication/testcase1_all.png
 twitter:

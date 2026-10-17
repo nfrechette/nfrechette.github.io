@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to legally generate the Windows ISO from a Mac or Linux PC
+tags: [windows]
 description: "Surprisingly, it turns out that getting your hands on a legal Windows ISO after purchasing it is not as easy as it might seem."
 ---
 Surprisingly, it turns out that getting your hands on a legal Windows ISO after purchasing it is not as easy as it might seem. After purchasing a digital copy of Windows in the Microsoft store, you will be able to download a Windows application that downloads the ISO for you after entering your product key.

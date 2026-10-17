@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Stack Frame Allocators
+tags: [memory-allocation]
 ---
 This allocator family is quite possibly one of the most common memory management technique. 
 

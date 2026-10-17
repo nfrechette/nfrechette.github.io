@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Measuring Accuracy"
+tags: [animation-compression]
 description: "Every compression algorithm covered herein is lossy in nature, so how we measure accuracy is critically important."
 ---
 Every compression algorithm covered herein is lossy in nature, so how we measure accuracy is critically important. Measured deviation from source data needs to be representative of the visual differences observed.

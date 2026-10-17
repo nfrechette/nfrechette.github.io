@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Unity 5"
+tags: [animation-compression]
 excerpt: "<p><a href=\"https://en.wikipedia.org/wiki/Unity_(game_engine)\">Unity 5</a> is a very popular video game engine on mobile devices and other platforms. Being a state of the art game engine, it supports everything you might need when it comes to character animation including compression.</p>"
 description: "Unity 5 is a very popular video game engine on mobile devices and other platforms. Being a state of the art game engine, it supports everything you might..."
 image: https://img.youtube.com/vi/AJ6Mkx1KEns/0.jpg

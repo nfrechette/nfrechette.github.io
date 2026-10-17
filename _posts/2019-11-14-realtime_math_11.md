@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Realtime Math: faster than ever"
+tags: [math, releases]
 ---
 
 Today [Realtime Math](https://github.com/nfrechette/rtm) has finally reached [v1.1.0](https://github.com/nfrechette/rtm/releases/tag/v1.1.0)! This release brings a lot of good things:

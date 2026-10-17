@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Table of Contents"
+tags: [animation-compression]
 toc: "Animation Compression"
 description: "Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade."
 ---

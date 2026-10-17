@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Signal Processing"
+tags: [animation-compression]
 description: "Signal processing algorithm variants come in many forms but the most common and popular approach is to use Wavelets."
 image: /public/wavelet_compression_process.jpg
 twitter:
