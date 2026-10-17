@@ -40,8 +40,9 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Site structure
 
-- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`, `archive.html`) automatically appear in the sidebar nav. `archive.html` lists the topics and all posts by year, so it needs no change for a new post. `_layouts/topic.html` makes the topic pages at `/topics/<slug>/`. Both use `_includes/post_list.html`, and `_includes/post_topics.html` shows the topic links of a post.
+- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `post_list`, `post_topics`) are the theme. Pages with `layout: page` (e.g. `about.md`, `archive.html`) automatically appear in the sidebar nav. `archive.html` lists the topics and all posts by year, so it needs no change for a new post. `_layouts/topic.html` makes the topic pages at `/topics/<slug>/`. Both use `_includes/post_list.html`, and `_includes/post_topics.html` shows the topic links of a post.
 - `_layouts/default.html` adds `loading="lazy"` to each `<img>` tag with a Liquid `replace`, because GitHub Pages does not permit custom plugins. `public/css/poole.css` limits images and videos to the width of the content column.
+- The site loads no third-party resources: it has no analytics, and it serves its own fonts. `public/fonts/` holds the latin subset of PT Serif (400, 400 italic, 700) and PT Sans (400) as WOFF2, with the SIL Open Font License files. The `@font-face` rules are at the top of `public/css/lanyon.css`. `_includes/head.html` preloads the 2 regular fonts. To add a font style, add its WOFF2 file and an `@font-face` rule.
 - `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
 
 ## Communication style
