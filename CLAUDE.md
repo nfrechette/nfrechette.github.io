@@ -13,7 +13,9 @@ Nicholas Frechette's personal blog (http://nfrechette.github.io), a Jekyll 3.9 s
 bundle exec jekyll build --future        # one-off build into _site/
 ```
 
-`--future` is needed so posts dated after today still render. Dependencies are in `Gemfile` (`jekyll ~> 3.9`, `jekyll-paginate`, `kramdown-parser-gfm`). There are no tests or linters; a clean `jekyll build` is the only check. `_site/` is build output and gitignored.
+`--future` is needed so posts dated after today still render. The `Gemfile` uses the `github-pages` gem, so local gem versions match what GitHub Pages builds with (Ruby 3.3.4, pinned locally via a gitignored `.ruby-version` for rbenv). The build needs a UTF-8 locale (`LANG=en_US.UTF-8`) or Sass fails on non-ASCII characters. There are no tests or linters; a clean `jekyll build` is the only check. `_site/` is build output and gitignored.
+
+GitHub Pages renders any `.md` file as a page even without front matter (`jekyll-optional-front-matter`), including Liquid inside it. Repo-level docs like this file must be listed under `exclude:` in `_config.yml`; that list replaces Jekyll's default, so keep `Gemfile`/`Gemfile.lock` in it.
 
 ## Posts
 
