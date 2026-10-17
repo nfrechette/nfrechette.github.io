@@ -61,6 +61,26 @@
         }
         updateScrollers();
         window.addEventListener('resize', updateScrollers);
+
+        // Each section heading of a post or page links to itself, so a reader can copy a link to the section.
+        // Kramdown gives each heading an id. The post titles on the home page have no id, thus they get no link.
+        // The heading text becomes the link, thus a screen reader reads the heading name with no change.
+        // A link cannot contain a link, thus a heading that contains a link gets a separate link at its end.
+        var headings = document.querySelectorAll('.post h2[id], .post h3[id], .post h4[id], .page h2[id], .page h3[id], .page h4[id]');
+        for (var j = 0; j < headings.length; j++) {
+          var heading = headings[j];
+          var link = document.createElement('a');
+          link.className = 'heading-link';
+          link.href = '#' + encodeURIComponent(heading.id);
+          if (heading.querySelector('a')) {
+            link.setAttribute('aria-label', 'Link to this section');
+          } else {
+            while (heading.firstChild) {
+              link.appendChild(heading.firstChild);
+            }
+          }
+          heading.appendChild(link);
+        }
       })(document);
     </script>
   </body>

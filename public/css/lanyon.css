@@ -397,6 +397,35 @@ a.sidebar-nav-item:focus {
   color: #9a9a9a;
 }
 
+/* Section links: _layouts/default.html makes each section heading a link to itself.
+   The heading keeps its color. A "#" mark shows when the pointer is on the heading
+   or when the link has focus. On a touch screen there is no pointer, thus the mark
+   always shows. The empty alternative text keeps the mark out of the name that a
+   screen reader reads. */
+.content h2 > a.heading-link,
+.content h3 > a.heading-link,
+.content h4 > a.heading-link {
+  color: inherit;
+  text-decoration: none;
+}
+.heading-link:after {
+  margin-left: .4rem;
+  color: #9a9a9a;
+  content: "#" / "";
+  opacity: 0;
+}
+h2:hover > .heading-link:after,
+h3:hover > .heading-link:after,
+h4:hover > .heading-link:after,
+.heading-link:focus:after {
+  opacity: 1;
+}
+@media (hover: none) {
+  .heading-link:after {
+    opacity: 1;
+  }
+}
+
 /* Series navigation: the previous post and the next post in a series */
 .series-nav {
   padding-top: 1rem;
