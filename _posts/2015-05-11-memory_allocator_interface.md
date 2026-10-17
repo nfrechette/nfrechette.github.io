@@ -8,7 +8,7 @@ title: A memory allocator interface
 
 Memory in large applications will typically come from two majors places: new/malloc calls and container allocations. Today we will only discuss the later.
 
-### Where are we at?
+## Where are we at?
 
 There appears to be two main approaches when it comes to memory allocator interfaces:
 
@@ -21,7 +21,7 @@ The second, while much more flexible, introduces indirection and as [previously 
 
 Can we do better?
 
-### The compromise
+## The compromise
 
 It seems that the cost of added flexibility is to use an indirect branch. This is unavoidable. However, we can remove the extra cache and TLB miss by defining a partial inline virtual function dispatch table in the allocator interface.
 

@@ -12,7 +12,7 @@ Even though the code isn't public yet, the new updated ACL plugin kicks ass and 
 
 **TL;DR:** Inside *Fortnite*, ACL shines bright with **2x** faster compression, **2x** smaller memory footprint, and higher accuracy. Decompression is **1.6x** faster on desktop, **2.3x** faster on a *Samsung S8*, and **1.2x** faster on the *Xbox One*.
 
-# Methodology
+## Methodology
 
 For the UE4 measurements I used a modified *UE 4.21* with its default **Automatic Compression**. It tries a list of codecs in parallel and selects the optimal result by considering both size and accuracy.
 
@@ -20,7 +20,7 @@ ACL uses a modified version of the open source [ACL Plugin v0.2.2](https://githu
 
 Although the UE4 refactor doesn't change the legacy codecs, it does speed up their decompression a bit compared to previous UE4 releases. That is one of many benefits everyone will get to enjoy as a result of my refactor work regardless of which codec is used.
 
-## Error measurements
+### Error measurements
 
 While the UE4 and ACL error measurements never exactly matched, they historically have been very close for every single clip I had tried, until *Fortnite*. As it turns out, some exotic animations brought to light the fact that some subtle differences in how they both measure the error can lead to some large perceived discrepancies. This has now been documented in the plugin [here](https://github.com/nfrechette/acl-ue4-plugin/blob/develop/Docs/error_measurements.md).
 
@@ -28,13 +28,13 @@ While the UE4 and ACL error measurements never exactly matched, they historicall
 
 It is worth noting that because ACL does not currently support a floating point sample rate (e.g 28.3 FPS), those clips (and there are many) have a higher reported error with UE4 because by rounding, we are effectively time stretching those clips a tiny bit. They still look just as good though. This will be fixed in the [next version](https://github.com/nfrechette/acl-ue4-plugin/issues/7).
 
-# The animations
+## The animations
 
 I extracted all the non-additive animations regardless of whether they were used by the game or not: a grand total of **8304** clips! A total raw size of **17 GB** and roughly **17.5 hours** worth of playback.
 
 *Fortnite* has a surprising number of exotic clips. Some take **hours** to compress with UE4 and others have a range of motion as wide as the *distance between the earth and the moon*! These allowed me to identify a number of very subtle bugs in ACL and to fix them.
 
-# Compression stats
+## Compression stats
 
 |                 | ACL Plugin  | UE4    |
 | -------                | --------   | --------      |
@@ -76,17 +76,17 @@ Overall, if you added the ACL codec to the *Automatic Compression* list, here is
 *  ACL is smaller, better, and faster for **5017** clips (**60.42 %**)
 *  ACL wins Automatic Compression for **7863** clips (**94.69 %**)
 
-# Decompression stats
+## Decompression stats
 
 *Fortnite* has the handy ability to create replays. These make gathering deterministic profiling numbers a breeze. The numbers that follow are from a *50 vs 50* replay. On each platform, a section of the replay with some high intensity action was profiled.
 
-## Desktop
+### Desktop
 
 ![Fortnite Desktop Decompression Time](/public/acl/fortnite_pc_decompression_time.png){: width="1800" height="550"}
 
 The performance on desktop looks pretty good. ACL is consistently faster, about **38%** on average. It also appears a bit less noisy, a direct benefit of the improved cache friendliness of its algorithm.
 
-## Samsung S8
+### Samsung S8
 
 ![Fortnite Samsung S8 Decompression Time](/public/acl/fortnite_s8_decompression_time_both.png){: width="1800" height="550"}
 
@@ -102,7 +102,7 @@ This translates into the type of graph above where there is heavy fluctuation as
 
 On the other hand, when the code is cache friendly, it doesn't give the chance to the other thread to run. This gives a nice and smooth graph for that current thread as the risk of long interruptions is reduced. When the code is that optimized, hyperthreading typically doesn't help speed things up much as both threads compete for the same time slice with few opportunities to hide stalling latency. This is also what I observed when [measuring the compression performance]({% post_url 2018-01-10-acl_v0.6.0 %}). In theory due to the higher cache pressure, performance could even degrade with hyperthreading but in practice I haven't observed it, not with ACL at least.
 
-## Xbox One
+### Xbox One
 
 ![Fortnite Xbox One Decompression Time](/public/acl/fortnite_xb1_decompression_time.png){: width="1800" height="550"}
 
@@ -114,13 +114,13 @@ On the *Xbox One* ACL is about **13%** faster on average. Both lines seem to hav
 
 The last two points seems the most likely culprits. ACL does a bit more work per sample decompressed than UE4 but everything is cache friendly. This gives it a massive edge when memory is slow compared to the CPU clock as is the case on my desktop, the *Samsung S8*, and lots of other platforms.
 
-# Conclusion
+## Conclusion
 
 With faster compression, faster decompression on every platform, a smaller memory footprint, and higher accuracy, ACL continues to shine in UE4 and it won't be long now before everyone can find it on the marketplace for free.
 
 In the meantime, in the next few months I will perform another release of ACL and its plugin with all the latest fixes made possible with *Fortnite's* data.
 
-# Status update
+## Status update
 
 To my knowledge, the first game released with ACL came out in *November 2018* with the public UE4 plugin: [OVERKILL's The Walking Dead](https://web.archive.org/web/20181103064752/https://store.steampowered.com/app/717690/OVERKILLs_The_Walking_Dead/). I was told it reduced their animation memory footprint by over **50%** helping them fit within their console budgets.
 

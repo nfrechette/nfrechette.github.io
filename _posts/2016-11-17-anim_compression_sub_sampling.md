@@ -4,7 +4,7 @@ title: "Animation Compression: Sub-sampling"
 ---
 Once upon a time, sub-sampling was a very common compression technique but it is now mostly relegated to history books (and my boring blog!).
 
-# How It Works
+## How It Works
 
 It is conceptually very simple:
 
@@ -15,7 +15,7 @@ Traditionally, character animations have a sample rate of 30 FPS. This means tha
 
 Sub-sampling works because in practice, most animations don’t move all that fast and a lower sampling rate is just fine and thus 15-20 FPS is generally good enough.
 
-# Edge Cases
+## Edge Cases
 
 Now of course, this fails miserably if this assumption does not hold true or if a particular key is very important. It can often be the case that an important key is removed with this technique and there is sadly not much that can be done to avoid this issue short of selecting another sampling rate.
 
@@ -29,7 +29,7 @@ Another good example is sub-sampling at 20 FPS which will yield a key every `1s 
 
 The problem of keys not lining up is of course absent if your source animation data is not already discretized. If you have access to the Maya (or 3DS Max) curves, the sub-sampling will retain higher accuracy.
 
-# In The Wild
+## In The Wild
 
 In the wild, this used to be a very popular technique on older generation hardware such as the Xbox 360 and the PlayStation 3 (and older). It was very common to keep most of your main character animations with a high sample rate of say 30 FPS, while keeping most of your NPC animations at a lower sample rate of say 15 FPS. Any specific animation that required high accuracy would not be sub-sampled and this selection process was done by hand, making its usage somewhat error prone.
 

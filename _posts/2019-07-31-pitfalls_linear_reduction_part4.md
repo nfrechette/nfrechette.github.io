@@ -19,7 +19,7 @@ The [third post]({% post_url 2019-07-29-pitfalls_linear_reduction_part3 %}) took
 
 This fourth and final post in the series shows exactly how many samples are removed in practice.
 
-### How often are samples removed?
+## How often are samples removed?
 
 In order to answer this question, I instrumented the [ACL UE4 plugin](https://github.com/nfrechette/acl-ue4-plugin) to extract how many samples per pose, per clip, and per track were dropped. I then ran this over the [*Carnegie-Mellon University* motion capture database](https://mocap.cs.cmu.edu/) as well as *Paragon* and *Fortnite*. I did this while keeping every sample with full precision (quantizing the samples can only make things worse) with and without [error compensation]({% post_url 2016-12-22-anim_compression_error_compensation %}) (retargeting). The idea behind retargeting is to compensate the error by altering the samples slightly as we optimize a bone chain. While it will obviously be slower to compress than not using it, it should in theory reduce the overall error and possibly allow us to remove more samples as a result.
 

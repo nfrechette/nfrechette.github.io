@@ -4,13 +4,13 @@ title: GPGPU woes part 3
 ---
 After fixing the [previous]({% post_url 2015-07-07-gpgpu_woes_part_2 %}) mind bending issue, we move on to the next issue.
 
-### On the GPU, the address space size can differ
+## On the GPU, the address space size can differ
 
 Virtually every programmer out there knows that the address space size on the CPU can differ based on the hardware, executable, and kernel. The two most common sizes being 32 bits and 64 bits (partially true since in practice only 48 bits are used for now). Some older programmers will also remember the times of the 16 bits address space.
 
 What few programmers realize is that other chips in their computer might have a different address space size and as such sharing binary structures with them that contain pointers is generally unsafe.
 
-### Case in point: my GPU has a 64 bits address space.
+## Case in point: my GPU has a 64 bits address space.
 
 What this means is that if I run a i386 executable in either OS X or Windows, the pointer size will be 4 bytes on the CPU but the GPU will use 8 bytes for pointers. This means that structures like this that are shared will not work:    
 

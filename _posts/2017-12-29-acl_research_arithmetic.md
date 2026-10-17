@@ -10,7 +10,7 @@ As I mentioned in my [previous post]({% post_url 2017-12-05-acl_paragon %}), [AC
 
 To this end, the first [research branch](https://github.com/nfrechette/acl/tree/research/float-vs-double-vs-fixed-point) was created. Research branches will play an important role in ACL. Their aim is to explore small and large ideas that we might not want to support in their entirety in the main branches while keeping them close. Unless otherwise specified, research branches will not be actively maintained. Once their purpose is complete, they will live on to document what worked and didn't work and serve as a starting point for anyone hoping to investigate them further.
 
-# *float64* vs *float32* arithmetic
+## *float64* vs *float32* arithmetic
 
 In order to fully test *float64* arithmetic, I templated a few things to abstract the arithmetic used between *float32* and *float64*. This allowed easy conversion and support of both with nearly the same code path. The results proved somewhat underwhelming:
 
@@ -24,7 +24,7 @@ With *float64*, the max error for CMU and Paragon is slightly improved for the m
 
 Consequently, it is my opinion that *float32* is the superior choice between the two. The small increase in accuracy and reduction in memory footprint is not significant enough to outweigh the degradation of the performance. Even though the *float64* code path isn't as optimized, it will remain slower due to the individual instructions being slower and the increased number of registers needed. It's possible the performance might be improved considerably with AVX and so this is something we'll keep in mind going forward.
 
-# Fixed point arithmetic
+## Fixed point arithmetic
 
 Another popular alternative to *floating point* arithmetic is *fixed point* arithmetic. Depending on the situation it can yield higher accuracy and depending on the hardware it can also be faster. Prior to this, I had never worked with *fixed point* arithmetic. There was a bit of a learning curve but it proved intuitive soon enough.
 
@@ -36,7 +36,7 @@ I focused on reproducing the decompression logic as close as possible. The origi
 
 <script src="https://gist.github.com/nfrechette/2fe5be8ea2de50353e327164a3d3c15c.js"></script>
 
-## Not quite 1.0
+### Not quite 1.0
 
 The first obstacle to using *fixed point* arithmetic is the fact that our quantized values do not map **1:1**. Many engines dequantize with code that looks like this (including Unreal 4 and ACL):
 
@@ -50,7 +50,7 @@ In order to properly support our full range of values, we must remap it with a m
 
 <script src="https://gist.github.com/nfrechette/8c47551ebb5a2047d0d8584879a502d8.js"></script>
 
-## Fast coercion to *float32*
+### Fast coercion to *float32*
 
 The next hurdle I faced was how to convert the *fixed point* number into a *float32* value efficiently. I independently found a simple, fast, and elegant way and of course it turned out to be very popular for those very reasons.
 
@@ -64,7 +64,7 @@ Using this trick with the *float32* implementation gives us the following code:
 
 It does lose out a tiny bit of accuracy but it is barely measurable. In order to be sure, I tried exhaustively all possible sample and segment range values up to a bit rate of **16** bits per component. The up side is obvious, it is **14.9%** faster!
 
-## *32* bit vs *64* bit variants
+### *32* bit vs *64* bit variants
 
 Many variants were implemented: some performed the segment range expansion with *fixed point* arithmetic and the clip range expansion with *float32* arithmetic and others do everything with *fixed point*. A mix of *32* bit and *64* bit arithmetic was also tried to compare the accuracy and performance tradeoff.
 
@@ -80,7 +80,7 @@ The general consensus seems to be that *fixed point* arithmetic can yield higher
 
 ![Fixed Point Performance](/public/acl/arithmetic_fixed_point_perf.png){: width="586" height="161"}
 
-# Next steps
+## Next steps
 
 All of this work was performed in a branch that will **NOT** be merged into *develop*. However, some changes will be cherry picked by hand. In the short term, the conclusions reached here will not be integrated just yet into the main branches. The primary reason for this is that while I have extensive scripts and tools to track the accuracy, memory footprint, and compression performance; I do not have robust tooling in place to track decompression performance on the various platforms that are important to us.
 

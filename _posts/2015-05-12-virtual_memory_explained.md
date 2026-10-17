@@ -7,7 +7,7 @@ Virtual memory is present on most hardware platforms and it is surprisingly simp
 
 Today we will take an in-depth look at why do we have virtual memory and how it works under the hood.
 
-### Physical memory: a scarce ressource
+## Physical memory: a scarce ressource
 
 In the earlier days of computing, there was no virtual memory. The computing needs were simple and single process operating systems were common (batch processing was the norm). As the demand grew for computers, so did the complexity of the software running on them.
 
@@ -17,7 +17,7 @@ Eventually the need to run multiple processes concurrently appeared and soon bec
 * We must be able to access more than 64KB of memory using 16 bit registers
 * We must protect the memory to prevent tampering (malicious or accidental)
 
-### Memory segments
+## Memory segments
 
 [On x86](https://en.wikipedia.org/wiki/X86_memory_segmentation), the first and second point were addressed first with *real mode* (1MB range) and later, memory protection was introduced with *protected mode* (16MB range). Virtual memory was born but it was not in the form most commonly seen today: early x86 used a segment based virtual memory model.
 
@@ -27,7 +27,7 @@ To address this, paging was introduced. Paging, like earlier segments, divides p
 
 At this point in time, memory accesses now contain two indirections: first we must construct the segment relative address using a 16 bit segment index, reading the 32 bit segment base address associated and adding a 32 bit segment offset (386 CPUs shifted from 24 bit base addresses and offsets to 32 bit at the same time it introduced paging). This yields us a memory address that we must now look up in the segment page table to ultimately find the physical memory page (often called frame) that contains what we are looking for.
 
-### Modern virtual memory
+## Modern virtual memory
 
 Things now look much closer to modern virtual memory. Now that we have 32 bit processors and that they are common enough, there is no longer a need for segments and paging alone can be used. The x86 hardware of the time already used 32 bit segment base addresses and 32 bit segment offsets. Memory becomes far easier to manage if we assume it is a single memory segment with paging and it allows us to drop one level of indirection.
 
@@ -45,7 +45,7 @@ As memory grew, 4KB pages had difficulty scaling. Servicing large allocation req
 
 And then memory sizes grew even further. Soon enough, being confined to an address space of 4GB with 32 bit pointers became too small and [physical address extension](https://en.wikipedia.org/wiki/Physical_Address_Extension) was introduced and extended the addressable range to 64GB. This forced larger pages to reduce to a size of 2MB as now some bits were needed for another indirection level in the page table walk.
 
-### Virtual memory today
+## Virtual memory today
 
 Today, x64 hardware most commonly supports pages of the following sizes: 4KB, 2MB, and sometimes 1GB. Typically, only 48 bits are used limiting the addressable memory to 256TB.
 
@@ -60,7 +60,7 @@ An important point bears mentioning, when pages larger than 4KB are used, the ke
 
 Generally speaking, if mixed page sizes are used, it is generally recommended to allocate large pages as early as possible in the process’s life to remedy the above problem.
 
-### Virtual memory secondary storage
+## Virtual memory secondary storage
 
 The fact that modern hardware allows virtual memory to be mapped in your process without mapping all the required pages to physical memory enables modern kernels to spill memory onto secondary storage to artificially increase the amount of memory available up to the limits of that secondary storage.
 
@@ -68,7 +68,7 @@ As is common knowledge, the most common form of secondary storage is the swap fi
 
 However, the kernel is free to place that memory anywhere and implementations exist where the memory will be distributed in a network or some other medium (e.g: memory mapped files).
 
-### Conclusion
+## Conclusion
 
 This concludes our introduction to virtual memory. In later blog posts we will explore the TLB into further details and the implications virtual memory has on the CPU cache. Until then, here are some additional links:
 

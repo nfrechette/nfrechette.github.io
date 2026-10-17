@@ -90,7 +90,7 @@ It uses various custom [error metrics]({% post_url 2016-11-01-anim_compression_a
 
 A large mix of the previously mentioned algorithms are tested internally. In particular, various mixes of [sub-sampling]({% post_url 2016-11-17-anim_compression_sub_sampling %}) are tested along with [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) and [simple quantization]({% post_url 2016-11-15-anim_compression_quantization %}). The best result is selected given a specific error threshold. This is likely to be somewhat slow due to the large number of variations tested (**35** at the time of writing!).
 
-# Conclusion
+## Conclusion
 In memory, every compression setting has a layout that is naive with the data sorted by tracks followed by keys. This means that during decompression each track will incur a cache miss to read the compressed value.
 
 Performance wise, decompression times are likely to be high in [Unreal 4](https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_4) in large part due to the memory layout not being cache friendly and the lack of an acceleration structure such as a cursor when linear key reduction is used; and it is likely used often with the *Automatic* setting. This is an obvious area where it could improve.

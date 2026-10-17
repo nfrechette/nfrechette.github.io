@@ -4,11 +4,11 @@ title: GPGPU woes part 4
 ---
 After fixing the [previous]({% post_url 2015-07-11-gpgpu_woes_part_3 %}) addressing issue, we move on to the next.
 
-### Inconsistencies and limitations
+## Inconsistencies and limitations
 
 Here are the outputs for the various OpenCL driver values on my laptop:
 
-#### Windows 8.1 x64
+### Windows 8.1 x64
 
 * Device: Intel(R) Iris(TM) Graphics 5100
 
@@ -36,7 +36,7 @@ Here are the outputs for the various OpenCL driver values on my laptop:
     * Kernel local workgroup size: 1024
     * Kernel local mem size: 12288
 
-#### OS X x64
+### OS X x64
 
 * Device: Iris
 

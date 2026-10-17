@@ -5,7 +5,7 @@ description: "The first memory allocator we will cover is by far the simplest an
 ---
 The first memory allocator we will cover is by far the simplest and serves as an introduction to the material. Today we cover the linear memory allocator ([code](https://github.com/nfrechette/gin/blob/master/include/gin/linear_allocator.h)).
 
-### How it works
+## How it works
 
 The internal logic is fairly simple:
 
@@ -21,7 +21,7 @@ Interestingly, you can almost free memory at the pointer level by using `Realloc
 
 Critical to this allocator is that it adds no overhead per allocation and it does not modify the pre-allocated memory buffer. Not all allocators will have these properties and I will always mention this important bit. This makes it ideal for low level systems or for working with read-only memory.
 
-### What can we use it for
+## What can we use it for
 
 Despite being a very simple allocator, it has a few uses. I have used it in the past with success to clean up code dealing with a lot of pointer arithmetic. The general idea is that if you have a memory buffer representing a custom binary format with most fields having a variable size and requiring alignment, you will end up with a lot of logic to take your raw buffer and split it into the various internal bits.
 
@@ -51,13 +51,13 @@ Note that the above two versions are not 100% equivalent due to the fact C++11 o
 
 I wrote earlier that this allocator can be used with read-only memory which is a strange property for a memory allocator. Indeed, since it mostly abstracts away pointer arithmetic when partitioning a raw memory region without modifying it, we can use it to do just that over read-only memory. In the example above, this means that we can easily use it for writing and reading our custom binary format.
 
-### What we can’t use it for
+## What we can’t use it for
 
 Due to the fact that we do not add per allocation overhead, we cannot properly support freeing memory at the pointer level while supporting variable alignment. When support for freeing memory is needed, other allocators are better suited.
 
 This allocator is also generally a poor fit for very large memory buffers. Due to the fact that we need to pre-allocate it up front, we bear the full cost regardless of how much actual memory we allocate internally.
 
-### Edge cases
+## Edge cases
 
 There are two important edge cases with this allocator and they are shared by all allocators: overflow and out of memory conditions.
 
@@ -65,7 +65,7 @@ We can cause arithmetic overflow in two ways in this allocator: first by supplyi
 
 We eventually run out of memory if we attempt to allocate more than our pre-allocated buffer owns.
 
-### Potential optimizations
+## Potential optimizations
 
 While the implementation I provide aims for safety first, in practice a linear allocator should never run out of memory nor should it overflow if the logic using it is correct. This is because by providing a pre-allocated buffer, either we assume we do not need more memory or our assumption is wrong. In the later case, it is highly likely that we do not check the return value of allocations which is of little help even if our allocator is safe. Usage scenarios for this allocator are also generally simple in logic with few unknown variables to cause havoc.
 
@@ -75,19 +75,19 @@ Another option is to remove the branches added by the overflow and out of memory
 
 Last but not least, `Reallocate` support is often not required and could trivially be stripped as well.
 
-### Performance
+## Performance
 
 Due to its simplicity, it offers great performance. All operations are *O(1)* and only amount to a few instructions.
 
 On most 32 bit platforms, the size of an instance should be 24 bytes if `size_t` is used. On 64 bit platforms, the size should be 48 bytes with `size_t`. Both versions can be made even smaller with smaller integral types such as `uint16_t` (which would be very appropriate since this allocator is predominantly used with small buffers) or by stripping support for `Reallocate`. As such, either version will comfortably fit inside a single typical cache line of 64 bytes.
 
-### Conclusion
+## Conclusion
 
 Despite its simple internals, the linear allocator is an important building block. It serves as an ideal example for a number of sibling allocators we will see in the next few posts which involve similar internal logic and edge cases.
 
 Next up, we will cover a variation: [the virtual memory aware linear allocator]({% post_url 2015-06-11-vmem_linear_allocator  %}).
 
-### Alternate names
+## Alternate names
 
 The most common alternate name for this allocator is called the *arena* allocator. However, that name is overloaded and is also often associated with a number of other allocators which manage a fixed memory region.
 

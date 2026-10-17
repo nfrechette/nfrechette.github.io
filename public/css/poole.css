@@ -386,6 +386,20 @@ tbody tr:nth-child(odd) th {
   color: inherit;
 }
 
+/* Archive page */
+.archive-list {
+  padding-left: 0;
+  list-style: none;
+}
+.archive-list li {
+  margin-bottom: .5rem;
+}
+.archive-list small {
+  margin-left: .25rem;
+  color: #9a9a9a;
+  white-space: nowrap;
+}
+
 
 /*
  * Pagination

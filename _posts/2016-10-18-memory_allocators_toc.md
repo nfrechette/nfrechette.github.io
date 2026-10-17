@@ -9,7 +9,7 @@ I thought it would be a good idea to have a central place that links everything 
 
 All the relevant code for this lives under [Gin]({% post_url 2015-05-03-introducing_gin %}) ([code](https://github.com/nfrechette/gin)) on GitHub.
 
-# Table of Content
+## Table of Content
 
 * Linear allocators
   * [Classic linear allocator]({% post_url 2015-05-21-linear_allocator %})

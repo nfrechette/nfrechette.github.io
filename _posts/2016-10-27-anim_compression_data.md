@@ -7,7 +7,7 @@ Animation clips more or less always boil down to the same thing: a series of ani
 
 While we can represent all three tracks within a single affine 4x4 matrix, for compression purposes it is usually best to treat them separately. For one thing, a full column of the matrix doesn’t need to be compressed as it never changes and we can typically encode the rotation in a form much more compact than a 3x3 matrix.
 
-# Rotation
+## Rotation
 
 Rotations in general can be represented by many forms and choosing an appropriate representation is important for reducing our memory footprint while maintaining high accuracy.
 
@@ -46,13 +46,13 @@ Rotations are often animated but their range of motion is typically fairly small
 
 Because rotations work on the unit sphere, the error needs to be measured on the circumference traced by the associated children. For example, if I have an error of 1 degree on my parent bone rotation, the error at the position of a short child bone will be less than that of a longer child bone: the arc length formed by a 1 degree rotation depends on the sphere radius. This needs to be taken into account by our error measuring function as we will see later in a separate post.
 
-# Translation
+## Translation
 
 Translations are typically encoded as 3 floats. Translations are generally not animated except for a few bones such as the pelvis. They tend to be constant and often match the bind pose translation. Sadly, they are typically not bounded as some bones can be animated in world space (e.g. root bone in a cinematic) or they can move very far from their parent bone (e.g. camera).
 
 They could also be encoded as an axis and a length (4 floats) and in its polar equivalent (3 floats). Whether the polar form is a better tradeoff or not, I cannot say at this time without measuring the impact on the accuracy, memory footprint, and decompression speed. It might not work out so great for very large translation values (e.g. world space).
 
-# Scale
+## Scale
 
 Scale is not common nor is it typical in character animation but it does turn up. For our purposes we will only consider non-uniform scaling with 3 floats but uniform scaling with a single float would be a natural extension.
 
@@ -62,7 +62,7 @@ Because the scale affects the rotation part of a 4x4 affine matrix, the same iss
 
 Similar to translations, it might be possible to encode it in axis/length form but whether or not this is a good idea remains unclear to me at this time.
 
-# The skeleton hierarchy
+## The skeleton hierarchy
 
 Due to its hierarchical nature, we can infer a number of properties about our data:
 
@@ -72,7 +72,7 @@ Due to its hierarchical nature, we can infer a number of properties about our da
 
 As we will see in a later post, these properties can be leveraged to reduce our overall error.
 
-# Bone velocity
+## Bone velocity
 
 Generally, we will only compress sampled keys from our original source sequence and as such the velocity information is partially lost. However, it remains relevant for a number of reasons:
 

@@ -15,7 +15,7 @@ This is significant for two reasons:
 
 [![Paragon Official Trailer](https://i.ytimg.com/vi/3OCJCZJWA68/hqdefault.jpg){: width="480" height="360"}](https://www.youtube.com/watch?v=3OCJCZJWA68 "Paragon Official Trailer")
 
-# Carnegie-Mellon University
+## Carnegie-Mellon University
 
 Thus far, the [Carnegie-Mellon University](https://mocap.cs.cmu.edu/) data set has been the performance benchmark.
 
@@ -33,7 +33,7 @@ For these reasons, this data set is wonderful for unit testing and establishing 
 
 You can see how Unreal and ACL compare against it [here](https://github.com/nfrechette/acl/blob/develop/docs/cmu_performance.md).
 
-# Paragon
+## Paragon
 
 The Paragon data set contains **6558** clips for a total duration of **07h 00m 45.27s** and a raw size of **4276.11 MB**. As you can see, despite being shorter than CMU, it is about **3x** larger in size.
 
@@ -53,7 +53,7 @@ To extract the animation clips, I used the Unreal 4 animation recompression comm
 
 Sadly, I am not at liberty to share this data set as I am only allowed to use it under a non-disclosure agreement. All hope is not lost though, Epic has expressed interest in perhaps making a small subset of the data publicly available for research purposes. Stay tuned!
 
-# Bugs!
+## Bugs!
 
 The value of undertaking this quickly became obvious when an exotic clip from the data set highlighted a bug in the variable bit rate selection that ACL used. A fix was made and the results were breathtaking: CMU reduced in size by **19%** (and Paragon reduced by **20%**)! You can read about it [here]({% post_url 2017-11-23-acl_v0.5.0 %}) in my previous blog post.
 
@@ -63,7 +63,7 @@ The bugs I found were not exclusively within ACL: two were found and still prese
 
 In order to make the comparison as fair as possible, I had to locally disable the down-sampling variants within the Unreal 4 automatic compression method. One of the two bugs caused these variants to sometime crash. While down-sampling isn't often selected by the algorithm as the optimal choice for any given clip, disabling it means that compression is faster and possibly a bit larger as a result. Out of the **600** clips I managed to compress before finding the bug, only **3** ended up down-sampled. There are **9** down-sampled variants out of **27** in total (**33%**).
 
-# Bottom line
+## Bottom line
 
 UE 4.15 took **19h 56m 50.37s** single threaded to compress. It yielded a compressed size of **496.24 MB** for a compression ratio of **8.62 : 1**. The max error is **0.8619cm**.
 
@@ -71,7 +71,7 @@ ACL 0.5 took **19h 04m 25.11s** single threaded to compress (**01h 53m 42.84s** 
 
 On the surface, the compression time remains faster with ACL even with a significant portion of the variants disabled in the Unreal automatic compression. However, the memory footprint is dramatically smaller, a whooping **58.6%** smaller! As will be made apparent in the graphs below, once again the maximum error proves to be a poor metric of the true performance: **3** clips have an error above **0.8cm** with ACL.
 
-# The results in images
+## The results in images
 
 All the results and many more images are also on GitHub [here](https://github.com/nfrechette/acl/blob/develop/docs/paragon_performance.md) for Paragon just like they are for CMU [here](https://github.com/nfrechette/acl/blob/develop/docs/cmu_performance.md). I will only show a few selected images in this post for brevity.
 
@@ -91,7 +91,7 @@ ACL continues to shine, crossing the **0.01cm** threshold at the **99.23th** per
 
 Despite having a maximum error that is entirely unacceptable, it turns out that only **0.77%** of the compressed samples (out of **112 million**) exceed a sub-millimeter threshold. Aside from the **3** worst offending clips, everything else is cinematic and production quality. Not bad!
 
-# Conclusion
+## Conclusion
 
 As is apparent now, ACL performs admirably in a myriad of scenarios and continues to improve month after month. Real world data now confirms it. Half the memory footprint of Unreal is not insignificant even for a PC or PS4 game: less data to load into memory means faster streaming, less data to transfer means faster game download and installation times, and it can correlate with faster decompression performance too. For many PS4 and XB1 games, **200 MB** is perhaps small enough to load them all into memory up front and never stream them from disk afterwards.
 

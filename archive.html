@@ -1,0 +1,22 @@
+---
+layout: page
+title: Archive
+description: "All posts on Nicholas Frechette's blog, by year, from the newest to the oldest."
+---
+
+{% assign archive_posts = site.posts | where_exp: "post", "post.layout != 'redirected'" %}
+{% assign years = archive_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+<p>{{ archive_posts.size }} posts, from the newest to the oldest.</p>
+
+{% for year in years %}
+<h2 id="{{ year.name }}">{{ year.name }}</h2>
+<ul class="archive-list">
+  {% for post in year.items %}
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    <small>{{ post.date | date: "%d %b" }}</small>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}

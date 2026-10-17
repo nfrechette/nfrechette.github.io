@@ -4,7 +4,7 @@ title: "Math accuracy: Normalizing quaternions"
 ---
 While investigating precision issues with [ACL]( https://github.com/nfrechette/acl), I ran into two problems that I hadn’t seen documented elsewhere and that slightly surprised me.
 
-# Dot product
+## Dot product
 
 Calculating the dot product between two vectors is a very common operation used for all sorts of things. In an animation compression library, it’s primary use is normalizing [quaternions](https://en.wikipedia.org/wiki/Quaternion). Due to the nature of the code, accuracy is very important as it can impact the final compressed size as well as the resulting decompression error.
 
@@ -74,7 +74,7 @@ And thus, the difference between using SSE 4 and SSE 2 is just **2.166767e-11**.
 
 As it turns out, the SSE 2 implementation appears the most accurate one and yields the lowest decompression error as well as a smaller memory footprint (by a tiny bit).
 
-# Normalizing a quaternion
+## Normalizing a quaternion
 
 There are two mathematically equivalent ways to normalize a quaternion: taking the dot product, calculating the square root, and dividing the quaternion with the result, or taking the dot product, calculating the reciprocal square root, and multiplying the quaternion with the result.
 
@@ -97,7 +97,7 @@ And now using the reciprocal square root with 2 Newton-Raphson iterations:
 
 By using the division, normalization fails to yield us a more accurate quaternion because of square root is **1.0**. The reciprocal square root instead allows us to get a more accurate quaternion as demonstrated in the previous section.
 
-# Conclusion
+## Conclusion
 
 It is hard to see if the numerical difference is meaningful but over the entire CMU database, both tricks together help reduce the memory footprint by **200 KB** and lower our error by a tiny bit.
 

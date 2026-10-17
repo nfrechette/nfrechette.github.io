@@ -15,7 +15,7 @@ The relevant [FBX Importer](https://web.archive.org/web/20170710061043/https://d
 
 Before we dig into what each compression setting does we must first briefly cover the data representations that [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) uses internally.
 
-# Track Data Encoding
+## Track Data Encoding
 The engine uses one of three encodings to represent an animation track regardless of the track data type (quaternion, vector, float, etc.):
 *   [Legacy Curve]({% post_url 2017-01-30-anim_compression_unity5 %}#legacy_curve)
 *   [Streaming Curve]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve)
@@ -23,37 +23,37 @@ The engine uses one of three encodings to represent an animation track regardles
 
 Rotation tracks are always encoded as four curves to represent a full quaternion (one curve per component). An obvious win here could be to instead encode rotations as quaternion logarithms or by dropping the quaternion **W** component or the largest component. This would of course immediately reduce the memory footprint for rotation tracks by **25%** at the expense of a few instructions to reconstruct the original quaternion.
 
-## <a name="legacy_curve"></a>Legacy Curve
+### <a name="legacy_curve"></a>Legacy Curve
 Legacy curves are a strange beast. The source data is sampled uniformly at a fixed interval such as **30 FPS** and is kept unsorted in full precision. Using discreet samples during decompression a [Hermite curve](https://en.wikipedia.org/wiki/Cubic_Hermite_spline) is constructed on the fly and interpolated. It is unclear to me how this format emerged but it has since been superseded by the other two and it is not frequently used.
 
 It must have been quite slow to decompress and should probably be avoided.
 
-## <a name="streaming_curve"></a>Streaming Curve
+### <a name="streaming_curve"></a>Streaming Curve
 Streaming curves are proper curves that use [Hermite coefficients](https://en.wikipedia.org/wiki/Cubic_Hermite_spline). A track is split into intervals and each interval is encoded as a distinct spline. This allows discontinuities between intervals. For example, a camera cut or teleporting the root in a cinematic. Each interval has a small header of **8** bytes and each control point is stored in full floating point precision plus an index. This is likely overkill. Full floating point precision is typically far too much for encoding rotations and using [simple quantization]({% post_url 2016-11-15-anim_compression_quantization %}) to store them on 16 bits per component or less could provide significant memory savings.
 
 The resulting control points are sorted by time followed by track to render them as cache as efficient as possible which is a very good thing. At decompression, a cursor or cache is used to avoid repeatedly searching for our control points when playback is continuous and predictable. For these two reasons streaming curves are very fast to decompress in the average use case.
 
-## <a name="dense_curve"></a>Dense Curve
+### <a name="dense_curve"></a>Dense Curve
 What [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) calls a dense curve I would call a raw format. The original source data is sampled at a fixed interval such as **30 FPS** and nothing more is done to it as far as I am aware. The data is sorted to make it cache efficient by time and track. No [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) is performed or attempted. The sampled values are not quantized and are simply stored with full precision.
 
 Dense curves will typically have a smaller memory footprint than [streaming curves]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve) only for very short tracks or for tracks where the data is very noisy such as a motion capture. For this reason, they are unlikely to be used in practice.
 
 Overall their implementation is simple but perhaps a bit naive. Using [simple quantization]({% post_url 2016-11-15-anim_compression_quantization %}) would give significant memory gains here without degrading decompression performance and might even speed it up! On the upside decompression speed is very likely to be faster than with streaming curves.
 
-# Compression Settings
+## Compression Settings
 At the time of writing, [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) supports three compression settings:
 *   [No Compression]({% post_url 2017-01-30-anim_compression_unity5 %}#no_compression)
 *   [Keyframe Reduction]({% post_url 2017-01-30-anim_compression_unity5 %}#keyframe_reduction)
 *   [Optimal]({% post_url 2017-01-30-anim_compression_unity5 %}#optimal)
 
-## <a name="no_compression"></a>No Compression
+### <a name="no_compression"></a>No Compression
 The most detailed quote from the documentation about what this setting does is:
 
 >  Disables animation compression. This means that Unity doesn’t reduce keyframe count on import, which leads to the highest precision animations, but slower performance and bigger file and runtime memory size. It is generally not advisable to use this option - if you need higher precision animation, you should enable keyframe reduction and lower allowed Animation Compression Error values instead.
 
 From what I could gather the originally imported clip is sampled uniformly (e.g. **30 FPS**) and each track is converted into a [streaming curve]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve). This ensures everything remains smooth and accurate but the overhead can be very significant since all samples are retained. To make things worse nothing is done for constant tracks with this setting.
 
-## <a name="keyframe_reduction"></a>Keyframe Reduction
+### <a name="keyframe_reduction"></a>Keyframe Reduction
 The most detailed quote from the documentation is:
 
 >  Removes redundant keyframes.
@@ -96,7 +96,7 @@ Exposing a single error threshold per track type is very common and provides a s
 
 A single error threshold per track type also means that the error threshold has to be as low as your most sensitive bone requires. This will, in turn, retain higher accuracy that might otherwise be needed yielding again a higher memory footprint that is often unacceptable.
 
-## Optimal
+### Optimal
 The most detailed quote from the documentation is:
 
 >  Let unity decide how to compress. Either by keyframe reduction or by using dense format. Unity will pick the most optimal of the two.
@@ -107,7 +107,7 @@ Thankfully, I was able to get some answers!
 
 If a track is very short or very noisy (which could happen with motion capture clips or baked simulations), the key reduction algorithm might not give appreciable gains and it is possible that a [dense curve]({% post_url 2017-01-30-anim_compression_unity5 %}#dense_curve) might end up having a smaller memory footprint than a [streaming curve]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve). When this happens for a particular track it will use the curve with the smallest memory footprint. As such, within a single clip, we can have a mix of [dense]({% post_url 2017-01-30-anim_compression_unity5 %}#dense_curve) and [streaming]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve) curves.
 
-# Conclusion
+## Conclusion
 The [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) documentation is sparse and at times unclear. It leads to rampant speculation as to what might be going on under the hood and a lot of confusing results.
 
 Its error function is poor, exposing a single value per track type. This leads to classic issues such as turning compression off to retain accuracy and using an overly conservative threshold to retain accuracy at the expense of the memory footprint. It perpetuates the stigma that animation compression can be painful to work with and can easily butcher an animator’s work without manual tweaking. Fixing the error function could be a reasonably simple task.

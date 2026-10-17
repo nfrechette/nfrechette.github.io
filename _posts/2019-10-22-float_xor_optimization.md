@@ -10,7 +10,7 @@ I'll cover three functions that use it for [quaternion](https://en.wikipedia.org
 
 *TL;DR: With SSE2, XOR (and other logical operators) can be leveraged to speed up common floating point operations.*
 
-# XOR: the lesser known logical operator
+## XOR: the lesser known logical operator
 
 Most programmers are familiar with `AND`, `OR`, and `NOT` logical operators. They form the bread and butter of everyday programming. And while we all learn about their cousin `XOR`, it doesn't come in handy anywhere near as often. Here is a quick recap of what it does.
 
@@ -29,13 +29,13 @@ We can infer a few interesting properties from it:
 
 Exclusive OR comes in handy mostly with bit twiddling hacks when squeezing every cycle counts. While it is commonly used with integer inputs, it can also be used with floating point values!
 
-# XOR with floats
+## XOR with floats
 
 SSE2 contains support for XOR (and other logical operators) on both integral (`_mm_xor_si128`) and floating point values (`_mm_xor_ps`). Usually when you transition from the integral domain to the floating point domain of operations on a register (or vice versa), the CPU will incur a 1 cycle penalty. By implementing a different instruction for both domains, this hiccup can be avoided. Logical operations can often execute on more than one execution port (even on older hardware) which can enable multiple instructions to dispatch in the same cycle.
 
 The question then becomes, when does it make sense to use them?
 
-# Quaternion conjugate
+## Quaternion conjugate
 
 For a quaternion `A` where `A = [x, y, z] | w` with real (`[x, y, z]`) and imaginary (`w`) parts, its [conjugate](https://en.wikipedia.org/wiki/Quaternion#Conjugation,_the_norm,_and_reciprocal) can be expressed as follow: `conjugate(A) = [-x, -y, -z] | w`. The conjugate simply flips the sign of each component of the real part.
 
@@ -61,7 +61,7 @@ quatf quat_conjugate(quatf input)
 
 Again, this yields a single instruction but this time it is much faster. See full results [here](https://github.com/nfrechette/rtm/issues/6) but on my MacBook Pro it is **33.5% faster**!
 
-# Quaternion interpolation
+## Quaternion interpolation
 
 Linear interpolation for scalars and vectors is simple: `result = ((end - start) * alpha) + start`.
 
@@ -102,7 +102,7 @@ What we really want to achieve is to do nothing (use `end` as-is) if the sign of
 
 *Measuring is left as an exercise for the reader.*
 
-# Quaternion multiplication
+## Quaternion multiplication
 
 While the previous two use cases have been in RTM for some time now, this one is brand new and is what crossed my mind the other night: quaternion multiplication can use the same trick!
 
@@ -166,7 +166,7 @@ I'll omit the code for brevity but by using `-0.0f` and `0.0f` as our control va
 
 *Most x64 CPUs in use today (including those in the PlayStation 4 and Xbox One) do not yet support fused-multiply-add and when I add support for it in RTM, I will measure again.*
 
-# Is it safe?
+## Is it safe?
 
 In all three of these examples, the results are binary exact and identical to their reference implementations. Flipping the sign bit on normal floating point values (and infinities) with XOR yields a binary exact result. If the input is `NaN`, XOR will not yield the same output but it will yield a `NaN` with the sign bit flipped which is entirely valid and consistent (the sign bit is typically left unused on `NaN` values).
 
@@ -174,6 +174,6 @@ I also measured this trick with NEON on ARMv7 and ARM64 but sadly it is slower o
 
 *ARM64 already uses fused-multiply-add where possible.*
 
-# Progress update
+## Progress update
 
 It has been almost a year since the [first release]({% post_url 2019-01-19-introducing_realtime_math %}) of RTM. The next release should happen very soon now, just ahead of the next ACL release which will introduce it as a dependency for its [scalar track compression](https://github.com/nfrechette/acl/issues/71) API. I am on track to finish both releases before the end of the year.

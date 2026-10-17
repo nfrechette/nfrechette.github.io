@@ -9,7 +9,7 @@ I first picked it up a few years ago when I was tasked with optimizing the cloth
 
 TL;DR: Flipping the sign of some arithmetic operations can lead to shorter and faster assembly.
 
-# Flipping for fun and profit on x64
+## Flipping for fun and profit on x64
 
 To understand how this works, we need to give a bit of context first.
 
@@ -38,7 +38,7 @@ Short and sweet!
 
 Not every mainstream compiler today is smart enough to do this on its own especially in more complex cases where other instructions will end up in between the two sign flips. Doing it by hand ensures that they have all the tools to do it right. Should the compiler think that performance will be better by loading the constant into a register anyway, it will also be able to do so (for example if the function is inlined in a loop).
 
-# But wait, there's more!
+## But wait, there's more!
 
 While that trick is very handy on *x64*, it can also be used in a different context and I found a good example on *ARM64*: when linearly interpolating quaternions.
 

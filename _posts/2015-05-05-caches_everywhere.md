@@ -11,7 +11,7 @@ This data will generally come from one of these sources: a chip (such as ROM), a
 
 I will not dive into the implications for all the networking stack and the caches involved but I will mention that there are a few and understanding them can yield [good gains](https://web.archive.org/web/20150512084813/https://blog.superpat.com/2010/06/01/zero-copy-in-linux-with-sendfile-and-splice/).
 
-### The kernel page cache
+## The kernel page cache
 
 Hard drives are [notoriously slow](https://gist.github.com/jboner/2841832) compared to memory. To speed things up, a number of caches lay in between your application and the file on disk you are accessing. From the disk up to your application, the caches are in order: [disk embedded cache](https://en.wikipedia.org/wiki/Disk_buffer), [disk controller cache](https://en.wikipedia.org/wiki/Disk_array_controller), [kernel page cache](https://en.wikipedia.org/wiki/Page_cache), and last but not least, whatever [intermediate buffers](https://docs.oracle.com/javase/7/docs/api/java/io/BufferedReader.html) you might have in your user space application.
 
@@ -19,7 +19,7 @@ For the vasty majority of applications dealing with large files, the single most
 
 If you are writing an application that does a lot of IO or where it needs to happen as fast as possible (such as console/mobile games), you should ideally be using MMAP where it is supported ([android supports it](https://developer.android.com/reference/java/nio/channels/FileChannel.html), [iOS supports it but with 700MB virtual memory limit on 32bit processors](https://stackoverflow.com/questions/13425558/why-does-mmap-fail-on-ios), and both Windows and Linux obviously support it). I am not 100% certain, but in all likely hood, the newest game consoles (XboxOne and PlayStation 4) should support it as well. However, note that not all these platforms might have a kernel page cache but that it is a safe bet that going forward, newer devices are likely to support it.
 
-### The CPU cache
+## The CPU cache
 
 The next level of caches lays much closer to the CPU and take the form of the popular [L1, L2, and L3 caches](https://en.wikipedia.org/wiki/CPU_cache). Not all processors will have these and when they do, they might only have one or two levels. Higher levels are generally inclusive in regards to the lower levels but [not always](https://stackoverflow.com/questions/19775173/inclusive-or-exclusive-l1-l2-cache-in-intel-core-ivybridge-processor). For example, while the L3 will generally be inclusive of the L2, the L2 might not be inclusive of the L1. This is so because some instructions such as [prefetching](https://web.archive.org/web/20160420170816/http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0438d/BABJCGGE.html) will prefetch in the L2 but not the L1 and thus potentially cause eviction of cache lines that are in the L1.
 
@@ -39,7 +39,7 @@ This level of caching is also partly responsible for explaining why reading and 
 
 Generally speaking, all cache levels discussed up to here are shared between processes that are currently executed by the operating system.
 
-### The translation look-aside buffer
+## The translation look-aside buffer
 
 The next level of caching is the [translation look-aside buffer](https://en.wikipedia.org/wiki/Translation_lookaside_buffer), or TLB for short.
 
@@ -53,7 +53,7 @@ As must be obvious now, every time I mentioned the potential for CPU cache misse
 
 Note that when a hypervisor is used with multiple operating systems running concurrently, since the physical memory is shared between all of these, generally speaking when looking up a TLB entry, an additional virtual memory address translation might need to take place to find the true location. Depending on the security restrictions of the hypervisor, it might elect to share the TLB entries between guests and the hypervisor or not.
 
-### The micro TLB
+## The micro TLB
 
 Yet another popular cache that is not present (as far as I know) in x64 hardware but common on PowerPC and ARM processors is a higher level cache for the TLB. ARM calls this the micro TLB while PowerPC calls it ERAT.
 
@@ -63,13 +63,13 @@ This cache level will generally be split for code and data memory accesses but w
 
 The CPU, TLB, and micro TLB caches are not only shared by currently running processes of the current operating system but when running in a virtualized environment, they are also shared between all the other operating systems. When the hardware does not support the sharing by means of registers holding a process identifier and virtual environment identifier, generally these caches must be flushed or cleared when a switch happens.
 
-### The CPU register
+## The CPU register
 
 The last important cache level in a computer I will discuss today is the CPU register. The register is the basic unit modern processors use to manipulate data. As has been outlined so far, getting data here was not easy and the journey was long. It is no surprise that at this level, everything is now very fast and as such packing information in a register can yield good performance gains.
 
 Values are loaded in and out of registers directly into the L1 assisted by the TLB. Register sizes keep growing over the years: 16bit is a thing of the past, 32bit is still very common on mobile processors, 64bit is now the norm on newer mobile and desktop processors, and processors with multimedia or vector processing capability will often have 128bit or even 256bit registers. In this later case, this means that we only need two 256bit registers to hold an entire cache line (generally 64 bytes on these processors).
 
-### Conclusion
+## Conclusion
 
 This last points hammers in the overall high performance mantra: don’t touch what you don’t need and do the most work you can with as little memory as possible.
 

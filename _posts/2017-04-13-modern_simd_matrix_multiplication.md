@@ -19,29 +19,29 @@ This blog post will be broken down into four sections:
 
 Note that all the code for this can be found [here](https://github.com/nfrechette/DirectXMathOptimizations). Feel free to toy with it and replicate the results or contribute your own.
 
-# <a name="test_cases"></a>Our test cases
+## <a name="test_cases"></a>Our test cases
 
 In order to keep our observations grounded in reality, we will use three test cases that represent common heavy usage of 4x4 matrix multiplication. These are very synthetic in nature but they will make profiling and measuring immensely easier. Modern game engines do many things with many threads which can make profiling on PC somewhat a bit more complicated especially for something as short and simple as matrix multiplication.
 
-## Test case #1
+### Test case #1
 
 Our first test case applies a constant matrix to an array of 64 matrices. Aside from our constant matrix, each input will be read from memory (here everything fits in our processor cache but it doesn’t matter much) and each output will be written back to memory. This code is meant to simulate the common operation of transforming an array of object space matrices into world space matrices, perhaps for skinning purposes.
 
 <script src="https://gist.github.com/nfrechette/e9c4d07695568480117c76848f24a0a8.js"></script>
 
-## Test case #2
+### Test case #2
 
 Our second test case transforms an array of 64 local space matrices into an array of 64 object space matrices. To perform this operation, each local space matrix is multiplied by the parent object space matrix. The root matrix is trivial and equal in both local and object space as it has no parent. In this contrived example the parent matrix is always the previous entry in the array but in practice it would be some arbitrary index previously transformed. This operation is common at the end of the animation runtime where the pose generated will typically be in local space.
 
 <script src="https://gist.github.com/nfrechette/4d54d507fa05018e7ec2a14d8ebdce4c.js"></script>
 
-## Test case #3
+### Test case #3
 
 Our third test case takes two constant matrices and writes the result to a static array. The array is made static to prevent the compiler from stripping the code. This code is synthetic and meant to try and profile one off multiplications that happen everywhere in gameplay code. We perform the operation 64 times to help us measure the impact since the code is very fast to begin with.
 
 <script src="https://gist.github.com/nfrechette/6059d406eb4e522d0cb484ab907b6692.js"></script>
 
-# <a name="function_signatures"></a>Function signature variations
+## <a name="function_signatures"></a>Function signature variations
 
 Our reference implementation taken from DirectX Math has the following signature:
 
@@ -53,7 +53,7 @@ This function signature will be called in our data: **reg**
 
 We can vary the function signature in a number of ways and it will be interesting to compare the results. I came up with a number of variations. They are as follow.
 
-## Force inline
+### Force inline
 
 As mentioned, since our function is very large, inlining will typically fail to happen. However in very hot code, it still makes sense to inline the function.
 
@@ -61,7 +61,7 @@ As mentioned, since our function is very large, inlining will typically fail to 
 
 This function signature will be called: **inl**
 
-## Pass everything from memory
+### Pass everything from memory
 
 An obvious change we can make is to pass both input arguments as `const &`. In many cases our matrices might not be cached in local registers to begin with and we have to load them from memory anyway (such as in test case #2).
 
@@ -69,7 +69,7 @@ An obvious change we can make is to pass both input arguments as `const &`. In m
 
 This function signature will be called: **mem**
 
-## Flip our matrix arguments
+### Flip our matrix arguments
 
 In our matrix implementation, the rows of **M2** are multiplied whole with each matrix element from **M1**. The code ends up looking like this:
 
@@ -83,7 +83,7 @@ Note that we use a macro to perform the flip cleanly. I would have preferred a f
 
 This function signature will be called: **flip**
 
-## Expanded matrix argument
+### Expanded matrix argument
 
 Even though the __vectorcall calling convention conveniently passes our matrix in 4 registers, it might help the compiler make different decisions if we are explicit about our intentions.
 
@@ -93,7 +93,7 @@ Our expanded variant will always use the flipped argument ordering. Measuring th
 
 This function signature will be called: **exp**
 
-## Return value by argument
+### Return value by argument
 
 Another thing that is very common for a matrix multiplication implementation is to have the return value as a pointer or reference in a third argument.
 
@@ -103,7 +103,7 @@ Again this might help the compiler make different optimization choices. Note as 
 
 This function signature can be applied to all our variants and it will add the suffix **2**
 
-## Permute all the things!
+### Permute all the things!
 
 Taking all of this together and permuting everything yields 12 variants as follow:
 
@@ -126,17 +126,17 @@ In our data, they are called:
 
 Hopefully this covers a large extent of common and sensible variations.
 
-# <a name="function_implementations"></a>Our competing implementations
+## <a name="function_implementations"></a>Our competing implementations
 
 I was able to come up with six distinct implementations of the matrix multiplication, including the original reference. Note that I did not attempt to make the fastest implementation possible, there are other things we could try to make them faster. I also made sure that each version gave a result that was a exactly the same as the reference implementation, down to the last bit (binary exact).
 
-## Reference
+### Reference
 
 The reference implementation is quite large as such I will not include the full source here but the code can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_Ref.h).
 
 The reference **regexp2** variant uses 10 XMM registers and totals 70 instructions.
 
-## Broadcast
+### Broadcast
 
 In our reference implementation, an important part can be tweaked a bit.
 
@@ -150,7 +150,7 @@ The code for this variant can be found [here](https://github.com/nfrechette/Dire
 
 The version 0 **regexp2** variant uses 7 XMM registers and totals 58 instructions.
 
-## Looping
+### Looping
 
 Another change we can perform is inspired from [this post](https://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly) on StackOverflow. I rewrote the assembly into C++ code that uses intrinsics to try and keep it comparable.
 
@@ -161,7 +161,7 @@ Branching was notoriously slow on the old consoles, it will be interesting to se
 The version 1 **regexp2** variant uses 7 XMM registers and totals 23 instructions.
 The version 2 **regexp2** variant uses 10 XMM registers and totals 37 instructions.
 
-## Handwritten assembly
+### Handwritten assembly
 
 Similar to our looping versions, I also kept the hand written assembly version referenced. I made a few tweaks to make sure the results were binary exact. Sadly, the tweaks required the usage of one extra register. Having run out of volatile registers, I elected to load the first row of **M2** directly from memory with the multiply instruction during every iteration.
 
@@ -172,7 +172,7 @@ Two versions were written: version 3 uses load/shuffle ([code here](https://gith
 The version 3 **regexp2** variant uses 5 XMM registers and totals 21 instructions.
 The version 4 **regexp2** variant uses 5 XMM registers and totals 17 instructions.
 
-# <a name="results"></a>The results
+## <a name="results"></a>The results
 
 For our purposes, each test will be run **1000000** times and the cumulative time will be considered to be **1** sample. We will repeat this to gather **100** samples. To avoid skewing in our data that might result from various external sources (CPU frequency changes, other OS work, etc.), we will retain and use the **80th** percentile from our dataset. Due to the simple nature of the code, this should be good enough for us to draw meaningful conclusions. All measurements are in **milliseconds**.
 
@@ -186,7 +186,7 @@ I also measured running the test cases with multithreading enabled to see if the
 *  One thread per physical core: [raw data](/public/matrix_multiplication/results_percore_raw.csv), [parsed data](/public/matrix_multiplication/results_percore.csv), [charts](/public/matrix_multiplication/results_percore.xlsx)
 *  One thread per logical core: [raw data](/public/matrix_multiplication/results_saturate_raw.csv), [parsed data](/public/matrix_multiplication/results_saturate.csv), [charts](/public/matrix_multiplication/results_saturate.xlsx)
 
-## Test case results
+### Test case results
 
 Here are the results for our 3 test cases:
 
@@ -203,7 +203,7 @@ Here are the same results but only considering the best 3 variants (**regexp2**,
 
 ![Best Results](/public/matrix_multiplication/best_results.png){: width="1134" height="378"}
 
-## Load/shuffle versus broadcast
+### Load/shuffle versus broadcast
 
 ![Load/Shuffle VS Broadcast](/public/matrix_multiplication/load_shuffle_vs_broadcast.png){: width="795" height="378"}
 
@@ -211,7 +211,7 @@ Overwhelmingly, we can see that the versions that use broadcast are faster than 
 
 The fact that we use fewer registers and instructions also has other side effects, namely it can help the compiler to inline functions. In particular, this is the case for version 1 and 2: version 1 uses broadcast and gets inlined automatically while version 2 uses load/shuffle and does not get inlined.
 
-## Output in registers versus memory
+### Output in registers versus memory
 
 ![Output: Register VS Memory](/public/matrix_multiplication/output_register_vs_memory.png){: width="481" height="288"}
 
@@ -219,31 +219,31 @@ For test cases #1 and #3, passing our return value as an argument is a net win w
 
 However, for test case #2, it can sometimes be a bit slower. It seems that the assembly generated at the call site isn’t as clean as it could be. It’s possible that by tweaking the test case code a bit, performance could be improved.
 
-## Flipped versus expanded
+### Flipped versus expanded
 
 ![Flipped VS Expanded](/public/matrix_multiplication/flip_vs_expanded.png){: width="481" height="288"}
 
 Looking only at version 0, the behaviour seems to differ depending when the result is passed as an argument or by register. In the **regflip** and **regexp** variants, performance can be faster (test case #2), the same (test case #1), or slower (test case #3). It seems there is high variability with what the compiler chooses to do. On the other hand, with the **regflip2** and **regexp2** variants, performance is generally faster. Test case #2 has about equal performance but as we have seen, that test case seems to favour results being returned by register.
 
-## Inlining
+### Inlining
 
 ![Inlining On/Off](/public/matrix_multiplication/inlining_on_off.png){: width="481" height="288"}
 
 As it turns out, inlining sometimes gives a massive performance gain and sometimes it comes down to about the same. In general, it is best to let the compiler make inlining decisions but sometimes in very hot code, it is desirable to manually force the inlining for performance reasons. It thus makes sense to provide at least 2 versions of matrix multiplication: with and without force inlining.
 
-## Looping
+### Looping
 
 ![Looping VS Unrolled](/public/matrix_multiplication/looping_vs_unrolled.png){: width="481" height="288"}
 
 The looping versions are quite interesting. The 2 versions that use intrinsics perform absolutely terribly. They are worse by far, generally breaking out of the charts above. Strangely, they seem to benefit massively from passing the result as an argument (not shown on the graph above). Even with the handwritten assembly versions, we can see that they are generally slower than our unrolled intrinsic version 0. As it turns out, branching is still not a great idea in hot code even with modern hardware.
 
-## Is handwritten assembly worth it?
+### Is handwritten assembly worth it?
 
 ![Handwritten Assembly VS Intrinsics](/public/matrix_multiplication/handwritten_assembly_vs_intrinsics.png){: width="481" height="288"}
 
 Looking at our looping versions, it is obvious that carefully crafting the assembly by hand can still give significant results. However, we must be careful when doing so. [In particular, with Visual Studio, hand written assembly functions will never be inlined in x64, even by the linker](https://stackoverflow.com/questions/41208105/making-assembly-function-inline-in-x64-visual-studio). Something to keep in mind.
 
-## Best of the best
+### Best of the best
 
 ![Reference VS The Best](/public/matrix_multiplication/reference_vs_best.png){: width="481" height="288"}
 
@@ -255,7 +255,7 @@ In our results, a clear winner stands above all others: version 0 **inlexp2**:
 
 Even when it isn’t the fastest implementation, it is within measuring error of the leading alternative. And that leading alternative is always a variant of version 0.
 
-# Conclusion
+## Conclusion
 
 As demonstrated by our data, even a hyper optimized piece of code such as matrix multiplication can sometimes be improved by new hardware features such as the AVX broadcast instruction. In particular, the broadcast instruction allows us to reduce register pressure which avoids spilling registers on the stack and saves on the corresponding instructions that do so. On a platform such as x64, register pressure is a real and important problem that must be taken into account for complex and hot code.
 

@@ -23,6 +23,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 - Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). The site has no comment system.
 - Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
 - Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
+- Start the sections of a post at `##`. The layout shows the post title as the only `h1`. Do not skip a level: a `###` heading must come after a `##` heading.
 - The home page and the list pages show the excerpt of each post and a link to the full post. The excerpt is the first paragraph of the post. Posts must use LF line endings: in a CRLF file, Jekyll finds no paragraph end, and the excerpt is the full post.
 - If a post starts with an image, a heading, or HTML, set `excerpt:` in the front matter. Jekyll does not convert this value from Markdown, so write it as HTML: `excerpt: "<p>...</p>"`. The SEO tag also uses the excerpt as the page description, unless the post sets `description:`.
 - Give each post a `description:` of 160 characters or fewer, for search results and social cards. Without it, the SEO tag uses the full excerpt.
@@ -35,7 +36,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Site structure
 
-- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
+- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`, `archive.html`) automatically appear in the sidebar nav. `archive.html` lists all posts by year, so it needs no change for a new post.
 - `_layouts/default.html` adds `loading="lazy"` to each `<img>` tag with a Liquid `replace`, because GitHub Pages does not permit custom plugins. `public/css/poole.css` limits images and videos to the width of the content column.
 - `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
 

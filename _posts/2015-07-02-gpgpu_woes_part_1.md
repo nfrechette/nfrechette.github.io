@@ -9,7 +9,7 @@ Little did I know I would hit some very weird and peculiar issues related to Ope
 
 Just getting the sample to work reliably on OS X and Windows 8.1 while attempting to get identical results in x86, x64, CPU, and GPU versions proved to take considerable time due to various issues.
 
-### Moving pieces
+## Moving pieces
 
 GPGPU has a lot of moving pieces that can easily cause havoc. Code is typically written in a C like dialect (OpenCL, CUDA) and it is easy to make mistakes if you are not careful. If the old adage of blowing your foot off with C is true on the CPU, writing C on the GPU is probably akin to blowing up your whole neighbourhood along with your foot.
 
@@ -19,7 +19,7 @@ The second moving piece is the hardware itself. Even from a single manufacturer,
 
 This brings us to our first issue.
 
-### On the GPU, there is no stack
+## On the GPU, there is no stack
 
 The first exotic issue I hit was that the original code would not run for me. On Windows 8.1, the GPU would hit 100% utilization and cause the driver to time out (sometimes forcing me to power cycle). On OS X, the kernel would return after 5 or 10 seconds of runtime and attempting to run it a second time would cause the program to crash (after modifying it to run the kernel more than once to gather average timings).
 

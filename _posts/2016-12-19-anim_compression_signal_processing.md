@@ -12,7 +12,7 @@ Other signal processing algorithm variants include [Discrete Cosine Transform](h
 
 The latter two variants are commonly used alongside clustering and database approaches which I’ll explore if enough interest is expressed but I’ll be focusing on [Wavelets](https://en.wikipedia.org/wiki/Wavelet) here.
 
-# How It Works
+## How It Works
 At their core implementations that leverage wavelets for compression will be split into four distinct steps:
 
 *   Pre-processing
@@ -30,7 +30,7 @@ Aside from quantization all of the steps involved are effectively lossless and o
 
 The decompression is simply the same process of steps performed in reverse order.
 
-# Wavelet Basics
+## Wavelet Basics
 We will avoid going too in depth on this topic in this series instead we will focus on discussing the wavelet properties and what they mean for us with respect to character animation and compression in general. A good starting point for the curious would be the [Haar wavelet](https://en.wikipedia.org/wiki/Haar_wavelet) which is the simplest of wavelet functions, however, it’s generally avoided for compression.
 
 By definition wavelet functions are recursive. Each application of the function is referred to as a sub-band and will output an equal number of scale and coefficient values each exactly half the original input size. In turn, we can recursively apply the function on the resulting scale values of the previous sub-band. The end result is a single scale value and `N - 1` coefficients where `N` is the input size.
@@ -45,7 +45,7 @@ The wavelet transform can be entirely lossless by using an integer variant but i
 
 Since wavelet function decomposes a signal on an [orthonormal basis](https://en.wikipedia.org/wiki/Orthonormal_basis) we will be able to achieve the highest compression by considering as much of the signal as possible not unlike [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis). Simply concatenate all tracks together into a single 1D signal. The upside of this is that by considering all data as a whole we can find a single [orthonormal basis](https://en.wikipedia.org/wiki/Orthonormal_basis) which will allow us to quantize more aggressively but by having a larger signal to transform the decompression speed will suffer. To keep the process reasonably fast in practice on modern hardware each track would likely be processed independently in a small power of two, such as 16 keys at a time. For [Thief (2014)](https://en.wikipedia.org/wiki/Thief_(2014_video_game)), all rotation tracks and translation tracks were aggregated independently up to a maximum segment size of 64 KB. We ran the wavelet transform once for rotation tracks, and once for translation tracks.
 
-# Pre-processing
+## Pre-processing
 Because wavelet functions are recursive the size of the input data needs to be a power of two. If our size doesn’t match we will need to introduce some form of padding:
 *   Pad with zeroes
 *   Repeat the last value
@@ -57,14 +57,14 @@ Which padding approach you choose is likely to have a fairly minimal impact on c
 
 The scale of output coefficients is a function of the scale and smoothness of our input values. As such it makes sense to perform [range reduction]({% post_url 2016-11-09-anim_compression_range_reduction %}) and to normalize our input values.
 
-# Quantization
+## Quantization
 After applying the wavelet transform the number of output values will match the number of input values. No compression has happened yet.
 
 As mentioned previously our output values will be partitioned into sub-bands, and a single scale value somewhat centered around zero — both positive and negative. Each sub-band will end up with a different range of values. Larger sub-bands resulting from the first applications of the wavelet function will be filled with high-frequency information while the smaller sub-bands will comprise the low-frequency information. This is important. It means that a single low-frequency coefficient will impact a larger range of values after performing the inverse wavelet transform. Because of this low-frequency coefficients need higher accuracy than high-frequency coefficients.
 
 To achieve compression we will quantize our coefficients into a reduced number of bits while keeping the single scale value with full precision. Due to the nature of the data, we will perform range reduction per sub-band and normalize our values between `[-1.0, 1.0]`. We only need to keep the range extent for reconstruction and simply assume that the range is centered around zero. Quantization might not make sense for the lower frequency sub-bands with 1, 2, 4 coefficients due to the extra overhead of the range extent. Once our values are normalized we can quantize them. To choose how many bits to use per coefficient we can simply hard code a high number such as 16 bits, 12 bits, or alternatively experiment with values in an attempt to optimize a solution to meet an error threshold. Quantization could also be performed globally to reduce the range of information overhead instead of per sub-band depending on the number of input values being processed. For example processing 16 keys at a time.
 
-# Entropy Coding
+## Entropy Coding
 In order to be competitive with other techniques, we need to push compression further using [entropy coding](https://en.wikipedia.org/wiki/Entropy_encoding) which is an entirely lossless compression step.
 
 After quantization we obtain a number of integer values all centered around zero and a single scale. The most obvious thing that we can compress now is the fact that we have very few large values. To leverage this we apply a [zigzag transform](https://web.archive.org/web/20240914085030/https://wiki.multimedia.cx/index.php/Zigzag_Reordering) on our data, mapping negative integers to positive unsigned integers such that values closest to zero remain closest to zero. This transforms our data in such a way that we still end up with very few large values which are significant because it means that most of our values represented in memory now have many leading zeroes.
@@ -75,14 +75,14 @@ At this point, a generic entropy coding algorithm is used like [zlib](https://en
 
 It’s worth noting that if you process a very large input in a single block you will likely end up with lots of padding at the end. This typically ends up as all zero values after the quantization step and it can be beneficial to use [run length encoding](https://en.wikipedia.org/wiki/Run-length_encoding) to compress those before the entropy coding phase.
 
-# In The Wild
+## In The Wild
 Signal processing algorithms tend to be the most complex to understand while requiring the most code. This makes maintenance a challenge which is represented by a decreased use in the wild.
 
 While these compression methods can be used competitively if the right entropy coding algorithm is used, they tend to be far too slow to decompress, too complex to implement, and too challenging to maintain for the results that they yield.
 
 Due to its popularity at the time I introduced wavelet compression to [Thief (2014)](https://en.wikipedia.org/wiki/Thief_(2014_video_game)) to replace the [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) algorithm used in [Unreal 3](https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_3). [Linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}) was very hard to tweak properly due to a naive error function it used resulting in a large memory footprint or inaccurate animation clips. The wavelet implementation ended up being faster to compress with and yielded a smaller memory footprint with good accuracy.
 
-# Performance
+## Performance
 Fundamentally the wavelet decomposition allows us to exploit temporal coherence in our animation clip data, but this comes at a price. In order to sample a single keyframe, we must reverse everything. Meaning, if we process 16 keys at a time we must decompress our 16 keys to sample a single one of them (or two if we linearly interpolate as we normally would when sampling our clip). For this reason, wavelet implementations are terribly slow to decompress and speeds end up not being competitive at all which only gets worse as you process a larger input signal. On [Thief (2014)](https://en.wikipedia.org/wiki/Thief_(2014_video_game)) full decompression on the [Play Station 3](https://en.wikipedia.org/wiki/PlayStation_3) [SPU](https://en.wikipedia.org/wiki/Cell_(microprocessor)#Synergistic_Processing_Elements_.28SPE.29) took between **800us** and **1300us** for blocks of data up to 64 KB.
 
 Obviously, this is entirely unacceptable with other techniques in the range of **30us** and **200us**. To mitigate this and keep it competitive an intermediate cache is necessary.

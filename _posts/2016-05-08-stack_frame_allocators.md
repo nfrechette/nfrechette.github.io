@@ -6,7 +6,7 @@ This allocator family is quite possibly one of the most common memory management
 
 Note that there are many variants possible of this allocator. As such we will only cover a few to give a general overview of what it can look like. Actual production versions in the wild will often be custom and tailored to the specific application needs. Unlike our [linear allocator]({% post_url 2015-05-21-linear_allocator %}) previously covered, this allocation technique is very common and in use in many applications.
 
-### How it works
+## How it works
 
 A topic that comes very early when introducing many programming languages is the call stack. It is central to C, C++, and many other languages. The execution stack used for this mechanic operates as a stack frame based memory management algorithm which is handled by the compiler and the hardware (on x86 and x64).
 
@@ -25,7 +25,7 @@ Popping of the frame is automatic when the destructor is called or it can be pop
 
 In a frame based allocator such as this, when the frame is popped, all allocations made within our frame can be freed and the memory reclaimed. Different allocator variants will handle this differently as we will later see. The bottom line is that you should not keep pointers to that memory since it is no longer valid. On the plus side, freeing memory is very fast as a bulk operation.
 
-### What can we use it for
+## What can we use it for
 
 It allows us to allocate memory dynamically and return it from a function. This is very common and handy when we do not know the maximum amount of potential results returned (maybe we have a rare worst case scenario) and we want to avoid increasing the stack.
 
@@ -39,21 +39,21 @@ Depending on the variant, it can access all system memory unlike our linear allo
 
 Because it is often faster than a generalized heap allocator (potentially shared between multiple threads), if our allocated data is thread local (e.g: a vector on the stack), we can trivially migrate the allocations to use our frame allocator and save on allocation, deallocation, and reallocation.
 
-### What we can’t use it for
+## What we can’t use it for
 
 Much like our linear allocator, stack frame allocators do not support generalized deallocation of memory. This is largely mitigated by the fact that freeing is still supported but now happens in a last in/first out order due to our stack frames.
 
-### Performance
+## Performance
 
 Performance of stack frame based allocators is generally very good due in large part to their simplicity when allocating and the bulk free operation. It is very common to have a stack frame allocator per thread which can also avoids a lock operation since they generally do not require to be shared between threads.
 
 Generally speaking, the performance is enhanced compared to a generalized heap allocator because by design we use a smaller virtual memory range or we guaranty that we can re-use a previously used range keeping our TLB usage optimal. This also helps the CPU cache.
 
-### Conclusion
+## Conclusion
 
 Up next we will cover a simple variant: [the greedy stack frame allocator]({% post_url 2016-05-09-greedy_stack_frame_allocator %}).
 
-### Alternate names
+## Alternate names
 
 This memory allocator is often abbreviated to simply ‘Stack Allocator’. There are so many variants that are possible that there are probably just as many names.
 

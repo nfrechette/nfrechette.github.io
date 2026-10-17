@@ -11,16 +11,16 @@ For simplicity’s sake, we will only consider the case of single inheritance bu
 
 Let us go back to the drawing board and take a closer look at the problem we are trying to solve, what our tools are and our performance constraints.
 
-### The problem:
+## The problem:
 It is often desirable to derive from a base class and override part of its behaviour. This is best achieved by implementing a specialized function that the base class would call (or for that matter, any code) when present or call the base implementation when our only knowledge is the type of the base class at a particular function call site.
 
-### The tools:
+## The tools:
 All classes and functions are known at compile time and ideally we want to leverage that as much as possible.
 
-### The performance constraints:
+## The performance constraints:
 Memory and CPUs are slow and scarce and we want to have this mechanism be as fast as possible and at the same time be as compact in memory as possible. We can safely assume that for some classes we could have a large number of such virtual functions and we can assume as well that for some classes we might have a large number of instances.
 
-### The inline solution:
+## The inline solution:
 The simplest solution would simply be to store a function pointer for every such virtual function inside the object itself. At object construction, we can simply set these pointers and later when we need to invoke them, we simply call the correct function pointer.
 
 The upside of such a simple method is that the information we need is right there inside the object and we can access it directly. It will also end up with the rest of the adjacent object data in whatever [cache line](https://en.wikipedia.org/wiki/CPU_cache) is loaded to access the function pointer. By identifying which data is used by which function, we could move relevant data close to that function pointer and improve locality. Calling such a virtual function would thus incur a single data cache miss (to access the pointer).
@@ -35,7 +35,7 @@ This method is ideal when:
 * meaningful data can be moved close to the virtual function pointer (eg: a getter and the returned value)
 * the number of class instances is low
 
-### The dispatch function:
+## The dispatch function:
 A more flexible approach would be for our objects to have a single function pointer to a per class dispatch function. This function would then be called in a similar fashion to syscall(..): an extra argument to indicate which virtual function is expected would be provided. On object construction, similar to the previous approach, we simply set the proper dispatch function.
 
 The upside is that now our cost per object is a single function pointer and we are very flexible. At runtime we could add extra data to change the dispatching behaviour (and indeed a mechanism similar to this is used by many dynamic languages for duck typing and such) and we are also very flexible in our we store the virtual function pointers: we can either store them in an array somewhere along with the identifier that we need to match or we can store it inline in the assembly stream. The latter approach is also interesting because it could end up being more compact than the former on architectures where instruction sizes can vary and that support relative jumps (e.g.: x64). Another point in favour of the later approach is that the code cache generally has less pressure than the data cache by virtue of the facts that code execution is largely linear and more easily prefetched and there is also less code compared to data. Last but not least, a dispatch function for a given class only needs to test the virtual functions it implements and defer resolution to its base class should it not handle the call.
@@ -53,7 +53,7 @@ This method is ideal when:
 * The number of virtual functions per class is low
 * The number of class instances is high
 
-### The virtual table:
+## The virtual table:
 Finally we reach the current popular implementation: a single pointer to an array of virtual function pointers. Similar to previous methods, on object construction we simply set the proper array pointer. For this method to work, the array must contain function pointers for all virtual functions of the current class as well as all base classes. When we perform a virtual function call, knowing which function is called we can infer an offset in the array to use and simply call the correct virtual function pointer.
 
 The upside is that like the previous approach, this scales well to a large number of object instances due to the low per object overhead but unlike the previous approach, it also scales well to a large number of virtual functions since finding the correct one is O(1).
@@ -67,6 +67,6 @@ This method is ideal when:
 * The number of class instances is high
 * The number of virtual functions per class is high
 
-### The conclusion:
+## The conclusion:
 Depending on the scenario and usage, each variant could end up being the superior choice but ultimately, if a language does not expose control over which method is used for this, it must make a safe choice that supports its relevant use cases (e.g.: duck typing at runtime) and degrades as gracefully as possible under unknown scenarios.
 

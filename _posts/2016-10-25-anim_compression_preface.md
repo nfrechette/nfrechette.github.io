@@ -9,7 +9,7 @@ This post is meant as a preface to explain the overall context of what is charac
 
 This series of posts will only cover the compression aspect of animation data, we will not look into everything else that goes into writing an animation runtime library such as Morpheme.
 
-# Modern character animation
+## Modern character animation
 
 For the purpose of this series, we will only refer to character animation sequences that play back over a rigid skeleton (also called a rig). In Maya (and other similar products), an animator will typically author the animation sequence from a set of curves by manipulating the skeleton to achieve the desired motion.
 
@@ -27,7 +27,7 @@ The final visual mesh deformation process is commonly referred to as ‘skinning
 
 ![Skeleton & Visual Mesh](/public/unity_mesh.jpg){: width="383" height="500"}
 
-# How is it used in AAA video games?
+## How is it used in AAA video games?
 
 For a long time now (at least since the original PlayStation), 3D character animation has been used by a large array of video game titles. Over time the techniques used to author the animation sequences have evolved and the amount of content has gradually crept up. Today, it isn’t unusual for a AAA video game to have several thousands of individual character animations.
 
@@ -35,7 +35,7 @@ Animation sequences are used for all sort of things beyond just animating charac
 
 As a result of this, it is not unusual to end up having between 20-200MB worth of animations at runtime. On disk, the size is of course even larger.
 
-# Its unique requirements
+## Its unique requirements
 
 To generate a single image (or frame), it is not uncommon to end up sampling over 100 animation sequences. As such, it is critically important for this operation to be very fast. Typically on a modern console, we are targeting 50-100us or lower to sample a single sequence.
 

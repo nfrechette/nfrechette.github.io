@@ -9,7 +9,7 @@ Range reduction is all about exploiting the fact that the values we compress typ
 
 For example, in theory our translation track range is infinite but in practice, for any given clip, the range is fixed and generally small. This generalizes to rotation and scale tracks as well.
 
-# How It Works
+## How It Works
 
 First we start with some animated translation track.
 
@@ -39,7 +39,7 @@ In practice, rotation tracks are generally bounded by `[-PI, PI]` but animated b
 
 A side effect of range reduction is that all tracks end up being normalized. This is important for the simple quantization compression algorithms as well as when wavelets are used on an aggregate of tracks (as opposed to per track). Future posts will go further into detail.
 
-# Conclusion
+## Conclusion
 
 Range reduction allows us to focus our precision on the range of values that actually matters to us. This increased accuracy very often allows us to be more aggressive in our compression, reducing our overall size despite any extra overhead.
 

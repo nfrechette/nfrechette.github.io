@@ -6,7 +6,7 @@ I have been playing *Game of War: Fire Age* for some time now and a peculiar iss
 
 This is an often rarely discussed issue and the solutions to it are seldom discussed as well. This post is an attempt to document various causes and solutions to this and help offer some insight into this.
 
-### The causes
+## The causes
 
 In video games, the memory workload is typically very predictable: we have hard limits on many features (e.g: max number of players) and generally fixed data. These two things coupled together imply that out of memory situations are generally quite rare. The typical causes are as follow:
 
@@ -26,7 +26,7 @@ This can happen in released titles and more than a few have shipped with memory 
 
 If the memory pressure is high and fragmentation is present, even though free memory might exist to service a particular allocation request, the system might fail due to fragmentation (either in user space or due to physical memory fragmentation on some embedded devices). Fragmentation is a real and painful issue to deal with when it creeps up. It will often remain hidden during development until very late primarily due to two things: final content often comes very late in production and the game will often not run for more than one hour until late in production as well. Out of memory situations can happen in released titles on memory constrained devices. I see it at least twice a day in Game of War on my android tablet.
 
-### How to deal with it
+## How to deal with it
 
 On memory constrained devices, if you have memory fragmentation it is a fact of life that you will hit out of memory situations. This is even more likely if your software might run on devices below your minimum specifications (e.g: mobile android devices). When this happens, there are a few ways to deal with this. Here are the ones that come to mind, in increasing order of complexity:
 
@@ -46,7 +46,7 @@ Games that realize that they might crash and instead opt to handle this with the
 
 This often requires the largest time investment. Not only does it require extensive testing to make sure even under all your imposed hard limits you do not exceed the maximum memory allowed (e.g: 16 vs 16 players) but it often requires dealing with memory fragmentation and making sure that there is none or very little.
 
-### Case study: *AAA title (2014)*
+## Case study: *AAA title (2014)*
 
 During the development of *AAA title (2014)*, our final content for most maps came in very late in development and it all came at once. This made testing everything very hard. We knew very early on that a single platform would struggle with memory pressure and that prediction proved very accurate: our *PlayStation 3* title suffered from rampant out of memory situations.
 

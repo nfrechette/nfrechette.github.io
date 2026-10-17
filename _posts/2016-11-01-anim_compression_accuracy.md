@@ -13,12 +13,12 @@ Error measuring needs to meet a number of important criteria:
 *   Account for errors in all three tracks for every bone
 *   Account for the fact that visual mesh almost never overlaps with its skeleton and the further away a vertex is from its bone the larger the error will end up being
 
-# Object Space vs Local Space
+## Object Space vs Local Space
 For compression reasons, transforms and blending poses are usually stored in local space. However, due to the hierarchical nature, a small error on a parent bone could end up causing a much larger error on a child’s bone further down. For this reason, errors are best measured in object space.
 
 Surprisingly, it is quite common for compression algorithms to use local space instead. Error is measured using linear key reduction and curve fitting algorithms.
 
-# Approximating the Visual Error
+## Approximating the Visual Error
 Since a skeleton is generally never directly visible errors are visible on the visual mesh instead. This means the most accurate way to measure errors is to perform skinning for every keyframe and comparing vertices before and after compression.
 
 Sadly, this would be terribly slow even with help from the GPU in many instances.
@@ -37,7 +37,7 @@ Large animated objects also occasionally benefit from vertex to bone distances o
 
 It’s also worth mentioning that we could probably extract the furthest skinned vertex per bone from the visual mesh and use that instead but keep in mind some bones might not have skinned vertices such as the root and camera bones.
 
-# Conclusion
+## Conclusion
 Accuracy is modified using a single intuitive number, the virtual vertex distance and is measured with a single value, object space distance.
 
 Both Unity and Unreal measure accuracy in ways that are sub-optimal and fail to take into account all three properties outlined above. From what I have seen their techniques are also representative of a lot of game engines out there. Future posts will explore the solutions those game engines provide.

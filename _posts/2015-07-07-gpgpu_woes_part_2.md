@@ -4,7 +4,7 @@ title: GPGPU woes part 2
 ---
 After fixing the [previous]({% post_url 2015-07-02-gpgpu_woes_part_1 %}) painful issue, we move on to the next strange issue (and much worse!).
 
-### On the GPU, a NULL pointer isn’t always NULL
+## On the GPU, a NULL pointer isn’t always NULL
 
 Despite the code being very simple, the CPU and GPU versions produced very different outputs for me in OS X (not verified in Windows 8.1). For the life of me I could not figure it out as it proved even stranger than the previous issue.
 

@@ -9,12 +9,12 @@ I am the author of the industry leading [Animation Compression Library (ACL)](ht
 
 I am also the author of the [Realtime Math](https://github.com/nfrechette/rtm) library. It is used extensively by ACL and is heavily optimized for modern devices. While it certainly isn't the only one of its kind, it does offer an edge over the competition. You can find out more [here](https://nfrechette.github.io/2019/01/19/introducing_realtime_math/).
 
-# Publications
+## Publications
 
 * [New Animation Features in Unreal Engine](https://www.youtube.com/watch?v=tWVZ6KO4lRs), GDC 2019
 * [Simple and Powerful Animation Compression](https://nfrechette.github.io/2017/03/08/anim_compression_gdc2017/), GDC 2017
 
-# Video Game Credits
+## Video Game Credits
 
 *  [Halo Infinite](https://en.wikipedia.org/wiki/Halo_Infinite) (2021), Principal Animation Programmer
 *  [Shadow of the Tomb Raider](https://en.wikipedia.org/wiki/Shadow_of_the_Tomb_Raider) (2018), Additional Programming
