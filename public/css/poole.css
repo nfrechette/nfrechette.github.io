@@ -358,6 +358,19 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 4em;
 }
 
+/* Text for screen readers only. The text has no visible area. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Blog post or page title */
 .page-title,
 .post-title,

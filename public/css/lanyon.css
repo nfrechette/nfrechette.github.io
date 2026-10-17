@@ -384,6 +384,10 @@ a.sidebar-nav-item:focus {
 .post-title {
   margin-top: 0;
 }
+/* On the home page, the post titles are h2 headings with the size of an h1. */
+.posts .post-title {
+  font-size: 2rem;
+}
 
 /* Meta data line below post title */
 .post-date {

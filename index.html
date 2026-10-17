@@ -3,15 +3,19 @@ layout: default
 title: Home
 ---
 
+{% comment %}
+  The page has one h1, for screen readers. Each post title in the list is an h2.
+{% endcomment %}
+<h1 class="sr-only">{% if paginator.page > 1 %}Posts, page {{ paginator.page }}{% else %}Posts{% endif %}</h1>
+
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
-    <h1 class="post-title">
-      <!--<a href="{{ site.baseurl }}/{{ post.url }}">-->
+    <h2 class="post-title">
       <a href="{{ site.baseurl }}{{ post.url }}">
         {{ post.title }}
       </a>
-    </h1>
+    </h2>
 
     <span class="post-date">{{ post.date | date_to_string }}{% if post.tags.size > 0 %} &middot; {% include post_topics.html tags=post.tags %}{% endif %}</span>
 
