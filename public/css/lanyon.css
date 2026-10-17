@@ -669,6 +669,47 @@ a.pagination-item:hover {
   color: #8f5536;
 }
 
+/* Purple: the theme of this site. The link color has a contrast of 5.8:1 on white.
+   The sidebar is darker, thus its white text has a contrast of 11.9:1. */
+.theme-purple .sidebar,
+.theme-purple .sidebar-toggle:active,
+.theme-purple #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #3f2d63;
+}
+.theme-purple .container a,
+.theme-purple .sidebar-toggle,
+.theme-purple .related-posts li a:hover {
+  color: #7a4fb8;
+}
+
+/* A link in the text of a post or a page has a light underline. The link color
+   alone is not sufficient, because its contrast with the body text is only 1.4:1. */
+.post > p a,
+.post > ul a,
+.post > ol a,
+.post > blockquote a,
+.post td a,
+.page > p a {
+  text-decoration: underline;
+  text-decoration-color: rgba(122,79,184,.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .15em;
+}
+.post > p a:hover,
+.post > ul a:hover,
+.post > ol a:hover,
+.post > blockquote a:hover,
+.post td a:hover,
+.page > p a:hover,
+.post > p a:focus,
+.post > ul a:focus,
+.post > ol a:focus,
+.post > blockquote a:focus,
+.post td a:focus,
+.page > p a:focus {
+  text-decoration-color: currentColor;
+}
+
 
 /*
  * Overlay sidebar

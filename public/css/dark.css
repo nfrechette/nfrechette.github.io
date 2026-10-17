@@ -5,9 +5,10 @@
  * thus these rules apply only when the reader selects a dark appearance in the
  * operating system or the browser. A printed page keeps the light colors, because
  * the media query applies only to screens. The rules replace the colors of poole.css,
- * lanyon.css, and syntax.css. The theme color of the sidebar and the links stays.
+ * lanyon.css, and syntax.css. The sidebar keeps its theme color.
  *
  * Colors:
+ *   #b896e8  links (contrast of 6.8:1 on the page background)
  *   #1c1e20  page background
  *   #25282b  background of code, table rows, and hover areas
  *   #33373b  borders and lines
@@ -51,6 +52,21 @@ blockquote {
 .message {
   color: #9a9a9a;
   background-color: #25282b;
+}
+
+/* Links: the purple of lanyon.css is too dark on this background. */
+.theme-purple .container a,
+.theme-purple .sidebar-toggle,
+.theme-purple .related-posts li a:hover {
+  color: #b896e8;
+}
+.post > p a,
+.post > ul a,
+.post > ol a,
+.post > blockquote a,
+.post td a,
+.page > p a {
+  text-decoration-color: rgba(184,150,232,.35);
 }
 
 /* The images of the posts have opaque light backgrounds. If an image has a transparent background and dark text, this white background keeps the text visible. */
