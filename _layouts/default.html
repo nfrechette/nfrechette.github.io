@@ -20,7 +20,10 @@
       </div>
 
       <div class="container content">
-        {{ content }}
+        {% comment %}
+          GitHub Pages does not permit custom plugins. Thus this replace adds lazy loading to each image.
+        {% endcomment %}
+        {{ content | replace: '<img ', '<img loading="lazy" ' }}
       </div>
     </div>
 
