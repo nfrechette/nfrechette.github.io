@@ -46,6 +46,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 # Overrides Jekyll's default list, so keep Gemfile/Gemfile.lock here
 exclude:

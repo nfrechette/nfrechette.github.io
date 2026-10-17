@@ -25,14 +25,13 @@ layout: null
    The feed holds only the newest posts, because each entry holds the full post.
    Feed readers keep the older entries that they already have.
  {% endcomment %}
- {% assign feed_posts = site.posts | where_exp: "post", "post.layout != 'redirected'" %}
  {% comment %}
    Some feed readers do not resolve root-relative URLs, such as "/public/foo.jpg".
    The replace filters make these URLs absolute. Posts must not use protocol-relative URLs ("//host/..."),
    because these filters would break them.
  {% endcomment %}
  {% assign site_root = site.url | append: site.baseurl | append: "/" %}
- {% for post in feed_posts limit: 10 %}
+ {% for post in site.posts limit: 10 %}
  {% assign post_content = post.content | replace: 'href="/', 'href="SITE_ROOT' | replace: 'src="/', 'src="SITE_ROOT' | replace: 'poster="/', 'poster="SITE_ROOT' | replace: 'SITE_ROOT', site_root %}
  <entry>
    <title>{{ post.title | xml_escape }}</title>

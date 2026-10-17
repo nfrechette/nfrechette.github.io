@@ -4,16 +4,15 @@ title: Archive
 description: "All posts on Nicholas Frechette's blog, by topic and by year, from the newest to the oldest."
 ---
 
-{% assign archive_posts = site.posts | where_exp: "post", "post.layout != 'redirected'" %}
 {% assign topic_pages = site.pages | where: "layout", "topic" | sort: "order" %}
 
-<p>{{ archive_posts.size }} posts, from the newest to the oldest. To see the posts about one topic, select the topic.</p>
+<p>{{ site.posts.size }} posts, from the newest to the oldest. To see the posts about one topic, select the topic.</p>
 
 <ul class="topic-list">
   {% for topic_page in topic_pages %}
-  {% assign topic_posts = archive_posts | where_exp: "post", "post.tags contains topic_page.topic" %}
+  {% assign topic_posts = site.posts | where_exp: "post", "post.tags contains topic_page.topic" %}
   <li><a href="{{ site.baseurl }}{{ topic_page.url }}">{{ topic_page.title }}</a> <small>{{ topic_posts.size }}</small></li>
   {% endfor %}
 </ul>
 
-{% include post_list.html posts=archive_posts %}
+{% include post_list.html posts=site.posts %}
