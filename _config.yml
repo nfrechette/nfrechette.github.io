@@ -16,6 +16,17 @@ author:
   name:              Nicholas Frechette
   url:               http://nfrechette.github.io
   email:             zeno490@gmail.com
+  twitter:           nfrechette6
+
+# Used by jekyll-seo-tag for the Twitter card and the JSON-LD author data
+twitter:
+  username:          nfrechette6
+social:
+  name:              Nicholas Frechette
+  links:
+    - https://twitter.com/nfrechette6
+    - https://github.com/nfrechette
+    - https://www.linkedin.com/in/nicholas-frechette-5b75461
 
 # Custom vars
 #version:             1.0.0
@@ -32,6 +43,8 @@ defaults:
 # Plugins
 plugins:
   - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
 #  - jekyll-redirect-from
 
 # Overrides Jekyll's default list, so keep Gemfile/Gemfile.lock here
