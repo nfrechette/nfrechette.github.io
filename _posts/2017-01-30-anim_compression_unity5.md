@@ -6,7 +6,7 @@ title: "Animation Compression: Unity 5"
 
 [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) is a very popular video game engine on mobile devices and other platforms. Being a state of the art game engine, it supports everything you might need when it comes to character animation including compression.
 
-The relevant [FBX Importer](https://docs.unity3d.com/Manual/FBXImporter-Animations.html) and [Animation Clip](https://docs.unity3d.com/Manual/class-AnimationClip.html) documentation is very sparse. It’s worth mentioning that [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) is a closed source software and as such, there is some amount of uncertainty and speculation. However, I was able to get in touch with an old colleague working at [Unity](https://en.wikipedia.org/wiki/Unity_(game_engine)) to clarify what happens under the hood.
+The relevant [FBX Importer](https://web.archive.org/web/20170710061043/https://docs.unity3d.com/Manual/FBXImporter-Animations.html) and [Animation Clip](https://docs.unity3d.com/Manual/class-AnimationClip.html) documentation is very sparse. It’s worth mentioning that [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) is a closed source software and as such, there is some amount of uncertainty and speculation. However, I was able to get in touch with an old colleague working at [Unity](https://en.wikipedia.org/wiki/Unity_(game_engine)) to clarify what happens under the hood.
 
 Before we dig into what each compression setting does we must first briefly cover the data representations that [Unity 5](https://en.wikipedia.org/wiki/Unity_(game_engine)) uses internally.
 

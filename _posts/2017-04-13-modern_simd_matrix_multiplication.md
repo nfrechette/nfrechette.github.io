@@ -138,7 +138,7 @@ In our reference implementation, an important part can be tweaked a bit.
 
 <script src="https://gist.github.com/nfrechette/e697f4451e67f2568861a9cd5f14a7f8.js"></script>
 
-We load a row from **M1**, extract each component, and replicate it into the 4 lanes of our SIMD register. This will compile down to 1 load instruction followed by 4 shuffle instructions. This was very common on older consoles: loads from memory were very expensive and none of the other instructions could work directly from memory. However, on SSE and in particular with AVX, we can do a bit better. We can use the [**_mm_broadcast_ss**](https://software.intel.com/en-us/node/524098) instruction. It takes as input a pointer to a scalar floating point value and it will output the replicated value over our 4 SIMD lanes. We thus save and avoid our load instruction.
+We load a row from **M1**, extract each component, and replicate it into the 4 lanes of our SIMD register. This will compile down to 1 load instruction followed by 4 shuffle instructions. This was very common on older consoles: loads from memory were very expensive and none of the other instructions could work directly from memory. However, on SSE and in particular with AVX, we can do a bit better. We can use the [**_mm_broadcast_ss**](https://web.archive.org/web/20160407040249/https://software.intel.com/en-us/node/524098) instruction. It takes as input a pointer to a scalar floating point value and it will output the replicated value over our 4 SIMD lanes. We thus save and avoid our load instruction.
 
 <script src="https://gist.github.com/nfrechette/a5343e01b4820d63ae5d9a0a791033e1.js"></script>
 
@@ -174,7 +174,7 @@ For our purposes, each test will be run **1000000** times and the cumulative tim
 
 All of my raw results are parsed with a simple python script to extract the desired percentile and format it in a table form. The script can be found [here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/parse_stats.py).
 
-I ran everything on my desktop computer which has an [Intel i7-6850K processor](https://ark.intel.com/products/94188/Intel-Core-i7-6850K-Processor-15M-Cache-up-to-3_80-GHz). While my CPU differs from what the Xbox One and PlayStation 4 use, they both support AVX and could benefit from the same changes.
+I ran everything on my desktop computer which has an [Intel i7-6850K processor](https://web.archive.org/web/20170405130935/https://ark.intel.com/products/94188/Intel-Core-i7-6850K-Processor-15M-Cache-up-to-3_80-GHz). While my CPU differs from what the Xbox One and PlayStation 4 use, they both support AVX and could benefit from the same changes.
 
 I also measured running the test cases with multithreading enabled to see if the results were consistent. Since the results were indeed consistent, we will only talk about the single threaded case but all the data for the test results can be found here:
 

@@ -31,7 +31,7 @@ If we need to sample a certain time `T` for which we do not have a key (e.g. in 
 
 # Edge Cases
 
-There is of course some subtlety to consider. For one, proper rounding needs to be considered. Not all [rounding modes are equivalent](http://number-none.com/product/Scalar%20Quantization/) and there are [so many](http://www.eetimes.com/document.asp?doc_id=1274485)!
+There is of course some subtlety to consider. For one, proper rounding needs to be considered. Not all [rounding modes are equivalent](http://number-none.com/product/Scalar%20Quantization/) and there are [so many](https://www.eetimes.com/an-introduction-to-different-rounding-algorithms/)!
 
 The safest bet and a good default for compression purposes, is to use symmetrical arithmetic rounding. This is particularly important when quantizing to a signed integer value but if you only use unsigned integers, asymmetrical arithmetic rounding is just fine.
 

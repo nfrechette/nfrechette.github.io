@@ -18,9 +18,9 @@ Install [Virtual Box](https://www.virtualbox.org/). Virtual Box is a virtual mac
 
 ### Step 2
 
-Download a Virtual Box image from the [Internet Explorer Developer website](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/). These images are legal versions of Windows provided by Microsoft to allow developers to test various Internet Explorer versions on various Windows versions. They expire after 90 days and cannot be activated but that doesn’t matter to us since we’ll only really use it for as long as the download of the ISO takes.
+Download a Virtual Box image from the [Internet Explorer Developer website](https://web.archive.org/web/20160404171447/https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/). These images are legal versions of Windows provided by Microsoft to allow developers to test various Internet Explorer versions on various Windows versions. They expire after 90 days and cannot be activated but that doesn’t matter to us since we’ll only really use it for as long as the download of the ISO takes.
 
-Simply grab the image for the platform that you have (Mac or Linux). Note that most images are 32 bit which will only allow you to later download the 32 bit ISO. At the time of writing, the Windows 10 image is 64 bit but requires [the following fix](https://stackoverflow.com/questions/30212542/the-ie11-windows-10-vm-for-virtualbox-on-osx-doesnt-start) to work properly.
+Simply grab the image for the platform that you have (Mac or Linux). Note that most images are 32 bit which will only allow you to later download the 32 bit ISO. At the time of writing, the Windows 10 image is 64 bit but requires [the following fix](https://web.archive.org/web/20150526194002/https://stackoverflow.com/questions/30212542/the-ie11-windows-10-vm-for-virtualbox-on-osx-doesnt-start) to work properly.
 
 ### Step 3
 
@@ -50,5 +50,5 @@ Last but not least in order to copy the ISO out, I had to hot swap the network c
 
 That’s it! You are done and you can now get rid of Virtual Box if you wish to. You can now continue the steps to create your bootable DVD or USB stick from the ISO.
 
-[There](https://www.tomshardware.com/answers/id-1800781/windows-iso-file.html) [are](https://kb.parallels.com/en/121009) [so](https://log.maniacalrage.net/post/78047230047/how-to-install-windows-8-1-on-a-new-mac-pro) [many](https://forums.whirlpool.net.au/archive/2155844) threads out there asking how to do this that I hope this will be able to help someone avoid the hassle I went through to find this. You would think Microsoft would make it easier for you to install their operating system...
+[There](https://web.archive.org/web/20141020052042/http://www.tomshardware.com/answers/id-1800781/windows-iso-file.html) [are](https://kb.parallels.com/en/121009) [so](https://log.maniacalrage.net/post/78047230047/how-to-install-windows-8-1-on-a-new-mac-pro) [many](https://forums.whirlpool.net.au/archive/2155844) threads out there asking how to do this that I hope this will be able to help someone avoid the hassle I went through to find this. You would think Microsoft would make it easier for you to install their operating system...
 

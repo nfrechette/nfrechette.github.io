@@ -32,7 +32,7 @@ Mathematically speaking, how the bind pose is added or removed can be done in a 
 
 ## Relative space
 
-In this space, the clip is reconstructed by multiplying the bind pose with a normal `transform_mul` operation. For example, this is the same operation used to convert from local space to object space. Performance wise, this is the slowest: to reconstruct our value we end up having to perform **3** quaternion multiplications and if negative scale is present in the clip, it is even slower (extra code not shown below, see [here](https://github.com/nfrechette/acl/blob/develop/includes/acl/math/transform_32.h)).
+In this space, the clip is reconstructed by multiplying the bind pose with a normal `transform_mul` operation. For example, this is the same operation used to convert from local space to object space. Performance wise, this is the slowest: to reconstruct our value we end up having to perform **3** quaternion multiplications and if negative scale is present in the clip, it is even slower (extra code not shown below, see [here](https://github.com/nfrechette/acl/blob/v0.8.0/includes/acl/math/transform_32.h)).
 
 ```c++
 Transform transform_mul(const Transform& lhs, const Transform& rhs)

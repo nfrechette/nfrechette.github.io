@@ -35,8 +35,6 @@ Sorting our samples keeps things contiguous and CPU cache friendly and as such i
 
 With this new technique, decompression was up to **4x** faster on PC. It looked **phenomenal** in a *gym*.
 
-<iframe src="https://giphy.com/embed/qTK56RyKJIZ9K" width="480" height="400" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
 Unfortunately, this technique has a number of drawbacks that are either skimmed briefly, downplayed, or not mentioned at all in the two blog posts advocating it. Those proved too significant to ignore in *Fortnite*. Sometimes being the fastest isn't the best idea.
 
 ### No U-turn allowed
@@ -44,8 +42,6 @@ Unfortunately, this technique has a number of drawbacks that are either skimmed 
 By sorting the samples, the playback direction must now match the sort direction. If you attempt to play a sequence backwards that has its samples sorted forward, you must seek and read everything until you find the ones you need. You can sort the samples backwards to fix this but forward playback will now have the same issue. There is no optimal sort order for both playback directions. Similarly, random seeks in a sequence have equally abysmal performance.
 
 As *Bitsquid* mentions, this can be mitigated by introducing a full frame of data at specific intervals to avoid fully reading everything or segments can be used for the same purpose. This comes at the cost of a larger memory footprint and it does not offset entirely the extra work done when seeking. One would think that most clips play forward in time and it isn't that big a deal. Sure some clips play backward or randomly but those aren't that common, right?
-
-<iframe src="https://giphy.com/embed/kZGxyEX1m9t7y" width="480" height="469" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 In practice, things are not always this way. Many prop animations will play forward *and* backward at runtime. For example, a chest opening and closing might have a single animation played in both directions. The same idea can be used with all sorts of other objects like doors, windows, etc. A more subtle problem are clips that play forward in time but that do not start playing at the beginning. With motion matching, often when you transition from one clip to another you will not start playing the new clip at frame 0. When playback starts, you will have to read and skip samples, creating a performance spike. This can also happen with clips that advance in time but do not decompress due to *Level of Detail (LOD)* constraints. As soon as those characters start animating, performance spikes. It is also worth noting that even if you start playing at the first frame, you need to unpack everything needed to prime the context which creates a performance spike regardless.
 
