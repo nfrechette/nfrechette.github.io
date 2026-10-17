@@ -8,10 +8,36 @@ layout: default
   {{ content }}
 </div>
 
+{% comment %}
+  Related posts share one or more topics with this post. The posts that share more topics come first.
+  If two posts share the same number of topics, the post nearer in date comes first.
+  Each sort key is "<9 minus shared topics>-<days apart, 6 digits>-<index in site.posts, 4 digits>".
+  Without the "lsi" option, site.related_posts gives only the newest posts, thus this layout does not use it.
+{% endcomment %}
+{% assign page_time = page.date | date: "%s" | plus: 0 %}
+{% assign related_keys = "" | split: "" %}
+{% for post in site.posts %}
+  {% if post.url == page.url or post.layout == "redirected" %}{% continue %}{% endif %}
+  {% assign shared_topics = 0 %}
+  {% for tag in post.tags %}
+    {% if page.tags contains tag %}{% assign shared_topics = shared_topics | plus: 1 %}{% endif %}
+  {% endfor %}
+  {% if shared_topics == 0 %}{% continue %}{% endif %}
+  {% assign post_time = post.date | date: "%s" | plus: 0 %}
+  {% assign days_apart = page_time | minus: post_time | abs | divided_by: 86400 | prepend: "000000" | slice: -6, 6 %}
+  {% assign post_index = forloop.index0 | prepend: "0000" | slice: -4, 4 %}
+  {% assign related_key = 9 | minus: shared_topics | append: "-" | append: days_apart | append: "-" | append: post_index %}
+  {% assign related_keys = related_keys | push: related_key %}
+{% endfor %}
+{% assign related_keys = related_keys | sort %}
+
+{% if related_keys.size > 0 %}
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
+    {% for related_key in related_keys limit:3 %}
+      {% assign post_index = related_key | split: "-" | last | plus: 0 %}
+      {% assign post = site.posts[post_index] %}
       <li>
         <h3>
           <a href="{{ site.baseurl }}{{ post.url }}">
@@ -23,3 +49,4 @@ layout: default
     {% endfor %}
   </ul>
 </div>
+{% endif %}

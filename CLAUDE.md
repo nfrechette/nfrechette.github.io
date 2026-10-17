@@ -35,7 +35,8 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 - Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
 - Give each image its pixel size with a kramdown attribute list: `![Alt](/public/acl/foo.jpg){: width="1200" height="408"}`. The browser then reserves the space before the lazy image loads. `sips -g pixelWidth -g pixelHeight <file>` gives the size. To show an image smaller, set a smaller width and height with the same aspect ratio.
 - Do not add animated GIFs. Convert each animation to MP4 and embed it with `<video width="..." height="..." autoplay loop muted playsinline poster="...">`. For a video that the user starts, use `controls preload="none" poster="..."`, so that the browser loads the file only on play. Give each video a JPEG poster of one frame. `ffmpeg` is not installed. A short Swift script with the macOS AVFoundation framework can do the conversion.
-- Old URLs are kept alive with stub posts using `layout: redirected` plus `redirect_to:` (see `_layouts/redirected.html`); don't delete or rename published posts without leaving one of these.
+- Old URLs are kept alive with stub posts using `layout: redirected` plus `redirect_to:` (see `_layouts/redirected.html`); don't delete or rename published posts without leaving one of these. Give each stub `sitemap: false` and `hidden: true`. `hidden: true` removes the stub from the home page.
+- The "Related Posts" list in `_layouts/post.html` shows the 3 posts that share the most topics with the post. If posts share the same number of topics, the post nearest in date comes first. Thus the `tags:` of a post also control this list.
 
 ## Site structure
 
