@@ -148,9 +148,10 @@ abbr[title] {
 }
 
 /* Code */
+/* Consolas is the code font on Windows. Without it, Windows uses Courier New. */
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 code {
   padding: .25em .5em;
@@ -173,6 +174,15 @@ pre {
   -moz-tab-size: 4;
        tab-size: 4;
   background-color: #f9f9f9;
+}
+/* The text column holds only about 70 characters of code. On a wide screen, a code block
+   extends past the two sides of the text column, to a maximum of 100 characters. It keeps
+   a 5rem margin to each side of the window. "ch" is the width of one character of the code
+   font, thus the width is correct for each font of the font list. A browser without min()
+   and max() ignores these two declarations, and the code block keeps the column width. */
+.content pre {
+  width: max(100%, min(100ch + 2rem, 100vw - 10rem));
+  margin-left: min(0px, (100% - min(100ch + 2rem, 100vw - 10rem)) / 2);
 }
 pre code {
   padding: 0;
