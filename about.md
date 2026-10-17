@@ -7,12 +7,12 @@ I am a senior AAA video game consulting programmer with a passion for high perfo
 
 I am the author of the industry leading [Animation Compression Library (ACL)](https://github.com/nfrechette/acl) and I use it to perform in depth research and development on the topic. It is the only standalone library of its kind to solve this problem. It has the fastest compression and decompression performance while maintaining the lowest memory footprint without sacrificing accuracy. It currently runs on all mobile devices, consoles, and desktop. Many small and large game engines have integrated it and I also maintain an [Unreal Engine plugin](https://github.com/nfrechette/acl-ue4-plugin).
 
-I am also the author of the [Realtime Math](https://github.com/nfrechette/rtm) library. It is used extensively by ACL and is heavily optimized for modern devices. While it certainly isn't the only one of its kind, it does offer an edge over the competition. You can find out more [here](https://nfrechette.github.io/2019/01/19/introducing_realtime_math/).
+I am also the author of the [Realtime Math](https://github.com/nfrechette/rtm) library. It is used extensively by ACL and is heavily optimized for modern devices. While it certainly isn't the only one of its kind, it does offer an edge over the competition. You can find out more [here]({% post_url 2019-01-19-introducing_realtime_math %}).
 
 ## Publications
 
 * [New Animation Features in Unreal Engine](https://www.youtube.com/watch?v=tWVZ6KO4lRs), GDC 2019
-* [Simple and Powerful Animation Compression](https://nfrechette.github.io/2017/03/08/anim_compression_gdc2017/), GDC 2017
+* [Simple and Powerful Animation Compression]({% post_url 2017-03-08-anim_compression_gdc2017 %}), GDC 2017
 
 ## Video Game Credits
 

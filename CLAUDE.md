@@ -22,7 +22,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 - Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). The site has no comment system.
 - Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
-- Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
+- Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs. This also applies to pages such as `about.md`. The build fails if the post does not exist.
 - Give each post one or more topics with `tags:`, for example `tags: [animation-compression, releases]`. Use only the slugs of the files in `topics/`: `animation-compression`, `releases`, `math`, `performance`, `memory-allocation`, `gpgpu`, `windows`. Put the main topic first.
 - Do not use `categories:`. With `permalink: pretty`, Jekyll puts the categories in the URL, and all old links break.
 - To add a topic, add one file in `topics/` with `layout: topic`, `topic:` (the slug), `title:`, `order:`, and `description:`. The archive page, the post pages, and the feed read the topic name from that file.
