@@ -19,7 +19,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Posts
 
-- Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). Comments (Disqus) are on by default for posts via `_config.yml` defaults.
+- Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). The site has no comment system.
 - Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
 - Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
 - Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
@@ -27,7 +27,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Site structure
 
-- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `comments`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
+- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
 - `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
 
 ## Communication style

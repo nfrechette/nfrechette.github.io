@@ -31,15 +31,6 @@ social:
 # Custom vars
 #version:             1.0.0
 
-# Front matter defaults
-defaults:
-  -
-    scope:
-      path:          '' # the whole site
-      type:          'posts'
-    values:
-      comments:      true
-
 # Plugins
 plugins:
   - jekyll-paginate
