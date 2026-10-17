@@ -234,6 +234,13 @@ img {
   border-radius: 5px;
 }
 
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+}
+
 /* Tables */
 table {
   margin-bottom: 1rem;
