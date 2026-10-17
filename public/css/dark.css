@@ -1,9 +1,10 @@
 /*
  * Dark mode
  *
- * _includes/head.html loads this file with media="(prefers-color-scheme: dark)",
+ * _includes/head.html loads this file with media="screen and (prefers-color-scheme: dark)",
  * thus these rules apply only when the reader selects a dark appearance in the
- * operating system or the browser. The rules replace the colors of poole.css,
+ * operating system or the browser. A printed page keeps the light colors, because
+ * the media query applies only to screens. The rules replace the colors of poole.css,
  * lanyon.css, and syntax.css. The theme color of the sidebar and the links stays.
  *
  * Colors:
