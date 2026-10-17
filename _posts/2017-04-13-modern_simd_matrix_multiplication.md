@@ -148,7 +148,7 @@ The version 0 **regexp2** variant uses 7 XMM registers and totals 58 instruction
 
 ## Looping
 
-Another change we can perform is inspired from [this post](http://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly) on StackOverflow. I rewrote the assembly into C++ code that uses intrinsics to try and keep it comparable.
+Another change we can perform is inspired from [this post](https://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly) on StackOverflow. I rewrote the assembly into C++ code that uses intrinsics to try and keep it comparable.
 
 Two versions were written: version 2 uses load/shuffle ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_V2.h)) and version 1 uses broadcast ([code here](https://github.com/nfrechette/DirectXMathOptimizations/blob/master/Inc/MatrixMultiply/MatrixMultiply_V1.h)).
 
@@ -237,7 +237,7 @@ The looping versions are quite interesting. The 2 versions that use intrinsics p
 
 ![Handwritten Assembly VS Intrinsics](/public/matrix_multiplication/handwritten_assembly_vs_intrinsics.png)
 
-Looking at our looping versions, it is obvious that carefully crafting the assembly by hand can still give significant results. However, we must be careful when doing so. [In particular, with Visual Studio, hand written assembly functions will never be inlined in x64, even by the linker](http://stackoverflow.com/questions/41208105/making-assembly-function-inline-in-x64-visual-studio). Something to keep in mind.
+Looking at our looping versions, it is obvious that carefully crafting the assembly by hand can still give significant results. However, we must be careful when doing so. [In particular, with Visual Studio, hand written assembly functions will never be inlined in x64, even by the linker](https://stackoverflow.com/questions/41208105/making-assembly-function-inline-in-x64-visual-studio). Something to keep in mind.
 
 ## Best of the best
 

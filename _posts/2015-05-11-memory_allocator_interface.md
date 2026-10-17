@@ -4,7 +4,7 @@ title: A memory allocator interface
 ---
 [As previously discussed]({% post_url 2015-05-01-cpp_stl_container_deficiencies %}), the memory allocator integration into C++ STL containers is far from ideal.
 
-[Attempts to improve on it](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2554.pdf) have been made but I have yet to meet anyone satisfied with the current state of things.
+[Attempts to improve on it](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2554.pdf) have been made but I have yet to meet anyone satisfied with the current state of things.
 
 Memory in large applications will typically come from two majors places: new/malloc calls and container allocations. Today we will only discuss the later.
 

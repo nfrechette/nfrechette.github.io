@@ -32,7 +32,7 @@ Use Virtual Box to [share a directory](https://www.virtualbox.org/manual/ch04.ht
 
 ### Step 5
 
-Launch the virtual machine instance and use it to run the executable from the Windows store. If you do not have access to it, I have not tested but presume that you might be able to use [this utility](http://windows.microsoft.com/en-us/windows-8/create-reset-refresh-media) as well.
+Launch the virtual machine instance and use it to run the executable from the Windows store. If you do not have access to it, I have not tested but presume that you might be able to use [this utility](https://windows.microsoft.com/en-us/windows-8/create-reset-refresh-media) as well.
 
 ### Step 6
 
@@ -50,5 +50,5 @@ Last but not least in order to copy the ISO out, I had to hot swap the network c
 
 That’s it! You are done and you can now get rid of Virtual Box if you wish to. You can now continue the steps to create your bootable DVD or USB stick from the ISO.
 
-[There](http://www.tomshardware.com/answers/id-1800781/windows-iso-file.html) [are](http://kb.parallels.com/en/121009) [so](http://log.maniacalrage.net/post/78047230047/how-to-install-windows-8-1-on-a-new-mac-pro) [many](http://forums.whirlpool.net.au/archive/2155844) threads out there asking how to do this that I hope this will be able to help someone avoid the hassle I went through to find this. You would think Microsoft would make it easier for you to install their operating system...
+[There](https://www.tomshardware.com/answers/id-1800781/windows-iso-file.html) [are](https://kb.parallels.com/en/121009) [so](https://log.maniacalrage.net/post/78047230047/how-to-install-windows-8-1-on-a-new-mac-pro) [many](https://forums.whirlpool.net.au/archive/2155844) threads out there asking how to do this that I hope this will be able to help someone avoid the hassle I went through to find this. You would think Microsoft would make it easier for you to install their operating system...
 

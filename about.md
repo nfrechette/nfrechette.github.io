@@ -20,7 +20,7 @@ I am also the author of the [Realtime Math](https://github.com/nfrechette/rtm) l
 *  [Shadow of the Tomb Raider](https://en.wikipedia.org/wiki/Shadow_of_the_Tomb_Raider) (2018), Additional Programming
 *  [Deus Ex: Mankind Divided](https://en.wikipedia.org/wiki/Deus_Ex:_Mankind_Divided) (2016), Additional Programming
 *  [Hitman](https://en.wikipedia.org/wiki/Hitman_(2016_video_game)) (2016), Additional Programming
-*  [Bierzerkers](http://store.steampowered.com/app/348460/) (2016), Additional Programming
+*  [Bierzerkers](https://store.steampowered.com/app/348460/) (2016), Additional Programming
 *  [Rise of the Tomb Raider](https://en.wikipedia.org/wiki/Rise_of_the_Tomb_Raider) (2015), Additional Programming
 *  [Thief](https://en.wikipedia.org/wiki/Thief_(2014_video_game)) (2014), Lead Systems Programmer
 *  [Army of Two: The 40th Day](https://en.wikipedia.org/wiki/Army_of_Two:_The_40th_Day) (2010), Additional Programming

@@ -47,7 +47,7 @@ Once again, ACL performs admirably: the compression speed is twice as fast (**1.
 
 ![Fortnite Max Error Distribution](/public/acl/fortnite_max_error_distribution.png)
 
-UE4's accuracy struggles a bit with a few clips but in practice the error might not be visible as the overwhelming majority of samples are very accurate. This is consistent as well with [previous results](http://nfrechette.github.io/2017/12/05/acl_paragon/).
+UE4's accuracy struggles a bit with a few clips but in practice the error might not be visible as the overwhelming majority of samples are very accurate. This is consistent as well with [previous results]({% post_url 2017-12-05-acl_paragon %}).
 
 ![UE4 Import Comic](/public/acl/ue4_importing.png)
 
@@ -96,7 +96,7 @@ When you have a piece of code that triggers a lot of cache misses, such as some 
 
 This translates into the type of graph above where there is heavy fluctuation as the execution time varies widely from the noise of the neighbor hyperthread.
 
-On the other hand, when the code is cache friendly, it doesn't give the chance to the other thread to run. This gives a nice and smooth graph for that current thread as the risk of long interruptions is reduced. When the code is that optimized, hyperthreading typically doesn't help speed things up much as both threads compete for the same time slice with few opportunities to hide stalling latency. This is also what I observed when [measuring the compression performance](http://nfrechette.github.io/2018/01/10/acl_v0.6.0/). In theory due to the higher cache pressure, performance could even degrade with hyperthreading but in practice I haven't observed it, not with ACL at least.
+On the other hand, when the code is cache friendly, it doesn't give the chance to the other thread to run. This gives a nice and smooth graph for that current thread as the risk of long interruptions is reduced. When the code is that optimized, hyperthreading typically doesn't help speed things up much as both threads compete for the same time slice with few opportunities to hide stalling latency. This is also what I observed when [measuring the compression performance]({% post_url 2018-01-10-acl_v0.6.0 %}). In theory due to the higher cache pressure, performance could even degrade with hyperthreading but in practice I haven't observed it, not with ACL at least.
 
 ## Xbox One
 

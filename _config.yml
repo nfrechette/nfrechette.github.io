@@ -7,14 +7,14 @@ permalink:           pretty
 title:               Nicholas Frechette's Blog
 tagline:             'Raw bits'
 description:         'A space to explore software ideas.'
-url:                 http://nfrechette.github.io
+url:                 https://nfrechette.github.io
 baseurl:             ''
 paginate:            5
 
 # About/contact
 author:
   name:              Nicholas Frechette
-  url:               http://nfrechette.github.io
+  url:               https://nfrechette.github.io
   email:             zeno490@gmail.com
   twitter:           nfrechette6
 

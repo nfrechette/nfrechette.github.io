@@ -2,7 +2,7 @@
 layout: post
 title: "ACL decompression performance"
 ---
-At long last I finally got around to measuring the decompression performance of ACL. This blog post will detail the baseline performance from which we will measure future progress. As I have [previously mentioned](http://nfrechette.github.io/2018/04/02/acl_v0.7.0/), no effort has been made so far to optimize the decompression and I hope to remedy that following the v1.0 release scheduled around June 2018.
+At long last I finally got around to measuring the decompression performance of ACL. This blog post will detail the baseline performance from which we will measure future progress. As I have [previously mentioned]({% post_url 2018-04-02-acl_v0.7.0 %}), no effort has been made so far to optimize the decompression and I hope to remedy that following the v1.0 release scheduled around June 2018.
 
 In order to establish a reliable data set to measure against, I use the same **42** clips used for [regression testing](https://github.com/nfrechette/acl/blob/develop/test_data/README.md) plus **5** more from the [Matinee fight scene](https://github.com/nfrechette/acl/blob/develop/docs/fight_scene_performance.md). To keep things interesting, I measure performance on everything I have on hand:
 
@@ -27,9 +27,9 @@ The profiling harness is not perfect but I hope the extensive data pulled from i
 
 In a real game, the overwhelming majority of clips play forward in time. Some clips play backwards (e.g. opening and closing a chest might use the same animation played in reverse) and a few others play randomly (e.g. driven by a thumb stick).
 
-Not all algorithms will exhibit the same performance regardless of playback direction. In particular, forms of delta encoding as well as any caching of the last played position will severely degrade when the playback isn't the one optimized for (as is often the case with [key reduction](http://nfrechette.github.io/2016/12/10/anim_compression_curve_fitting/) techniques due to the data being sorted by time).
+Not all algorithms will exhibit the same performance regardless of playback direction. In particular, forms of delta encoding as well as any caching of the last played position will severely degrade when the playback isn't the one optimized for (as is often the case with [key reduction]({% post_url 2016-12-10-anim_compression_curve_fitting %}) techniques due to the data being sorted by time).
 
-ACL currently uses the [uniformly sampled](https://github.com/nfrechette/acl/blob/develop/docs/algorithm_uniformly_sampled.md) algorithm which offers consistent performance regardless of the playback direction. To validate this claim, I hand picked **3** clips that are fairly long: *104_30* (**44** bones, **11** seconds) from CMU, and *Trooper_1* (**71** bones, **66** seconds) and *Trooper_Main* (**541** bones, **66** seconds) from the Matinee fight scene. To visualize the performance, I used a [box and whiskers chart](http://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/box-plot/) which shows concisely the min/max as well as the quartiles. Forward playback is shown in **Red**, backward in **Green**, and random in **Blue**.
+ACL currently uses the [uniformly sampled](https://github.com/nfrechette/acl/blob/develop/docs/algorithm_uniformly_sampled.md) algorithm which offers consistent performance regardless of the playback direction. To validate this claim, I hand picked **3** clips that are fairly long: *104_30* (**44** bones, **11** seconds) from CMU, and *Trooper_1* (**71** bones, **66** seconds) and *Trooper_Main* (**541** bones, **66** seconds) from the Matinee fight scene. To visualize the performance, I used a [box and whiskers chart](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/box-plot/) which shows concisely the min/max as well as the quartiles. Forward playback is shown in **Red**, backward in **Green**, and random in **Blue**.
 
 ![VS 2015 x64 Playback Performance](/public/acl/acl_decomp_v080_vs2015_x64_playback.png)
 

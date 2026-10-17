@@ -41,7 +41,7 @@ Another subtlety is whether to use signed integers or unsigned integers. In prac
 *  Our scaled value is thus: `0.54 * 65535.0 = 35375.05`
 *  With arithmetic rounding: `Floor(35375.05 + 0.5) = 35375`
 
-Another point to consider is: what is the maximum number of bits we can use with this implementation? A single precision floating point value can only accurately represent up to 6-9 significant digits as such the upper bound appears to be around 19 bits for an unsigned integer. Higher than this and the quantization method will need to change to an exponential scale, similar to how [depth buffers are often encoded in RGB textures](http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/). Further research is needed on the nuances of both approaches.
+Another point to consider is: what is the maximum number of bits we can use with this implementation? A single precision floating point value can only accurately represent up to 6-9 significant digits as such the upper bound appears to be around 19 bits for an unsigned integer. Higher than this and the quantization method will need to change to an exponential scale, similar to how [depth buffers are often encoded in RGB textures](https://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/). Further research is needed on the nuances of both approaches.
 
 # In The Wild
 

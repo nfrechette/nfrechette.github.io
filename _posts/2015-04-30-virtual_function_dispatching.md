@@ -2,9 +2,9 @@
 layout: post
 title: Virtual function dispatching
 ---
-Very often, [C++ interviews ask about the virtual table](http://programmers.stackexchange.com/questions/80591/why-is-no-c-interview-complete-if-it-does-not-have-vtable-questions): how it works, how is it implemented and the tricky bits around constructors & destructors. However, rarely are the following questions asked: why is it the way it is and are there alternatives?
+Very often, [C++ interviews ask about the virtual table](https://programmers.stackexchange.com/questions/80591/why-is-no-c-interview-complete-if-it-does-not-have-vtable-questions): how it works, how is it implemented and the tricky bits around constructors & destructors. However, rarely are the following questions asked: why is it the way it is and are there alternatives?
 
-Seeing how the C++ standard does not mandate how virtual function dispatching should be implemented, it is interesting that most compilers ended up converging on the current table approach. The [wikipedia article](http://en.wikipedia.org/wiki/Virtual_method_table) does a fairly good job to explain how it works and gives a good idea of the problem it is trying to solve. However, it fails to address the assumptions and performance constraints that likely shaped the current design.
+Seeing how the C++ standard does not mandate how virtual function dispatching should be implemented, it is interesting that most compilers ended up converging on the current table approach. The [wikipedia article](https://en.wikipedia.org/wiki/Virtual_method_table) does a fairly good job to explain how it works and gives a good idea of the problem it is trying to solve. However, it fails to address the assumptions and performance constraints that likely shaped the current design.
 
 For simplicity’s sake, we will only consider the case of single inheritance but keep in mind all methods discussed here can be extended to support multiple inheritance.
 
@@ -22,7 +22,7 @@ Memory and CPUs are slow and scarce and we want to have this mechanism be as fas
 ### The inline solution:
 The simplest solution would simply be to store a function pointer for every such virtual function inside the object itself. At object construction, we can simply set these pointers and later when we need to invoke them, we simply call the correct function pointer.
 
-The upside of such a simple method is that the information we need is right there inside the object and we can access it directly. It will also end up with the rest of the adjacent object data in whatever [cache line](http://en.wikipedia.org/wiki/CPU_cache) is loaded to access the function pointer. By identifying which data is used by which function, we could move relevant data close to that function pointer and improve locality. Calling such a virtual function would thus incur a single data cache miss (to access the pointer).
+The upside of such a simple method is that the information we need is right there inside the object and we can access it directly. It will also end up with the rest of the adjacent object data in whatever [cache line](https://en.wikipedia.org/wiki/CPU_cache) is loaded to access the function pointer. By identifying which data is used by which function, we could move relevant data close to that function pointer and improve locality. Calling such a virtual function would thus incur a single data cache miss (to access the pointer).
 
 The downside is that it does not scale. The more virtual functions we add, the larger our objects will end up being. This is made even worse on platforms with 64 bit pointers. The cost to initialize those data members also increases with each new virtual function. Finally, if enough virtual functions are added, our cache line might end up being completely filled by them such that no other immediately useful information ends up being loaded anyway.
 
@@ -41,7 +41,7 @@ The upside is that now our cost per object is a single function pointer and we a
 
 The downside is that to find the correct virtual function pointer to call we need to introduce extra branching which will could end up being poorly predicted. Various methods can mitigate this: sorting the virtual functions in a tree structure to guaranty O(log(n)) access time (it could even be updated at runtime to favour hot functions) or the introduction of a bloom filter as an early out mechanism. Another problem is the calling convention: because for efficiency reasons we need a register to hold the virtual function identifier when we call our dispatch function, that register must be reserved to avoid shuffling all the registers and the stack when the effective virtual function is called. While this approach scales well when the number of object instances increases, it does not scale as well when the number of virtual functions rises.
 
-Compared to the previous approach, we will need to incur one data cache miss for the dispatch function pointer and one (or more) code cache miss for the dispatching code. The compiler could be smart here and position the dispatch code close to the virtual functions of the same class in hope that it ends up being on the same page and thus avoid a [TLB](http://en.wikipedia.org/wiki/Translation_lookaside_buffer) miss when the actual function is called.
+Compared to the previous approach, we will need to incur one data cache miss for the dispatch function pointer and one (or more) code cache miss for the dispatching code. The compiler could be smart here and position the dispatch code close to the virtual functions of the same class in hope that it ends up being on the same page and thus avoid a [TLB](https://en.wikipedia.org/wiki/Translation_lookaside_buffer) miss when the actual function is called.
 
 Much like the previous approach, this method does not degrade gracefully when the number of virtual functions increases.
 

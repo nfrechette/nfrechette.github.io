@@ -6,7 +6,7 @@ Unless you use the curves directly authored by the animator for your animation c
 
 # In-place Correction
 
-This technique has already been detailed in [Game Programming Gems 7](http://www.amazon.com/Game-Programming-Gems-Series/dp/1584505273). As such, I won’t go into implementation details unless there is significant interest.
+This technique has already been detailed in [Game Programming Gems 7](https://www.amazon.com/Game-Programming-Gems-Series/dp/1584505273). As such, I won’t go into implementation details unless there is significant interest.
 
 As we have [seen previously]({% post_url 2016-10-27-anim_compression_data %}), our animated bone data is stored in local space which means that any error on a parent bone will propagate to its children. Fundamentally this technique aims to compensate our compression error by applying a small correction to each track to help stop the error propagating in our hierarchy. For example, if we have two parented bones, a small error in the parent bone will offset the child in object space. To account for this and compensate, we can apply a small offset on our child in local space such that the end result in object space is as close to the original animation as possible.
 
@@ -54,7 +54,7 @@ The last form of error compensation leverages [inverse kinematics](https://en.wi
 Besides allowing our compression to be more aggressive, this technique does not have a lot of up sides. It does have a number of down sides though:
 
 *  Extra tracks means extra data to compress and decompress
-*  Even a simple [2-bone inverse kinematic algorithm](http://mrl.nyu.edu/~perlin/gdc/ik/ik.java.html) will end up slowing down our decompression since we need to calculate object space transforms for our bones involved
+*  Even a simple [2-bone inverse kinematic algorithm](https://mrl.nyu.edu/~perlin/gdc/ik/ik.java.html) will end up slowing down our decompression since we need to calculate object space transforms for our bones involved
 *  By its very nature, our parent bones will no longer closely match the original clip, only the general feel might remain depending on how far the [inverse kinematic](https://en.wikipedia.org/wiki/Inverse_kinematics) correction ends up putting us.
 
 # Conclusion

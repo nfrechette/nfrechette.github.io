@@ -18,7 +18,7 @@ Eventually the need to run multiple processes concurrently appeared and soon bec
 
 ### Memory segments
 
-[On x86](http://en.wikipedia.org/wiki/X86_memory_segmentation), the first and second point were addressed first with *real mode* (1MB range) and later, memory protection was introduced with *protected mode* (16MB range). Virtual memory was born but it was not in the form most commonly seen today: early x86 used a segment based virtual memory model.
+[On x86](https://en.wikipedia.org/wiki/X86_memory_segmentation), the first and second point were addressed first with *real mode* (1MB range) and later, memory protection was introduced with *protected mode* (16MB range). Virtual memory was born but it was not in the form most commonly seen today: early x86 used a segment based virtual memory model.
 
 Segments were complex to manage but served their original purpose. Coupled with secondary storage, the operating system was now able to share the physical memory by swapping entire segments in and out of memory. Under 16 bit processors, segments had a fixed size of 64KB but later, when 32 bit processors emerged, segments grew to a variable and maximum size of 16MB. This later development had an unfortunate side-effect: due to the variable size of segments, physical memory fragmentation could now occur.
 
@@ -32,7 +32,7 @@ Things now look much closer to modern virtual memory. Now that we have 32 bit pr
 
 Most of this memory address translation logic now happens inside the MMU (memory management unit) and is helped by internal caches. This cache is now more commonly called the Translation Look-aside Buffer, or TLB for short.
 
-[Earlier x86 processors](http://www.rcollins.org/ddj/May96/) only supported 4KB memory pages. To accommodate this, a virtual memory address was split into three parts:
+[Earlier x86 processors](https://www.rcollins.org/ddj/May96/) only supported 4KB memory pages. To accommodate this, a virtual memory address was split into three parts:
 
 * The first 10 bits represent an index in a page directory that is used to look up a page table.
 * The following 10 bits represent an index in the previously found page table that is used to look up a physical page frame.
@@ -40,9 +40,9 @@ Most of this memory address translation logic now happens inside the MMU (memory
 
 A dedicated register points to a page directory in memory. Both page directory entries and page table entries are 32 bits and contain flags to indicate memory protection and other attributes (cacheable, write combine, etc.). Another dedicated register holds the current process identifier which is used to tell which TLB entries are valid or not (and avoids the need for flushing the entire TLB when context switching between processes).
 
-As memory grew, 4KB pages had difficulty scaling. Servicing large allocation requests requires mapping large numbers of 4KB pages putting more and more pressure on the TLB. The bookkeeping overhead also grows along with the number of pages used. Eventually, [larger pages (4MB)](http://en.wikipedia.org/wiki/Page_Size_Extension) were introduced to address these issues.
+As memory grew, 4KB pages had difficulty scaling. Servicing large allocation requests requires mapping large numbers of 4KB pages putting more and more pressure on the TLB. The bookkeeping overhead also grows along with the number of pages used. Eventually, [larger pages (4MB)](https://en.wikipedia.org/wiki/Page_Size_Extension) were introduced to address these issues.
 
-And then memory sizes grew even further. Soon enough, being confined to an address space of 4GB with 32 bit pointers became too small and [physical address extension](http://en.wikipedia.org/wiki/Physical_Address_Extension) was introduced and extended the addressable range to 64GB. This forced larger pages to reduce to a size of 2MB as now some bits were needed for another indirection level in the page table walk.
+And then memory sizes grew even further. Soon enough, being confined to an address space of 4GB with 32 bit pointers became too small and [physical address extension](https://en.wikipedia.org/wiki/Physical_Address_Extension) was introduced and extended the addressable range to 64GB. This forced larger pages to reduce to a size of 2MB as now some bits were needed for another indirection level in the page table walk.
 
 ### Virtual memory today
 
@@ -50,7 +50,7 @@ Today, x64 hardware most commonly supports pages of the following sizes: 4KB, 2M
 
 Another important aspect of virtual memory today is how it interacts with virtualization (when present). Because physical memory must be shared between the running operating systems, page directory entries and page table entries now point into virtual memory instead of physical memory and require further TLB look-ups to resolve the complete effective physical address. Much like process identifiers, a virtualization instance identifier has been introduced for the same purpose: avoiding full TLB flushes when context switching.
 
-Modern hardware will generally have separate caches per page size which means that to get the most performance, [which page sizes are used for what data must be carefully planned](http://lwn.net/Articles/379748/). For example, in certain embedded platforms, it is not uncommon to have 4KB pages be used for code segments, data segments, and the stack while encouraging programmers to use 2MB pages inside their programs. It is also not uncommon to have virtual pages introduced: a virtual page will be composed of a smaller number of pages. For example, you might request allocations to use 64KB or 4MB pages even though the underlying hardware only supports 4KB and 2MB pages. The distinction is mostly important for the kernel since managing larger pages implies lower bookkeeping overhead and faster servicing.
+Modern hardware will generally have separate caches per page size which means that to get the most performance, [which page sizes are used for what data must be carefully planned](https://lwn.net/Articles/379748/). For example, in certain embedded platforms, it is not uncommon to have 4KB pages be used for code segments, data segments, and the stack while encouraging programmers to use 2MB pages inside their programs. It is also not uncommon to have virtual pages introduced: a virtual page will be composed of a smaller number of pages. For example, you might request allocations to use 64KB or 4MB pages even though the underlying hardware only supports 4KB and 2MB pages. The distinction is mostly important for the kernel since managing larger pages implies lower bookkeeping overhead and faster servicing.
 
 An important point bears mentioning, when pages larger than 4KB are used, the kernel must find contiguous physical memory to allocate them. This can be a problem if page sizes are mixed, it opens the door to fragmentation to rear its ugly head. When the kernel fails to find enough contiguous space but it knows enough space would otherwise remain, it has two choices:
 
@@ -71,9 +71,9 @@ However, the kernel is free to place that memory anywhere and implementations ex
 
 This concludes our introduction to virtual memory. In later blog posts we will explore the TLB into further details and the implications virtual memory has on the CPU cache. Until then, here are some additional links:
 
-* [http://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf](http://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf)
-* [http://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf](http://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf)
-* [http://www.informit.com/articles/article.aspx?p=29961&seqNum=4](http://www.informit.com/articles/article.aspx?p=29961&seqNum=4)
-* [http://lwn.net/Articles/250967/](http://lwn.net/Articles/250967/)
+* [https://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf](https://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf)
+* [https://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf](https://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf)
+* [https://www.informit.com/articles/article.aspx?p=29961&seqNum=4](https://www.informit.com/articles/article.aspx?p=29961&seqNum=4)
+* [https://lwn.net/Articles/250967/](https://lwn.net/Articles/250967/)
 
 

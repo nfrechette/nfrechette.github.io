@@ -11,7 +11,7 @@ Several high performance memory allocators (linear, frame, small block, heap, ex
 A number of containers using the above technology (all sorts of array variants, bit sets, etc.)
 And much more!
 
-I will use C++11 features where relevant and keep things in headers as much as I can for easy integration as well as [all the popular reasons](http://bitsquid.blogspot.ca/2012/11/bitsquid-foundation-library.html).
+I will use C++11 features where relevant and keep things in headers as much as I can for easy integration as well as [all the popular reasons](https://bitsquid.blogspot.ca/2012/11/bitsquid-foundation-library.html).
 
 I choose the name `gin` for a number of reasons: it is a refreshing drink for the upcoming summer months, there is no associated programming material with that word, it is short, and if I ever need a side project, I can cleverly name it `tonic`.
 

@@ -6,7 +6,7 @@ title: "Animation Compression: Curve Fitting"
 
 # How It Works
 
-The algorithm is already fairly well described by [Riot Games](https://engineering.riotgames.com/news/compressing-skeletal-animation-data) and Bitsquid (now called Stingray) in [part 1](http://bitsquid.blogspot.ca/2009/11/bitsquid-low-level-animation-system.html) and [part 2](http://bitsquid.blogspot.ca/2011/10/low-level-animation-part-2.html), and as such I will not go further into details at this time.
+The algorithm is already fairly well described by [Riot Games](https://engineering.riotgames.com/news/compressing-skeletal-animation-data) and Bitsquid (now called Stingray) in [part 1](https://bitsquid.blogspot.ca/2009/11/bitsquid-low-level-animation-system.html) and [part 2](https://bitsquid.blogspot.ca/2011/10/low-level-animation-part-2.html), and as such I will not go further into details at this time.
 
 [Catmull-Rom](https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Catmull.E2.80.93Rom_spline) splines are a fairly common and a solid choice to represent our curves.
 
@@ -30,7 +30,7 @@ One important distinction is that while [linear key reduction]({% post_url 2016-
 
 # Additional Reading
 
-*  [Bezier Curves](http://jamie-wong.com/post/bezier-curves/)
+*  [Bezier Curves](https://jamie-wong.com/post/bezier-curves/)
 
 [Up next: Signal Processing]({% post_url 2016-12-19-anim_compression_signal_processing %})
 

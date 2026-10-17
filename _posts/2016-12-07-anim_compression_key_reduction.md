@@ -60,7 +60,7 @@ From the implementations I have seen in the wild, it seems more popular to remov
 
 Sadly due to the loss of data uniformity, the cache locality of the data we need suffers. Unlike for [simple key quantization]({% post_url 2016-11-15-anim_compression_quantization %}), we can no longer simply sort by key frame if we remove individual keys (you still can if you remove whole key frames though) to keep things cache efficient.
 
-Although I have not personally witnessed it, I suspect it should be possible to use a variation of a technique used by [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}) to sort our data in a cache friendly way. It is well described [here](http://bitsquid.blogspot.ca/2011/10/low-level-animation-part-2.html) and we'll come back to it when we cover [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}).
+Although I have not personally witnessed it, I suspect it should be possible to use a variation of a technique used by [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}) to sort our data in a cache friendly way. It is well described [here](https://bitsquid.blogspot.ca/2011/10/low-level-animation-part-2.html) and we'll come back to it when we cover [curve fitting]({% post_url 2016-12-10-anim_compression_curve_fitting %}).
 
 The need to constantly search for which neighbour keys to use when interpolating quickly adds up since it scales poorly. The longer our clip is, the wider the range we need to search and the more tracks we have also increases the amount of searching that needs to happen. I have seen two ways to mitigate this: partitioning our clip or by using a cursor.
 

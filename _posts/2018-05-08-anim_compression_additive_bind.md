@@ -45,7 +45,7 @@ Transform transform_mul(const Transform& lhs, const Transform& rhs)
 
 ## Additive space 0
 
-This is the first of the two classic additive spaces. It simply multiplies the rotations, it adds the translations, and multiplies the scales. The animation runtime [ozz-animation](http://guillaumeblanc.github.io/ozz-animation/) uses this format. Performance wise, this is the fastest implementation.
+This is the first of the two classic additive spaces. It simply multiplies the rotations, it adds the translations, and multiplies the scales. The animation runtime [ozz-animation](https://guillaumeblanc.github.io/ozz-animation/) uses this format. Performance wise, this is the fastest implementation.
 
 ```c++
 Transform transform_add0(const Transform& base, const Transform& additive)

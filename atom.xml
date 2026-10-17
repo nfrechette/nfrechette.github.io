@@ -5,11 +5,17 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+ {% comment %}
+   The site moved from http to https. The feed and entry IDs keep the old http
+   prefix: if an ID changes, feed readers show the entry again as a new post.
+ {% endcomment %}
+ {% assign feed_id_prefix = "http://nfrechette.github.io" %}
+
  <title>{{ site.title }}</title>
  <link href="{{ site.url }}{{ site.baseurl }}/atom.xml" rel="self"/>
  <link href="{{ site.url }}{{ site.baseurl }}/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.url }}</id>
+ <id>{{ feed_id_prefix }}</id>
  <author>
    <name>{{ site.author.name }}</name>
    <email>{{ site.author.email }}</email>
@@ -23,7 +29,7 @@ layout: null
    <title>{{ post.title }}</title>
    <link href="{{ site.url }}{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>{{ site.url }}{{ site.baseurl }}{{ post.id }}</id>
+   <id>{{ feed_id_prefix }}{{ site.baseurl }}{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
