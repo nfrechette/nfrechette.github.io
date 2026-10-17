@@ -54,7 +54,7 @@ The code is fairly simple:
 
 When I introduced the fused multiply-add support to *ARM64*, I looked at the above code and its generated assembly and noticed that we had a multiplication instruction followed by a subtraction instruction before our final fused multiply-add instruction. Can we do better?
 
-While [*FMA3*](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=FMA) has a myriad of instructions for all sorts of fused multiply-add variations, [*ARM64* does not](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics): it only has 2 such instructions: `fmla` ((a * b) + c) and `fmls` (-(a * b) + c).
+While [*FMA3*](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=FMA) has a myriad of instructions for all sorts of fused multiply-add variations, [*ARM64* does not](https://developer.arm.com/architectures/instruction-sets/intrinsics/): it only has 2 such instructions: `fmla` ((a * b) + c) and `fmls` (-(a * b) + c).
 
 Here is the interpolation broken down a bit more clearly:
 

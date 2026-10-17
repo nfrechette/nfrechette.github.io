@@ -54,7 +54,7 @@ The last form of error compensation leverages [inverse kinematics](https://en.wi
 Besides allowing our compression to be more aggressive, this technique does not have a lot of up sides. It does have a number of down sides though:
 
 *  Extra tracks means extra data to compress and decompress
-*  Even a simple [2-bone inverse kinematic algorithm](https://mrl.nyu.edu/~perlin/gdc/ik/ik.java.html) will end up slowing down our decompression since we need to calculate object space transforms for our bones involved
+*  Even a simple [2-bone inverse kinematic algorithm](https://mrl.cs.nyu.edu/~perlin/gdc/ik/ik.java.html) will end up slowing down our decompression since we need to calculate object space transforms for our bones involved
 *  By its very nature, our parent bones will no longer closely match the original clip, only the general feel might remain depending on how far the [inverse kinematic](https://en.wikipedia.org/wiki/Inverse_kinematics) correction ends up putting us.
 
 # Conclusion

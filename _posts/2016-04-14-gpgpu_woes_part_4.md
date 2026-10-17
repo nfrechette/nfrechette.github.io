@@ -68,7 +68,7 @@ As we can see, many things differs and both seems to report bad values for a few
 
 An important difference between the CPU and GPU is that CPU local storage is limited to 32KB. But Why? Couldn’t the CPU variant simply consider local storage to be the same as normal memory and thus only be bounded by virtual (or physical) memory?
 
-This seemingly arbitrary limitation makes a lot of sense when you consider the fact that local storage is supposed to be used to avoid touching main memory by keeping intermediate results in fast memory. The [CUDA programming guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html) states that they [expose functions](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capability-2-x) to let you tweak how much of GPU L1 is split between real L1 usage and local storage and L1 is fast, really fast.
+This seemingly arbitrary limitation makes a lot of sense when you consider the fact that local storage is supposed to be used to avoid touching main memory by keeping intermediate results in fast memory. The [CUDA programming guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html) states that they [expose functions](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html) to let you tweak how much of GPU L1 is split between real L1 usage and local storage and L1 is fast, really fast.
 
 Sadly, on the CPU we usually have no such control with how the L1 is used or controlled and it is also quite small: usually 32KB for code and 32KB for data. Note that some exotic platforms do allow you some minimal control over the CPU caches such as the Wii cache line locking instructions. However, generally speaking, it is very hard to control effectively by hand.
 

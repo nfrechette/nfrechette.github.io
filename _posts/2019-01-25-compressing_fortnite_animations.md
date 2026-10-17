@@ -118,7 +118,7 @@ In the meantime, in the next few months I will perform another release of ACL an
 
 # Status update
 
-To my knowledge, the first game released with ACL came out in *November 2018* with the public UE4 plugin: [OVERKILL's The Walking Dead](https://store.steampowered.com/app/717690/OVERKILLs_The_Walking_Dead/). I was told it reduced their animation memory footprint by over **50%** helping them fit within their console budgets.
+To my knowledge, the first game released with ACL came out in *November 2018* with the public UE4 plugin: [OVERKILL's The Walking Dead](https://web.archive.org/web/20181103064752/https://store.steampowered.com/app/717690/OVERKILLs_The_Walking_Dead/). I was told it reduced their animation memory footprint by over **50%** helping them fit within their console budgets.
 
 A number of people have also integrated it into their own custom game engines and although I have no idea if they are using it or not, [Remedy Entertainment](https://github.com/Remedy-Entertainment/acl) has forked ACL!
 

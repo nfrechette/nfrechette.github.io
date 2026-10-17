@@ -25,7 +25,7 @@ Sorting is clearly the key to fast decompression.
 
 ## Sorting retained samples
 
-Back in 2017, if you searched for ''*animation compression*'', the most popular blog posts were [one by Bitsquid](https://bitsquid.blogspot.com/2011/10/low-level-animation-part-2.html) which advocates using curve fitting with sorted samples for fast and cache friendly decompression and [a post by Riot Games](https://technology.riotgames.com/news/compressing-skeletal-animation-data) about trying the same technique with some success.
+Back in 2017, if you searched for ''*animation compression*'', the most popular blog posts were [one by Bitsquid](https://bitsquid.blogspot.com/2011/10/low-level-animation-part-2.html) which advocates using curve fitting with sorted samples for fast and cache friendly decompression and [a post by Riot Games](https://www.riotgames.com/en/news/compressing-skeletal-animation-data) about trying the same technique with some success.
 
 ![Sorted samples](/public/sorted_samples.jpg){: width="800" height="456"}
 

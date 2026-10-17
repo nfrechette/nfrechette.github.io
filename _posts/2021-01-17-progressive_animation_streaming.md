@@ -2,7 +2,7 @@
 layout: post
 title: "Controlling animation quality through streaming"
 ---
-For a few years now, I've had ideas on how to leverage streaming to further improve compression with the [Animation Compression Library](https://github.com/nfrechette/acl). Thanks to the support of [NCSOFT](https://kr.ncsoft.com), I've been able to try them out and integrate progressive quality streaming for the upcoming 2.0 release next month.
+For a few years now, I've had ideas on how to leverage streaming to further improve compression with the [Animation Compression Library](https://github.com/nfrechette/acl). Thanks to the support of [NCSOFT](https://www.nc.com/), I've been able to try them out and integrate progressive quality streaming for the upcoming 2.0 release next month.
 
 Progressive quality streaming is perfectly suited for modern games on high end consoles all the way down to mobile devices and web browsers. Its unique approach will empower animators to better control animation quality and when to pay the price for it.
 

@@ -43,7 +43,7 @@ Our reference implementation taken from DirectX Math has the following signature
 
 <script src="https://gist.github.com/nfrechette/d54f3d5bdb2bd78a2288d3ca5006d511.js"></script>
 
-There a few things that are noteworthy here. The function is marked inline but due to its considerable size, the function is generally never inlined. It also uses the [__vectorcall](https://msdn.microsoft.com/en-us/library/dn375768.aspx) calling convention with the macro `XM_CALLCONV`. This allows up to 6 SIMD input arguments to be passed by register (the default calling convention passes them by value on the stack, unlike with PowerPC) and the return value can also be up to 4 SIMD outputs passed by register. This also works for aggregate types such as `XMMatrix`. The function takes 2 arguments: **M1** is passed by register with the help of `FXMMATRIX` and **M2** is passed by `const &` with the help of `CXMMATRIX`.
+There a few things that are noteworthy here. The function is marked inline but due to its considerable size, the function is generally never inlined. It also uses the [__vectorcall](https://learn.microsoft.com/en-us/cpp/cpp/vectorcall) calling convention with the macro `XM_CALLCONV`. This allows up to 6 SIMD input arguments to be passed by register (the default calling convention passes them by value on the stack, unlike with PowerPC) and the return value can also be up to 4 SIMD outputs passed by register. This also works for aggregate types such as `XMMatrix`. The function takes 2 arguments: **M1** is passed by register with the help of `FXMMATRIX` and **M2** is passed by `const &` with the help of `CXMMATRIX`.
 
 This function signature will be called in our data: **reg**
 

@@ -55,7 +55,7 @@ The most detailed quote from the documentation is:
 
 When this setting is used constant tracks will be collapsed to a single value and redundant control points in animated tracks which will be removed within the specified error threshold. This setting uses [streaming curves]({% post_url 2017-01-30-anim_compression_unity5 %}#streaming_curve) to represent track data.
 
-Only three thresholds are exposed for this compression setting. One for each track type: rotation, translation, and scale. This is very likely to lead to the problems discussed in my post on [measuring accuracy]({% post_url 2016-11-01-anim_compression_accuracy %}). And indeed, a quick search yields [this gem](https://forum.unity3d.com/threads/animation-cost-key-reducer.42841/). Even though it dates from [Unity 3(2010)](https://en.wikipedia.org/wiki/Unity_(game_engine)), I doubt the animation compression has changed much. Unfortunately, the problems it raises are both very telling and common with local space error metric functions. Here are some relevant excerpts:
+Only three thresholds are exposed for this compression setting. One for each track type: rotation, translation, and scale. This is very likely to lead to the problems discussed in my post on [measuring accuracy]({% post_url 2016-11-01-anim_compression_accuracy %}). And indeed, a quick search yields [this gem](https://discussions.unity.com/t/animation-cost-key-reducer/408642). Even though it dates from [Unity 3(2010)](https://en.wikipedia.org/wiki/Unity_(game_engine)), I doubt the animation compression has changed much. Unfortunately, the problems it raises are both very telling and common with local space error metric functions. Here are some relevant excerpts:
 
 >  Now, you may be asking yourself, why would this guy turn off the key reducer in the first place? The answer is simple. The key reducer sucks. Here’s why.
 >
@@ -96,7 +96,7 @@ The most detailed quote from the documentation is:
 
 >  Let unity decide how to compress. Either by keyframe reduction or by using dense format. Unity will pick the most optimal of the two.
 
-This is very vague and judging from [the results](https://answers.unity3d.com/questions/822418/what-are-the-differences-between-animation-compres.html) of a [quick search](https://answers.unity3d.com/questions/1180871/what-did-unitys-animation-compression-options-opti.html), a lot of people are curious.
+This is very vague and judging from [the results](https://discussions.unity.com/t/what-are-the-differences-between-animation-compression-types/121129) of a [quick search](https://discussions.unity.com/t/what-did-unitys-animation-compression-options-optimal-do/164518), a lot of people are curious.
 
 Thankfully, I was able to get some answers!
 

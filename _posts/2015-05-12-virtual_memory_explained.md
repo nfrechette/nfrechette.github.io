@@ -73,7 +73,7 @@ This concludes our introduction to virtual memory. In later blog posts we will e
 
 * [https://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf](https://www.cs.princeton.edu/courses/archive/fall11/cos318/lectures/L15_VMPaging.pdf)
 * [https://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf](https://web.archive.org/web/20141222142044/https://www.it.uu.se/edu/course/homepage/dark/ht11/dark15-vm2.pdf)
-* [https://www.informit.com/articles/article.aspx?p=29961&seqNum=4](https://www.informit.com/articles/article.aspx?p=29961&seqNum=4)
+* [https://www.informit.com/articles/article.aspx?p=29961&seqNum=4](https://web.archive.org/web/20150103030302/http://www.informit.com/articles/article.aspx?p=29961&seqNum=4)
 * [https://lwn.net/Articles/250967/](https://lwn.net/Articles/250967/)
 
 

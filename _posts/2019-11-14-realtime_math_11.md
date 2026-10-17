@@ -31,5 +31,3 @@ Surprisingly, RTM triggered 3 compiler code generation bugs this year. [#34](htt
 ## What's next
 
 The development of RTM is largely driven by my work with ACL. If you'd like to see specific things in the next release, feel free to reach out or to create GitHub issues and I will prioritize them accordingly. As always, contributions welcome!
-
-Thanks to [GitHub Sponsors](https://github.com/sponsors), you can [sponsor me](https://github.com/sponsors/nfrechette)! All funds donated will go towards purchasing new devices to optimize for as well as other related costs (like coffee).

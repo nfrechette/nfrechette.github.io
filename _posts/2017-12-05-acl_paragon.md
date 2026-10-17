@@ -15,7 +15,7 @@ This is significant for two reasons:
 
 Thus far, the [Carnegie-Mellon University](https://mocap.cs.cmu.edu/) data set has been the performance benchmark.
 
-The data set contains **2534** clips. Each clip contains an animated character with **44** bones. The version of the data that I found comes from the [Unity store](https://www.assetstore.unity3d.com/en/#!/content/19991) where it is distributed in FBX form but sampled at **24** FPS. The total duration of the database is **09h 49m 37.58s**. It does not contain any 3D scale and its raw size is **1429.38 MB**. It exclusively contains motion capture animation data. It is publicly available and well known within the animation compression research community.
+The data set contains **2534** clips. Each clip contains an animated character with **44** bones. The version of the data that I found comes from the [Unity store](https://assetstore.unity.com/packages/3d/animations/huge-fbx-mocap-library-part-1-19991) where it is distributed in FBX form but sampled at **24** FPS. The total duration of the database is **09h 49m 37.58s**. It does not contain any 3D scale and its raw size is **1429.38 MB**. It exclusively contains motion capture animation data. It is publicly available and well known within the animation compression research community.
 
 While the database is valuable, it is not entirely representative of all the animation assets that a AAA game might use for a few reasons:
 

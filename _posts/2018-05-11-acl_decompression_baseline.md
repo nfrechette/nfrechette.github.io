@@ -7,7 +7,7 @@ At long last I finally got around to measuring the decompression performance of 
 In order to establish a reliable data set to measure against, I use the same **42** clips used for [regression testing](https://github.com/nfrechette/acl/blob/develop/test_data/README.md) plus **5** more from the [Matinee fight scene](https://github.com/nfrechette/acl/blob/develop/docs/fight_scene_performance.md). To keep things interesting, I measure performance on everything I have on hand:
 
 *  Desktop: [Intel i7-6850K @ 3.8 GHz](https://web.archive.org/web/20170405130935/https://ark.intel.com/products/94188/Intel-Core-i7-6850K-Processor-15M-Cache-up-to-3_80-GHz)
-*  Laptop: [MacBook Pro mid 2014 @ 2.6 GHz](https://support.apple.com/kb/sp703?locale=en_US)
+*  Laptop: [MacBook Pro mid 2014 @ 2.6 GHz](https://support.apple.com/en-us/111942)
 *  Phone: [Android Nexus 5X @ 1.8 GHz](https://www.androidcentral.com/nexus-5x-specs)
 *  Tablet: [iPad Pro 10.5 inch @ 2.39 GHz](https://en.wikipedia.org/wiki/IPad_Pro)
 

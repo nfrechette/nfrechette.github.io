@@ -166,6 +166,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   color: #fff;
 }
+/* Inline SVG icons, with the same size as the Font Awesome "fa-fw" icons that they replace */
+.icon {
+  display: inline-block;
+  width: 1.28571429em;
+  height: 1em;
+  vertical-align: -.125em;
+  fill: currentColor;
+}
 .sidebar-item {
   padding: 1rem;
 }

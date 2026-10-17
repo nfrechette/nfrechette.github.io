@@ -176,5 +176,3 @@ I also measured this trick with NEON on ARMv7 and ARM64 but sadly it is slower o
 # Progress update
 
 It has been almost a year since the [first release]({% post_url 2019-01-19-introducing_realtime_math %}) of RTM. The next release should happen very soon now, just ahead of the next ACL release which will introduce it as a dependency for its [scalar track compression](https://github.com/nfrechette/acl/issues/71) API. I am on track to finish both releases before the end of the year.
-
-Thanks to the new [GitHub Sponsors](https://github.com/sponsors) program, you can now [sponsor me](https://github.com/sponsors/nfrechette)! All funds donated will go towards purchasing new devices to optimize for as well as other related costs (like coffee).
