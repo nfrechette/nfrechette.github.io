@@ -168,12 +168,36 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0;
 }
 
+/* Links to the main pages. On a wide screen, they are on the same line as the site title, at the right. */
+.masthead .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .25rem 1rem;
+}
+.masthead-nav {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: .875rem;
+}
+.masthead-nav a {
+  margin-left: 1rem;
+}
+.masthead-nav a:first-child {
+  margin-left: 0;
+}
+
 @media (max-width: 48em) {
   .masthead-title {
     text-align: center;
   }
   .masthead-title small {
     display: none;
+  }
+  /* On a narrow screen, the links are on a second line, below the site title. */
+  .masthead .container {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -686,6 +710,17 @@ a.pagination-item:hover {
    grey of the text. Only a post title shows the purple, when the pointer is on it. */
 .theme-purple .masthead-title a {
   color: #505050;
+}
+/* The links to the main pages are grey. The link to the current page is darker. */
+.theme-purple .masthead-nav a {
+  color: #767676;
+}
+.theme-purple .masthead-nav a[aria-current] {
+  color: #313131;
+}
+.theme-purple .masthead-nav a:hover,
+.theme-purple .masthead-nav a:focus {
+  color: #7a4fb8;
 }
 .theme-purple .post-title a {
   color: #313131;

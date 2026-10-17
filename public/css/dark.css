@@ -63,6 +63,16 @@ blockquote {
 .theme-purple .masthead-title a {
   color: #c8c8c8;
 }
+.theme-purple .masthead-nav a {
+  color: #9a9a9a;
+}
+.theme-purple .masthead-nav a[aria-current] {
+  color: #e4e4e4;
+}
+.theme-purple .masthead-nav a:hover,
+.theme-purple .masthead-nav a:focus {
+  color: #b896e8;
+}
 .theme-purple .post-title a {
   color: #e4e4e4;
 }

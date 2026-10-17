@@ -17,6 +17,12 @@
             <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
             <small>{{ site.tagline }}</small>
           </p>
+          <!-- The sidebar is hidden until a reader opens it, thus the main pages also have links here. -->
+          <nav class="masthead-nav" aria-label="Main">
+            <a href="{{ site.baseurl }}/archive/"{% if page.url == "/archive/" %} aria-current="page"{% endif %}>Archive</a>
+            <a href="{{ site.baseurl }}/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
+            <a href="{{ site.baseurl }}/atom.xml">Feed</a>
+          </nav>
         </div>
       </div>
 
