@@ -682,6 +682,19 @@ a.pagination-item:hover {
   color: #7a4fb8;
 }
 
+/* The site title and the post titles on the list pages are links, but they keep the
+   grey of the text. Only a post title shows the purple, when the pointer is on it. */
+.theme-purple .masthead-title a {
+  color: #505050;
+}
+.theme-purple .post-title a {
+  color: #313131;
+}
+.theme-purple .post-title a:hover,
+.theme-purple .post-title a:focus {
+  color: #7a4fb8;
+}
+
 /* A link in the text of a post or a page has a light underline. The link color
    alone is not sufficient, because its contrast with the body text is only 1.4:1. */
 .post > p a,

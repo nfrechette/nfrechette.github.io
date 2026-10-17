@@ -60,6 +60,16 @@ blockquote {
 .theme-purple .related-posts li a:hover {
   color: #b896e8;
 }
+.theme-purple .masthead-title a {
+  color: #c8c8c8;
+}
+.theme-purple .post-title a {
+  color: #e4e4e4;
+}
+.theme-purple .post-title a:hover,
+.theme-purple .post-title a:focus {
+  color: #b896e8;
+}
 .post > p a,
 .post > ul a,
 .post > ol a,
