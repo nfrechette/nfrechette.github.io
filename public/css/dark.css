@@ -1,0 +1,173 @@
+/*
+ * Dark mode
+ *
+ * _includes/head.html loads this file with media="(prefers-color-scheme: dark)",
+ * thus these rules apply only when the reader selects a dark appearance in the
+ * operating system or the browser. The rules replace the colors of poole.css,
+ * lanyon.css, and syntax.css. The theme color of the sidebar and the links stays.
+ *
+ * Colors:
+ *   #1c1e20  page background
+ *   #25282b  background of code, table rows, and hover areas
+ *   #33373b  borders and lines
+ *   #c8c8c8  body text
+ *   #e4e4e4  headings and strong text
+ *   #9a9a9a  secondary text (dates, counts)
+ *   #868686  tertiary text (tagline, disabled pagination)
+ */
+
+/* Body text and background */
+body {
+  color: #c8c8c8;
+  background-color: #1c1e20;
+}
+
+h1, h2, h3, h4, h5, h6,
+strong,
+.page-title,
+.post-title,
+.post-title a {
+  color: #e4e4e4;
+}
+
+hr {
+  border-top-color: #33373b;
+  border-bottom-color: #1c1e20;
+}
+
+abbr {
+  color: #c8c8c8;
+}
+abbr[title] {
+  border-bottom-color: #33373b;
+}
+
+blockquote {
+  color: #9a9a9a;
+  border-left-color: #33373b;
+}
+
+.message {
+  color: #9a9a9a;
+  background-color: #25282b;
+}
+
+/* The images of the posts have opaque light backgrounds. If an image has a transparent background and dark text, this white background keeps the text visible. */
+.content img {
+  background-color: #fff;
+}
+
+/* Code */
+code {
+  color: #e4848c;
+  background-color: #25282b;
+}
+pre {
+  background-color: #25282b;
+}
+pre code {
+  color: inherit;
+  background-color: transparent;
+}
+
+/* Tables */
+table,
+td,
+th {
+  border-color: #33373b;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: #25282b;
+}
+
+/* Masthead */
+.masthead {
+  border-bottom-color: #33373b;
+}
+.masthead-title,
+.masthead-title a {
+  color: #c8c8c8;
+}
+.masthead-title small {
+  color: #868686;
+}
+
+/* Sidebar toggle: the icon stripes use the page background for the gaps */
+.sidebar-toggle {
+  color: #c8c8c8;
+  background-color: #1c1e20;
+}
+/* The focus and checked states of lanyon.css are more specific, thus they stay. */
+.sidebar-toggle:before {
+  background-image: linear-gradient(to bottom, #c8c8c8, #c8c8c8 20%, #1c1e20 20%, #1c1e20 40%, #c8c8c8 40%, #c8c8c8 60%, #1c1e20 60%, #1c1e20 80%, #c8c8c8 80%, #c8c8c8 100%);
+}
+
+/* Post lists and post metadata */
+.post-date,
+.archive-list small,
+.topic-list small,
+.related-posts li small,
+.series-nav-position,
+.series-nav-links small {
+  color: #9a9a9a;
+}
+.topic-list li,
+.series-nav,
+.related {
+  border-color: #33373b;
+}
+
+/* Pagination */
+.pagination {
+  color: #868686;
+}
+.pagination-item {
+  border-color: #33373b;
+}
+a.pagination-item:hover {
+  background-color: #25282b;
+}
+
+/* Syntax colors for the token classes in the posts. The light colors of syntax.css are too dark on this background. */
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cs { color: #8b949e; }
+.highlight .cp { color: #56c8c8; }
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr { color: #6cb6ff; }
+.highlight .kt { color: #4fc1c9; }
+.highlight .o,
+.highlight .ow { color: #b0b0b0; }
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il { color: #f69d50; }
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .sx { color: #e5916a; }
+.highlight .nb,
+.highlight .bp { color: #7fbfbf; }
+.highlight .nc { color: #3ecf9b; }
+.highlight .nf { color: #d68fff; }
+.highlight .nl,
+.highlight .nd { color: #b4b4ff; }
+.highlight .no { color: #8fc46b; }
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi { color: #c8c8c8; }
