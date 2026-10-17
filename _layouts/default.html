@@ -12,18 +12,20 @@
     <div class="wrap">
       <div class="masthead">
         <div class="container">
-          <h3 class="masthead-title">
+          <!-- The site title is not a heading: the title of the page is the first heading. -->
+          <p class="masthead-title">
             <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
             <small>{{ site.tagline }}</small>
-          </h3>
+          </p>
         </div>
       </div>
 
       <div class="container content">
         {% comment %}
-          GitHub Pages does not permit custom plugins. Thus this replace adds lazy loading to each image.
+          GitHub Pages does not permit custom plugins. Thus these replace filters add lazy loading to each image,
+          and put each table in a wrapper. If a table is wider than the content column, the wrapper scrolls it.
         {% endcomment %}
-        {{ content | replace: '<img ', '<img loading="lazy" ' }}
+        {{ content | replace: '<img ', '<img loading="lazy" ' | replace: '<table', '<div class="table-wrapper"><table' | replace: '</table>', '</table></div>' }}
       </div>
     </div>
 
@@ -44,6 +46,21 @@
 
           checkbox.checked = false;
         }, false);
+
+        // A keyboard user can scroll a table wrapper only if it has focus.
+        // Only the wrappers that scroll get a tab stop.
+        var wrappers = document.querySelectorAll('.table-wrapper');
+        function updateTableWrappers() {
+          for (var i = 0; i < wrappers.length; i++) {
+            if (wrappers[i].scrollWidth > wrappers[i].clientWidth) {
+              wrappers[i].setAttribute('tabindex', '0');
+            } else {
+              wrappers[i].removeAttribute('tabindex');
+            }
+          }
+        }
+        updateTableWrappers();
+        window.addEventListener('resize', updateTableWrappers);
       })(document);
     </script>
   </body>

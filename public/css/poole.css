@@ -244,6 +244,14 @@ video {
 }
 
 /* Tables */
+/* _layouts/default.html puts each table in this wrapper. A wide table scrolls in it. */
+.table-wrapper {
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+.table-wrapper table {
+  margin-bottom: 0;
+}
 table {
   margin-bottom: 1rem;
   width: 100%;
