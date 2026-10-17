@@ -19,7 +19,7 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Posts
 
-- Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` → `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). Comments (Disqus) are on by default for posts via `_config.yml` defaults.
+- Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). Comments (Disqus) are on by default for posts via `_config.yml` defaults.
 - Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
 - Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
 - Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
@@ -27,8 +27,33 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 
 ## Site structure
 
-- `_layouts/` (`default` → `post`/`page`) and `_includes/` (`head`, `sidebar`, `comments`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
+- `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `comments`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
 - `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
+
+## Communication style
+
+Write in ASD-STE100 (Simplified Technical English). This applies to what you say to the user, to
+commit messages, to pull requests, and to comments and documents in the tree. Identifiers in code keep their names;
+the specification controls prose only.
+
+- **One word, one meaning, one part of speech.** Do not use a noun as a verb. Write "measure the
+  function", not "benchmark the function".
+- **Use the approved word when there is one.** Write "start", not "kick off"; "remove", not "strip
+  out"; "let", not "permit". The technical nouns of this tree -- vector, quaternion, lane, mask,
+  register, intrinsic -- are technical names and are approved by that rule.
+- **Active voice, and name the agent.** Write "the function sets the [w] component", not "the [w]
+  component is set". Use the passive voice only when the agent is not known or is not important.
+- **Short sentences.** Maximum 20 words in an instruction, 25 in a description. Write one
+  instruction in one sentence.
+- **Do not use the -ing form as a noun or as an adjective.** Write "the code that loads", not
+  "the loading code"; write "to clear the lane", not "clearing the lane".
+- **Keep the articles and the helper words.** Write "the shuffle on the input vector", not "shuffle
+  on input vector". Text that drops them is not faster to read.
+- **Present tense, no figures of speech, and no words that carry an opinion.** A number is
+  "5% lower", not "disappointing".
+- **No Unicode characters** in comments, string literals, documents, commit messages, or pull
+  requests. Use only ASCII. For example, use `<->` instead of `↔`, `--` instead of `—`, `->`
+  instead of `→`. STE does not permit a Unicode dash either.
 
 ## Git
 
