@@ -60,7 +60,7 @@ The first phase will lower the bit rate of every track in lock step as much as p
 
 <video width="1200" height="408" autoplay loop muted playsinline poster="/public/advanced_quantization_phase1_poster.jpg" aria-label="Algorithm Phase 1">
   <source src="/public/advanced_quantization_phase1.mp4" type="video/mp4">
-  <a href="/public/advanced_quantization_phase1.gif">Algorithm Phase 1</a>
+  <a href="/public/advanced_quantization_phase1.mp4">Algorithm Phase 1</a>
 </video>
 
 ## Second Phase
@@ -69,7 +69,7 @@ The second phase iterates over all of our tracks and aims to individually lower 
 
 <video width="1200" height="408" autoplay loop muted playsinline poster="/public/advanced_quantization_phase2_poster.jpg" aria-label="Algorithm Phase 2">
   <source src="/public/advanced_quantization_phase2.mp4" type="video/mp4">
-  <a href="/public/advanced_quantization_phase2.gif">Algorithm Phase 2</a>
+  <a href="/public/advanced_quantization_phase2.mp4">Algorithm Phase 2</a>
 </video>
 
 The order in which the tracks are processed matters. I tried two different orderings: starting at the root bone and going down the hierarchy towards the children and the opposite ordering, starting at the leaf bones and going back up towards the root. As it turns out, the distribution of which bit rate was selected by our algorithm changed quite a bit. Note that in the image, the right-most bit rates are very uncommon but they do happen (they are too rare to show up).

@@ -4,16 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Nicholas Frechette's personal blog (http://nfrechette.github.io), a Jekyll 3.9 site served by GitHub Pages from `master`. It uses the Lanyon theme (`README.md` is Lanyon's stock README, not project docs). Most posts are long-form technical articles about animation compression and the Animation Compression Library (ACL).
+Nicholas Frechette's personal blog (https://nfrechette.github.io), a Jekyll 3.10 site served by GitHub Pages from `master`. It uses the Lanyon theme (`README.md` is Lanyon's stock README, not project docs). Most posts are long-form technical articles about animation compression and the Animation Compression Library (ACL).
 
 ## Commands
 
 ```bash
-./serve.sh                               # bundle exec jekyll serve --future (local preview at http://localhost:4000)
-bundle exec jekyll build --future        # one-off build into _site/
+./serve.sh                               # local preview at http://localhost:4000
+./serve.sh build                         # one-off build into _site/
+./serve.sh build -d /tmp/site            # extra arguments go to jekyll
 ```
 
-`--future` is needed so posts dated after today still render. The `Gemfile` uses the `github-pages` gem, so local gem versions match what GitHub Pages builds with (Ruby 3.3.4, pinned locally via a gitignored `.ruby-version` for rbenv). The build needs a UTF-8 locale (`LANG=en_US.UTF-8`) or Sass fails on non-ASCII characters. There are no tests or linters; a clean `jekyll build` is the only check. `_site/` is build output and gitignored.
+`serve.sh` adds `--future`, so posts with a date after today also render. It puts the rbenv shims first on the `PATH` and sets `LANG=en_US.UTF-8`. Without the shims, a non-interactive shell uses the system Ruby 2.6, and the build fails. Without a UTF-8 locale, Sass fails on non-ASCII characters. The `Gemfile` uses the `github-pages` gem, so the local gem versions match the GitHub Pages build (Ruby 3.3.4, set in the gitignored `.ruby-version`). There are no tests or linters; a clean build is the only check. `_site/` is build output and gitignored.
 
 GitHub Pages renders any `.md` file as a page even without front matter (`jekyll-optional-front-matter`), including Liquid inside it. Repo-level docs like this file must be listed under `exclude:` in `_config.yml`; that list replaces Jekyll's default, so keep `Gemfile`/`Gemfile.lock` in it.
 
@@ -22,12 +23,17 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 - Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` -> `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). The site has no comment system.
 - Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
 - Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
+- The home page and the list pages show the excerpt of each post and a link to the full post. The excerpt is the first paragraph of the post.
+- If a post starts with an image, a heading, or HTML, set `excerpt:` in the front matter. Jekyll does not convert this value from Markdown, so write it as HTML: `excerpt: "<p>...</p>"`. The SEO tag also uses the excerpt as the page description, unless the post sets `description:`.
+- `atom.xml` holds the full text of the newest 10 posts.
 - Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
+- Do not add animated GIFs. Convert each animation to MP4 and embed it with `<video width="..." height="..." autoplay loop muted playsinline poster="...">`. For a video that the user starts, use `controls preload="none" poster="..."`, so that the browser loads the file only on play. Give each video a JPEG poster of one frame. `ffmpeg` is not installed. A short Swift script with the macOS AVFoundation framework can do the conversion.
 - Old URLs are kept alive with stub posts using `layout: redirected` plus `redirect_to:` (see `_layouts/redirected.html`); don't delete or rename published posts without leaving one of these.
 
 ## Site structure
 
 - `_layouts/` (`default` -> `post`/`page`) and `_includes/` (`head`, `sidebar`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
+- `_layouts/default.html` adds `loading="lazy"` to each `<img>` tag with a Liquid `replace`, because GitHub Pages does not permit custom plugins. `public/css/poole.css` limits images and videos to the width of the content column.
 - `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
 
 ## Communication style
