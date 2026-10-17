@@ -2,8 +2,6 @@
 layout: post
 title: "Pitfalls of linear sample reduction: Part 2"
 ---
-<script async src="https://s.imgur.com/min/embed.js" charset="utf-8"></script>
-
 **A quick recap:** animation clips are formed from a set of time series called tracks. Tracks have a fixed number of samples per second and each track has the same length. The [Animation Compression Library](https://github.com/nfrechette/acl) retains every sample while the most commonly used *Unreal Engine* codecs use the popular method of [removing samples that can be linearly interpolated]({% post_url 2016-12-07-anim_compression_key_reduction %}) from their neighbors.
 
 The [first post]({% post_url 2019-07-23-pitfalls_linear_reduction_part1 %}) showed how removing samples negates some of the benefits that come from segmenting, rendering the technique a lot less effective.
@@ -62,6 +60,7 @@ Although not as common, single bone decompression performance is pretty bad. Bec
 ### One more byte
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="zussD" data-context="false"><a href="https://imgur.com/zussD">Just one more bite</a></blockquote>
+<script async src="https://s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 Sorting the samples means that there is no pattern to them and metadata per sample needs to be introduced. You need to be able to tell what type a sample is (rotation, translation, 3D scale, scalar), at what time the sample appears, and which bone it belongs to. This overhead being per sample adds up quickly. You can use all sorts of clever tricks to use fewer bits if the bone index and sample time index are small compared to the previous one but ultimately it is quite a bit larger than alternative techniques and it cannot be hidden or removed entirely.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Terminology"
+excerpt: "<p>Central to character animation is our animation sequence. These are also commonly called animation clips and I will use both terms interchangeably.</p>"
 ---
 # Animation Sequence or Clip
 

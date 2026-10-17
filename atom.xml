@@ -21,10 +21,12 @@ layout: null
    <email>{{ site.author.email }}</email>
  </author>
 
- {% for post in site.posts %}
-  {% if post.layout == 'redirected' %}
-   {% continue %}
-  {% endif %}
+ {% comment %}
+   The feed holds only the newest posts, because each entry holds the full post.
+   Feed readers keep the older entries that they already have.
+ {% endcomment %}
+ {% assign feed_posts = site.posts | where_exp: "post", "post.layout != 'redirected'" %}
+ {% for post in feed_posts limit: 10 %}
  <entry>
    <title>{{ post.title }}</title>
    <link href="{{ site.url }}{{ post.url }}"/>

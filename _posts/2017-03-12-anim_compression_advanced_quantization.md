@@ -58,13 +58,19 @@ In order to start our algorithm, we first initialize all our tracks to use the h
 
 The first phase will lower the bit rate of every track in lock step as much as possible until we cannot do so without exceeding our error threshold. This allows us to quickly trim the search space by finding the best bit rate globally for a given block. However, there is one exception, during the duration of the first phase, the root tracks remain locked to the highest bit rate and thus the highest accuracy. This is done because some clips, such as a world space cinematic, have an unusually high accuracy requirement on the root tracks and if we process them as we do the others, they will negatively bias the rest of the tracks.
 
-![Algorithm Phase 1](/public/advanced_quantization_phase1.gif)
+<video width="1200" height="408" autoplay loop muted playsinline poster="/public/advanced_quantization_phase1_poster.jpg" aria-label="Algorithm Phase 1">
+  <source src="/public/advanced_quantization_phase1.mp4" type="video/mp4">
+  <a href="/public/advanced_quantization_phase1.gif">Algorithm Phase 1</a>
+</video>
 
 ## Second Phase
 
 The second phase iterates over all of our tracks and aims to individually lower their bit rate as much as possible up until we reach our error threshold. The algorithm terminates once all tracks have been processed.
 
-![Algorithm Phase 2](/public/advanced_quantization_phase2.gif)
+<video width="1200" height="408" autoplay loop muted playsinline poster="/public/advanced_quantization_phase2_poster.jpg" aria-label="Algorithm Phase 2">
+  <source src="/public/advanced_quantization_phase2.mp4" type="video/mp4">
+  <a href="/public/advanced_quantization_phase2.gif">Algorithm Phase 2</a>
+</video>
 
 The order in which the tracks are processed matters. I tried two different orderings: starting at the root bone and going down the hierarchy towards the children and the opposite ordering, starting at the leaf bones and going back up towards the root. As it turns out, the distribution of which bit rate was selected by our algorithm changed quite a bit. Note that in the image, the right-most bit rates are very uncommon but they do happen (they are too rare to show up).
 
