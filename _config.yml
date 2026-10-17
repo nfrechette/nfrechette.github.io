@@ -41,15 +41,11 @@ defaults:
       twitter:
         card:        summary
 
-# Custom vars
-#version:             1.0.0
-
 # Plugins
 plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
-#  - jekyll-redirect-from
 
 # Overrides Jekyll's default list, so keep Gemfile/Gemfile.lock here
 exclude:

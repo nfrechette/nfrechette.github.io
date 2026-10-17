@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Nicholas Frechette's personal blog (https://nfrechette.github.io), a Jekyll 3.10 site served by GitHub Pages from `master`. It uses the Lanyon theme (`README.md` is Lanyon's stock README, not project docs). Most posts are long-form technical articles about animation compression and the Animation Compression Library (ACL).
+Nicholas Frechette's personal blog (https://nfrechette.github.io), a Jekyll 3.10 site served by GitHub Pages from `master`. It uses the Lanyon theme. Most posts are long-form technical articles about animation compression and the Animation Compression Library (ACL).
 
 ## Commands
 
