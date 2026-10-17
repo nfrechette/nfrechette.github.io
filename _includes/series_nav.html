@@ -1,0 +1,56 @@
+{%- comment -%}
+  Shows the position of the post in its series, and links to the previous post and the next post.
+  _data/series.yml gives the series and the order of their posts.
+  On the table of contents post of a series, it shows only a link to the first post.
+  series_index is -1 on the table of contents post, and -2 if the post is not in a series.
+{%- endcomment -%}
+{%- assign page_file = page.path | split: "/" | last | remove: ".md" -%}
+{%- assign series_index = -2 -%}
+{%- for series in site.data.series -%}
+  {%- if series.toc == page_file -%}
+    {%- assign series_index = -1 -%}
+  {%- else -%}
+    {%- for file in series.posts -%}
+      {%- if file == page_file -%}{%- assign series_index = forloop.index0 -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if series_index != -2 -%}{%- assign page_series = series -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+
+{%- if series_index != -2 -%}
+  {%- assign series_size = page_series.posts.size -%}
+  {%- assign previous_index = series_index | minus: 1 -%}
+  {%- assign next_index = series_index | plus: 1 -%}
+  {%- assign previous_post = nil -%}
+  {%- assign next_post = nil -%}
+  {%- assign toc_post = nil -%}
+  {%- if previous_index >= 0 -%}
+    {%- assign post_path = "_posts/" | append: page_series.posts[previous_index] | append: ".md" -%}
+    {%- assign previous_post = site.posts | where: "path", post_path | first -%}
+  {%- endif -%}
+  {%- if next_index < series_size -%}
+    {%- assign post_path = "_posts/" | append: page_series.posts[next_index] | append: ".md" -%}
+    {%- assign next_post = site.posts | where: "path", post_path | first -%}
+  {%- endif -%}
+  {%- if page_series.toc -%}
+    {%- assign post_path = "_posts/" | append: page_series.toc | append: ".md" -%}
+    {%- assign toc_post = site.posts | where: "path", post_path | first -%}
+  {%- endif -%}
+<nav class="series-nav" aria-label="Series">
+  <p class="series-nav-position">
+    {%- if series_index == -1 -%}
+      This series has {{ series_size }} posts.
+    {%- else -%}
+      Post {{ series_index | plus: 1 }} of {{ series_size }} in the series {% if toc_post %}<a href="{{ site.baseurl }}{{ toc_post.url }}">{{ page_series.title }}</a>{% else %}{{ page_series.title }}{% endif %}.
+    {%- endif -%}
+  </p>
+  <ul class="series-nav-links">
+    {%- if previous_post %}
+    <li class="series-nav-previous"><small>Previous</small> <a href="{{ site.baseurl }}{{ previous_post.url }}">{{ previous_post.title }}</a></li>
+    {%- endif -%}
+    {%- if next_post %}
+    <li class="series-nav-next"><small>{% if series_index == -1 %}First post{% else %}Next{% endif %}</small> <a href="{{ site.baseurl }}{{ next_post.url }}">{{ next_post.title }}</a></li>
+    {%- endif %}
+  </ul>
+</nav>
+{%- endif -%}

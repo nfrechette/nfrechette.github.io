@@ -397,6 +397,43 @@ a.sidebar-nav-item:focus {
   color: #9a9a9a;
 }
 
+/* Series navigation: the previous post and the next post in a series */
+.series-nav {
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  border-top: 1px solid #eee;
+}
+.series-nav-position {
+  color: #767676;
+}
+.series-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+.series-nav-links li {
+  flex: 1 1 14rem;
+}
+.series-nav-links small {
+  display: block;
+  font-size: 75%;
+  color: #767676;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+}
+.series-nav-next {
+  text-align: right;
+}
+/* With no previous post, the next post stays on the right side. */
+.series-nav-next:first-child {
+  margin-left: auto;
+  flex-grow: 0;
+}
+
 /* Related posts */
 .related {
   padding-top: 2rem;

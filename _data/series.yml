@@ -1,0 +1,60 @@
+# The posts of each series, in reading order. _includes/series_nav.html uses this file
+# to show the previous post and the next post at the end of each post in a series.
+#
+# title: the name of the series.
+# toc:   optional. The table of contents post of the series. Its title links to it.
+# posts: the file names in _posts/, without ".md". Keep this list in the same order
+#        as the table of contents post. A post must be in one series only.
+
+- title: "Animation Compression"
+  toc: 2016-10-21-anim_compression_toc
+  posts:
+    - 2016-10-25-anim_compression_preface
+    - 2016-10-26-anim_compression_terminology
+    - 2016-10-27-anim_compression_data
+    - 2020-08-09-animation_data_numbers
+    - 2016-11-01-anim_compression_accuracy
+    - 2023-02-26-dominance_based_error_estimation
+    - 2016-11-03-anim_compression_constant_tracks
+    - 2016-11-09-anim_compression_range_reduction
+    - 2016-11-10-anim_compression_uniform_segmenting
+    - 2016-11-13-anim_compression_families
+    - 2016-11-15-anim_compression_quantization
+    - 2017-03-12-anim_compression_advanced_quantization
+    - 2016-11-17-anim_compression_sub_sampling
+    - 2016-12-07-anim_compression_key_reduction
+    - 2019-07-23-pitfalls_linear_reduction_part1
+    - 2019-07-25-pitfalls_linear_reduction_part2
+    - 2019-07-29-pitfalls_linear_reduction_part3
+    - 2019-07-31-pitfalls_linear_reduction_part4
+    - 2016-12-10-anim_compression_curve_fitting
+    - 2016-12-19-anim_compression_signal_processing
+    - 2016-12-22-anim_compression_error_compensation
+    - 2018-05-08-anim_compression_additive_bind
+    - 2022-01-23-anim_compression_bind_pose_stripping
+    - 2020-08-11-clip_metadata_packing
+    - 2020-05-04-morph_target_compresion
+    - 2021-01-17-progressive_animation_streaming
+    - 2022-04-03-anim_compression_looping
+    - 2022-06-05-anim_compression_rounding_time
+    - 2016-12-23-anim_compression_case_studies
+    - 2017-01-11-anim_compression_unreal4
+    - 2017-01-30-anim_compression_unity5
+    - 2017-03-08-anim_compression_gdc2017
+
+- title: "Memory Allocators"
+  toc: 2016-10-18-memory_allocators_toc
+  posts:
+    - 2015-05-21-linear_allocator
+    - 2015-06-11-vmem_linear_allocator
+    - 2016-05-08-stack_frame_allocators
+    - 2016-05-09-greedy_stack_frame_allocator
+    - 2016-10-17-vmem_stack_frame_allocator
+    - 2015-06-25-out_of_memory
+
+- title: "GPGPU woes"
+  posts:
+    - 2015-07-02-gpgpu_woes_part_1
+    - 2015-07-07-gpgpu_woes_part_2
+    - 2015-07-11-gpgpu_woes_part_3
+    - 2016-04-14-gpgpu_woes_part_4
