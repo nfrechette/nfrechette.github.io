@@ -46,15 +46,15 @@ To solve this second part of the problem, during compression ACL will tag each w
 
 The algorithm is straightforward. We first assume that every key frame is retained. We'll pick the first that is movable (e.g. not first/last in a segment) and measure the resulting error when we remove it (both on itself and on its neighbors that might have already been removed). Any missing key frames are reconstructed using linear interpolation from their neighbors. To measure the error, we use the same [error metric]({% post_url 2016-11-01-anim_compression_accuracy %}) used to optimize the variable bit rates. We record how much error is contributed and we add back the key frame. We'll iterate over every key frame doing so. Once we have the contributing error of every key frame, we'll pick the lowest error and remove that key frame permanently. We'll then repeat the whole process with the remaining key frames. Each step will remove the key frame that contributes the least error until they are all removed. This yields us a sorted list of how important they are. While not perfect and exhaustive, this gives us a pretty good approximation. This error contribution is then stored as extra metadata within the animation clip. This metadata is only required to build the database and it is stripped when we do so.
 
-![Calculating the error contribution step 1](/public/error_contribution_step1.jpg)
+![Calculating the error contribution step 1](/public/error_contribution_step1.jpg){: width="800" height="484"}
 
-![Calculating the error contribution step 2](/public/error_contribution_step2.jpg)
+![Calculating the error contribution step 2](/public/error_contribution_step2.jpg){: width="800" height="484"}
 
-![Final importance tier](/public/database_frame_importance.jpg)
+![Final importance tier](/public/database_frame_importance.jpg){: width="800" height="563"}
 
 Now that we know which key frames are important and which aren't, we'll iterate over every animation clip and move the least important key frames out into the database first. Our most important key frames will remain within each animation clip to be able to retain some quality if we need to play back either with no database or with partial database data. How much data each tier will contain is user controlled and optionally the lowest tier can be stripped.
 
-![Database settings](/public/database_settings.jpg)
+![Database settings](/public/database_settings.jpg){: width="1114" height="588"}
 
 We consider three quality tiers for now:
 
@@ -63,7 +63,7 @@ We consider three quality tiers for now:
 
 Since we know every clip that is part of the database, we can find the globally optimal distribution. As such, if we wish to move the least important 50% percent, we will remove as much data as frame stripping but now the operation is far less destructive. Some clips will contribute more key frames than others to reach the same memory footprint. This is frame stripping on steroids!
 
-![Importance tiers VS visual fidelity](/public/importance_tier_vs_fidelity.jpg)
+![Importance tiers VS visual fidelity](/public/importance_tier_vs_fidelity.jpg){: width="800" height="464"}
 
 This partitioning allows us to represent three visual fidelity levels:
 
@@ -71,7 +71,7 @@ This partitioning allows us to represent three visual fidelity levels:
 *  Medium visual fidelity requires only the high and medium importance tiers to be loaded
 *  Lowest visual fidelity requires only the high importance tier to be loaded (the clip itself)
 
-![Controlling visual fidelity with UE4 blueprints](/public/streaming_blueprint_editing.jpg)
+![Controlling visual fidelity with UE4 blueprints](/public/streaming_blueprint_editing.jpg){: width="1165" height="631"}
 
 Under the hood, ACL allows you to stream both tiers independently and in any order you wish. For simplicity, the UE4 plugin exposes the desired visual fidelity level and the streaming request size granularity while abstracting what needs to stream in or out. This allows the game to allocate memory on demand when data is streamed in while also allowing the game to unload tiers that are no longer needed. In a pinch, the entire database can be unloaded or destroyed and animations can continue to play at the lowest visual fidelity level.
 

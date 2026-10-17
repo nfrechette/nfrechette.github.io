@@ -26,7 +26,7 @@ If only we could calculate the object space error using local space information.
 
 >  Kim, Tae & Chentanez, Nuttapong & Müller, Matthias. (2012). Long Range Attachments - A Method to Simulate Inextensible Clothing in Computer Games. 305-310. 10.2312/SCA/SCA12/305-310.
 
-![Long-range attachments](/public/acl/long_range_attachments.jpg)
+![Long-range attachments](/public/acl/long_range_attachments.jpg){: width="800" height="538"}
 
 > Above: A static vertex in red with 3 attached dynamic vertices in black. A long-range constraint is added for each dynamic vertex, labeled *d1*, *d2*, and *d3*. *T0* shows the initial configuration and its evolution over time. When a vertex extends past the long-range constraint, a correction (in green) is applied. Vertices within the limits of the long-range constraints are unaffected.
 
@@ -38,11 +38,11 @@ A few years later, it struck me: we can use the same general idea when estimatin
 
 When we compress a joint transform, error is introduced. However, the error may or may not be visible to the naked eye. How important the error is depends on one thing: the distance of the rigid shell.
 
-![Translation error contribution](/public/acl/translation_error_contribution.jpg)
+![Translation error contribution](/public/acl/translation_error_contribution.jpg){: width="800" height="575"}
 
 For the translation and scale parts of each transform, the error is independent of the distance of the rigid shell. This means that a 1% error in those, yields a 1% error regardless of how far the rigid shell lives with respect to the joint.
 
-![Rotation error contribution](/public/acl/rotation_error_contribution.jpg)
+![Rotation error contribution](/public/acl/rotation_error_contribution.jpg){: width="800" height="484"}
 
 However, the story is different for a transform's rotation: distance acts as a [lever](https://en.wikipedia.org/wiki/Lever). A 1% error on the rotation does not translate in the same way to the rigid shell. It depends on how close the rigid shell is to the joint. The closer it lives, the lower the error will be and the further it lives, the higher the error.
 
@@ -50,17 +50,17 @@ Using this knowledge, we can reframe our problem. When we measure the error in l
 
 The **dominant rigid shell** of a dominant joint is formed through its associated virtual vertex, the **dominant vertex**.
 
-![Single joint chain](/public/acl/dominant_joint_step1.jpg)
+![Single joint chain](/public/acl/dominant_joint_step1.jpg){: width="800" height="557"}
 
 For leaf joints with no children, we have a single joint in our chain, and it is thus its own dominant joint.
 
-![Two joints chain](/public/acl/dominant_joint_step2.jpg)
+![Two joints chain](/public/acl/dominant_joint_step2.jpg){: width="800" height="561"}
 
 If we add a new joint, we look at it and its immediate children. Are the dominant joints of its children still dominant or is the new joint its own dominant joint? To find it, we look at the rigid shells formed by the dominant vertices of each joint and we pick the furthest.
 
 After all, if we were to measure the error on any rigid shell enclosed within the dominant shell, the error would either be identical (if there is no error contribution from the rotation component) or lower. Distance is king and we wish to look for error as far as we can.
 
-![Three joints chain](/public/acl/dominant_joint_step3.jpg)
+![Three joints chain](/public/acl/dominant_joint_step3.jpg){: width="800" height="644"}
 
 As more joints are introduced, we iterate with the same logic at each joint. Iteration thus starts with leaf joints and proceeds towards the root. You can find the code for this [here](https://github.com/nfrechette/acl/blob/develop/includes/acl/compression/impl/rigid_shell_utils.h).
 

@@ -230,6 +230,8 @@ blockquote p:last-child {
 img {
   display: block;
   max-width: 100%;
+  /* Posts set the width and height attributes. This keeps the aspect ratio when max-width limits the width. */
+  height: auto;
   margin: 0 0 1rem;
   border-radius: 5px;
 }

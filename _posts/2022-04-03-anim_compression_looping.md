@@ -12,7 +12,7 @@ To illustrate things, I will use a simple 1D repeating sequence but in practice,
 
 Clamping requires the first and last samples to match exactly, and both will be retained in the final compressed data. This keeps things very simple.
 
-![Clamped loop](/public/acl/loop_clamp_mode.jpg)
+![Clamped loop](/public/acl/loop_clamp_mode.jpg){: width="800" height="571"}
 
 Calculating the clip duration can be achieved by taking the number of samples and subtracting one before multiplying by the sampling rate (e.g. 30 FPS). We subtract by one because we count how many intervals of time we have in between our samples.
 
@@ -48,7 +48,7 @@ This is the behavior in ACL v2.0 and prior. No effort had been made to take adva
 
 Wrapping strips the last sample, and instead uses the first sample to interpolate with. As a result, unlike with the clamp mode, it will interpolate between the first and last samples as playback loops around.
 
-![Wrapped loop](/public/acl/loop_wrap_mode.jpg)
+![Wrapped loop](/public/acl/loop_wrap_mode.jpg){: width="800" height="570"}
 
 This complicates things because it means that the duration of our clip is no longer a function of the number of samples actually present. One less sample is stored, but we have to remember to account for our repeating first sample.
 
@@ -98,7 +98,7 @@ Half the clips have an animated key frame size of 146 bytes or smaller. Because 
 
 Here is the full distribution of how much memory was saved as a percentage of the original size:
 
-![Distribution of percentage saved with loop optimization on Paragon animations](/public/acl/loop_optimization_paragon_distribution.png)
+![Distribution of percentage saved with loop optimization on Paragon animations](/public/acl/loop_optimization_paragon_distribution.png){: width="1217" height="452"}
 
 Interestingly, some clips end up larger when the last key frame is removed. How come? It all boils down to the fact that ACL tries to split the number of key frames evenly across all sub-segments it generates. [Segments]({% post_url 2016-11-10-anim_compression_uniform_segmenting %}) are used to improve accuracy and lower the memory footprint but the current method is naive and will be improved on [in the future](https://github.com/nfrechette/acl/issues/404). As such, when a loop is detected, ACL can do one of two things: the last key frame can be removed *before* segments are created or *afterwards*. I opted to do so *before* to ensure proper balancing. As such, through the re-balancing that occurs, some clips can end up being larger. Either way, the small size of the animated key frame data puts a fairly low ceiling on how much this optimization can save.
 
@@ -116,7 +116,7 @@ An animation clip contains a series of transforms for every joint at different p
 
 In an animation editor, a character will be animated relative to some origin point at `[0,0,0]` (object space). However, in practice, we need to be able to play that animation anywhere in the world (world space). As such, we need to transform joints from object space into world space by using the character's transform.
 
-![Character motion without root joint](/public/acl/no_root_displacement.jpg)
+![Character motion without root joint](/public/acl/no_root_displacement.jpg){: width="800" height="501"}
 
 The pelvis joint is usually the highest most visible joint in the hierarchy with the legs and spine in turn parented to it, etc. When the character moves, every joint has direct visual feedback as their movement deforms the parts of the visual mesh attached to them (through the rigid skinning process).
 
@@ -124,7 +124,7 @@ Now what happens if we wish to make a walking animation where the character move
 
 This is problematic because now, the character motion is mixed in with what the pelvis does in this particular clip (e.g. swaying back and forth). It is no longer possible to extract cleanly that motion free from the noise of the animation. As the animation plays back in the world, things might be attached to the character (e.g. camera) that we wish to attach to the character himself, and not some particular joint. If only the joints move, this won't work. As such, we often want to extract this character motion and apply it as a delta from the previous animation update. We would remove this motion from the joints, and instead transfer it onto the character.
 
-![Character motion with root joint](/public/acl/root_displacement.jpg)
+![Character motion with root joint](/public/acl/root_displacement.jpg){: width="800" height="497"}
 
 To simplify this process, character motion is generally stored in a root joint that sits highest in the joint hierarchy. This joint does not directly move anything, and we instead extract the character motion from it and apply it onto the character.
 

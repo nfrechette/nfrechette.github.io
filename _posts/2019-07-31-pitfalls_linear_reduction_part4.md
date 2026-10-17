@@ -56,7 +56,7 @@ The retargeting trend continues with *Fortnite*. One possible explanation for th
 
 This is all well and good but how does the full distribution look? *Retargeting will be omitted since it doesn't appear to contribute much.*
 
-![Samples dropped distribution](/public/samples_dropped_distribution.png)
+![Samples dropped distribution](/public/samples_dropped_distribution.png){: width="902" height="422"}
 
 *Note that Paragon and Fortnite have ~460 clips (7%) and ~2700 clips (32%) respectively with one or two samples and thus no reduction can happen in those clips.*
 

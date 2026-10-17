@@ -31,11 +31,11 @@ Not all algorithms will exhibit the same performance regardless of playback dire
 
 ACL currently uses the [uniformly sampled](https://github.com/nfrechette/acl/blob/develop/docs/algorithm_uniformly_sampled.md) algorithm which offers consistent performance regardless of the playback direction. To validate this claim, I hand picked **3** clips that are fairly long: *104_30* (**44** bones, **11** seconds) from CMU, and *Trooper_1* (**71** bones, **66** seconds) and *Trooper_Main* (**541** bones, **66** seconds) from the Matinee fight scene. To visualize the performance, I used a [box and whiskers chart](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/box-plot/) which shows concisely the min/max as well as the quartiles. Forward playback is shown in **Red**, backward in **Green**, and random in **Blue**.
 
-![VS 2015 x64 Playback Performance](/public/acl/acl_decomp_v080_vs2015_x64_playback.png)
+![VS 2015 x64 Playback Performance](/public/acl/acl_decomp_v080_vs2015_x64_playback.png){: width="945" height="378"}
 
 As we can see, the performance is identical for all intents and purposes regardless of the playback direction on my desktop with *VS 2015 x64*. Let's see if this claim holds true on my *iPad* as well.
 
-![iOS arm64 Playback Performance](/public/acl/acl_decomp_v080_ios_arm64_playback.png)
+![iOS arm64 Playback Performance](/public/acl/acl_decomp_v080_ios_arm64_playback.png){: width="945" height="378"}
 
 Here again we see that the performance is consistent. One thing that shows up on this chart is that, surprisingly, the *iPad* performance is *often* better than my *desktop*! That is **INSANE** and I nearly fell off my chair when I first saw this. Not only is the CPU clocked at a lower frequency but the desktop code makes use of *SSE* and *AVX* where it can for all basic vector arithmetic while there is currently no corresponding *NEON* SIMD support. I double and triple checked the numbers and the code. Suspecting that the compiler might be playing a big part in this, I undertook to dump all the compiler stats on desktop; something I did not originally intend to do. Read on!
 
@@ -51,15 +51,15 @@ In the following graphs, the *x86* performance was omitted because for every com
 
 Two new clips were added to the graphs to get a better picture.
 
-![Cold CPU Cache Performance](/public/acl/acl_decomp_v080_cold_cache1.png)
-![Cold CPU Cache Performance cont.](/public/acl/acl_decomp_v080_cold_cache2.png)
+![Cold CPU Cache Performance](/public/acl/acl_decomp_v080_cold_cache1.png){: width="946" height="379"}
+![Cold CPU Cache Performance cont.](/public/acl/acl_decomp_v080_cold_cache2.png){: width="946" height="378"}
 
 Again, we can see that the *iPad* outperforms almost everything with a cold cache except on the desktop with *GCC 7* and *Clang 5*. It is clear that *Clang* does an outstanding job and plays an integral part in the surprising *iPad* performance. Another point worth noting is that its memory is faster than what I have in my desktop. My *iPad* has memory clocked at **1600 MHz (25 GB/s)** while my desktop has its memory clocked at **1067 MHz (16.6 GB/s)**.
 
 And now with a warm cache:
 
-![Warm CPU Cache Performance](/public/acl/acl_decomp_v080_warm_cache1.png)
-![Warm CPU Cache Performance cont.](/public/acl/acl_decomp_v080_warm_cache2.png)
+![Warm CPU Cache Performance](/public/acl/acl_decomp_v080_warm_cache1.png){: width="946" height="379"}
+![Warm CPU Cache Performance cont.](/public/acl/acl_decomp_v080_warm_cache2.png){: width="946" height="378"}
 
 We can see that the *iPad* now loses out to *VS 2015* with one exception: *Trooper_Main*. Why is that? That particular clip should easily fit within the CPU cache: only about **40KB** is touched when sampling (or about **650** cache lines). Further research led to another interesting fact: the *iPad A10X* processor has a **64KB L1** data cache per core (and **8 MB L2** shared) while my *i7-6850K* has a **32KB L1** data cache and a **256KB L2** (with **15MB L3** shared). The clip thus fits entirely within the L1 on the *iPad* but needs to be fetched from the L2 on desktop.
 
@@ -73,8 +73,8 @@ ACL currently offers two ways to decompress: `decompress_pose` and `decompress_b
 
 The following charts use the median decompression time with a cold CPU cache and forward playback.
 
-![Function Performance on CMU](/public/acl/acl_decomp_v080_function_performance_cmu.png)
-![Function Performance on the Matinee Fight](/public/acl/acl_decomp_v080_function_performance_matinee.png)
+![Function Performance on CMU](/public/acl/acl_decomp_v080_function_performance_cmu.png){: width="945" height="378"}
+![Function Performance on the Matinee Fight](/public/acl/acl_decomp_v080_function_performance_matinee.png){: width="945" height="378"}
 
 Once more, we see very clearly how outstanding and consistent the *iPad* performance is. The numbers for the *Nexus 5X* are very noisy in comparison in large part because of the slower memory and larger footprint of some clips (`decompress_bone` is not shown for *Android* because it was far too slow and prevented a clean view of everything else).
 

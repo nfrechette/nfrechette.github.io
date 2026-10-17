@@ -9,7 +9,7 @@ This is significant for two reasons:
 *  It allows for extensive stress testing with new data
 *  Paragon is a real game with high animation quality
 
-[![Paragon Official Trailer](https://i.ytimg.com/vi/3OCJCZJWA68/hqdefault.jpg)](https://www.youtube.com/watch?v=3OCJCZJWA68 "Paragon Official Trailer")
+[![Paragon Official Trailer](https://i.ytimg.com/vi/3OCJCZJWA68/hqdefault.jpg){: width="480" height="360"}](https://www.youtube.com/watch?v=3OCJCZJWA68 "Paragon Official Trailer")
 
 # Carnegie-Mellon University
 
@@ -71,15 +71,15 @@ On the surface, the compression time remains faster with ACL even with a signifi
 
 All the results and many more images are also on GitHub [here](https://github.com/nfrechette/acl/blob/develop/docs/paragon_performance.md) for Paragon just like they are for CMU [here](https://github.com/nfrechette/acl/blob/develop/docs/cmu_performance.md). I will only show a few selected images in this post for brevity.
 
-![Compression ratio distribution](/public/acl/acl_paragon_v050_compression_ratio_distribution.png)
+![Compression ratio distribution](/public/acl/acl_paragon_v050_compression_ratio_distribution.png){: width="945" height="379"}
 
 As expected, ACL outperforms Unreal by a significant margin. Some clips on the right are truncated with unusually high compression ratios as high as **900 : 1** for some exotic clips but those are likely very long with little to no animated data and aren't too interesting or representative.
 
-![Max error distribution](/public/acl/acl_paragon_v050_max_error_distribution.png)
+![Max error distribution](/public/acl/acl_paragon_v050_max_error_distribution.png){: width="946" height="379"}
 
 Here again ACL outperforms Unreal over the overwhelming majority of the data set. On the right there are a small number of clips that perform somewhat poorly with both compression methods: a total of **101** clips have an error above **0.1cm** with ACL and **153** clips for Unreal.
 
-![Distribution of the error for every bone at every key frame](/public/acl/acl_paragon_v050_exhaustive_error.png)
+![Distribution of the error for every bone at every key frame](/public/acl/acl_paragon_v050_exhaustive_error.png){: width="945" height="379"}
 
 As I have [previously]({% post_url 2017-09-10-acl_v0.4.0 %}) mentioned, the max clip error is a poor measure of accuracy. Once again the full picture is much better and tells a different story.
 

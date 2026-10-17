@@ -52,7 +52,7 @@ For CMU, the small gain is expected due to the nature of motion capture data and
 
 However, for Paragon, the results are **1.54%** smaller. It turns out that quite a few clips are adversely impacted by bind pose stripping. They can end up with a size far higher which I found surprising.
 
-![Paragon size delta distribution](/public/acl/bind_pose_stripping_paragon_distribution.png)
+![Paragon size delta distribution](/public/acl/bind_pose_stripping_paragon_distribution.png){: width="1234" height="565"}
 
 In the above image, I plotted the size delta as a percentage. Positive values denote a reduction in size.
 

@@ -30,7 +30,7 @@ ACL retains every sample and stores each track using 9, 12, 16, ... 96 bits per 
 
 ## Slice it up!
 
-![Segmenting Explained](/public/segmenting_explained.jpg)
+![Segmenting Explained](/public/segmenting_explained.jpg){: width="800" height="371"}
 
 [Segmenting a clip]({% post_url 2016-11-10-anim_compression_uniform_segmenting %}) is the act of splitting it into a number of independent and contiguous segments. For example, we can split an animation sequence that has tracks with 31 samples each (1 second at 30 samples per second) into two segments with 16 and 15 samples per track.
 
@@ -52,7 +52,7 @@ What a *great* idea to try with the UE4 codecs as well!
 
 Unfortunately, the *Unreal Engine* codecs were not designed with this concept in mind.
 
-![Offset map](/public/offset_map.jpg)
+![Offset map](/public/offset_map.jpg){: width="800" height="462"}
 
 In order to keep decompression fast, each track stores an offset into the compressed byte stream where its data starts as well as the number of samples retained. This allows great performance if all you need is a single bone or when bones are decompressed in an order different from the one they were compressed in (this is quite common in UE4 for various reasons).
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Animation Compression: Unreal 4"
 ---
-[![Unreal 4 2017](https://img.youtube.com/vi/WC6Xx_jLXmg/0.jpg)](https://www.youtube.com/watch?v=WC6Xx_jLXmg "Unreal 4 2017")
+[![Unreal 4 2017](https://img.youtube.com/vi/WC6Xx_jLXmg/0.jpg){: width="480" height="360"}](https://www.youtube.com/watch?v=WC6Xx_jLXmg "Unreal 4 2017")
 
 [Unreal 4](https://en.wikipedia.org/wiki/Unreal_Engine#Unreal_Engine_4) offers a wide range of [documented](https://docs.unrealengine.com/latest/INT/Engine/Animation/Sequences/) character animation compression settings.
 

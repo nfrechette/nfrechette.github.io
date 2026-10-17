@@ -20,7 +20,7 @@ Most character animated tracks move very smoothly and approximating them with a 
 
 For example, take this screen capture from some animation curves in Unity:
 
-![Animation Curves](/public/unity_curves.jpg)
+![Animation Curves](/public/unity_curves.jpg){: width="1944" height="540"}
 
 We can easily see that each track has **five** control points but with a total clip duration of **2.5 seconds** (note that the image uses a sample rate of 25 FPS which makes the numbering a bit quirky) we would need `2.5 seconds * 30 frames/second = 75 frames` to represent the same data. Even after using [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}), the number of keys would remain higher than **five**.
 

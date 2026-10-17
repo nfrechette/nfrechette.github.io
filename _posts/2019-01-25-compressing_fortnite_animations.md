@@ -45,11 +45,11 @@ I extracted all the non-additive animations regardless of whether they were used
 
 Once again, ACL performs admirably: the compression speed is twice as fast (**1.83x**), the memory footprint reduces in half (**2.03x** smaller), and the accuracy is right where we want it. This is also in line with the previous results from [Paragon](https://github.com/nfrechette/acl-ue4-plugin/blob/develop/Docs/paragon_performance.md).
 
-![Fortnite Max Error Distribution](/public/acl/fortnite_max_error_distribution.png)
+![Fortnite Max Error Distribution](/public/acl/fortnite_max_error_distribution.png){: width="946" height="367"}
 
 UE4's accuracy struggles a bit with a few clips but in practice the error might not be visible as the overwhelming majority of samples are very accurate. This is consistent as well with [previous results]({% post_url 2017-12-05-acl_paragon %}).
 
-![UE4 Import Comic](/public/acl/ue4_importing.png)
+![UE4 Import Comic](/public/acl/ue4_importing.png){: width="413" height="360"}
 
 A handful of clips contribute to a large portion of the UE4 compression time and its high error. One clip in particular stands out: it has **1167 bones**, **8371 samples** at **120 FPS**, and a total raw size of **372.66 MB**. Its range of motion peaks at **477000 kilometers** away from the origin! It truly pushes the codecs to their absolute limits.
 
@@ -78,15 +78,15 @@ Overall, if you added the ACL codec to the *Automatic Compression* list, here is
 
 ## Desktop
 
-![Fortnite Desktop Decompression Time](/public/acl/fortnite_pc_decompression_time.png)
+![Fortnite Desktop Decompression Time](/public/acl/fortnite_pc_decompression_time.png){: width="1800" height="550"}
 
 The performance on desktop looks pretty good. ACL is consistently faster, about **38%** on average. It also appears a bit less noisy, a direct benefit of the improved cache friendliness of its algorithm.
 
 ## Samsung S8
 
-![Fortnite Samsung S8 Decompression Time](/public/acl/fortnite_s8_decompression_time_both.png)
+![Fortnite Samsung S8 Decompression Time](/public/acl/fortnite_s8_decompression_time_both.png){: width="1800" height="550"}
 
-![Fortnite Samsung S8 ACL Decompression Time](/public/acl/fortnite_s8_decompression_time_acl.png)
+![Fortnite Samsung S8 ACL Decompression Time](/public/acl/fortnite_s8_decompression_time_acl.png){: width="1800" height="550"}
 
 ACL really shines on mobile. On average it is **56%** faster but that is only part of the story. On the S8 it appears that the core is hyperthreaded and another thread does heavy work and applies cache pressure. This causes all sorts of spikes with UE4 but in comparison, the cache aware ACL allows it to maintain a clean and consistent performance.
 
@@ -100,7 +100,7 @@ On the other hand, when the code is cache friendly, it doesn't give the chance t
 
 ## Xbox One
 
-![Fortnite Xbox One Decompression Time](/public/acl/fortnite_xb1_decompression_time.png)
+![Fortnite Xbox One Decompression Time](/public/acl/fortnite_xb1_decompression_time.png){: width="1800" height="550"}
 
 On the *Xbox One* ACL is about **13%** faster on average. Both lines seem to have very similar shapes unlike the previous two platforms due in large part to the absence of hyperthreading. There are a few possibilities as to why the gain isn't as significant on this platform:
 

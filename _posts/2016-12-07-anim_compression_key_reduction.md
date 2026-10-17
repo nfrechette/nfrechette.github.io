@@ -36,15 +36,15 @@ The removal is typically done in one of two ways:
 While the first is less aggressive and will generally yield a higher memory footprint, the decompression speed will be faster due to needing to search only once to calculate our interpolation alpha.
 
 For example, suppose we have the following track and keys:
-![Some Keys](/public/key_reduction.png)
+![Some Keys](/public/key_reduction.png){: width="500" height="400"}
 
 The key **#3** is of particular interest:
-![Key #3](/public/key_reduction_3.png)
+![Key #3](/public/key_reduction_3.png){: width="500" height="400"}
 
 As we can see, we can easily recover the interpolation alpha from its neighbours: `alpha = (3 - 2) / (4 - 2) = 0.5`. With it, we can perfectly reconstruct the missing key: `value = lerp(0.35, 0.85, alpha) = 0.6`.
 
 Another interesting key is **#4**:
-![Key #4](/public/key_reduction_4.png)
+![Key #4](/public/key_reduction_4.png){: width="500" height="400"}
 
 It lies somewhat close to the value we could linearly interpolate from its neighbours: `value = lerp(0.6, 0.96, 0.5) = 0.78`. Whether the error introduced by removing it is acceptable or not is determined by our error metric function.
 

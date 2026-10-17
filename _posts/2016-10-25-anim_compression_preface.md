@@ -10,19 +10,19 @@ This series of posts will only cover the compression aspect of animation data, w
 
 For the purpose of this series, we will only refer to character animation sequences that play back over a rigid skeleton (also called a rig). In Maya (and other similar products), an animator will typically author the animation sequence from a set of curves by manipulating the skeleton to achieve the desired motion.
 
-![Unity Animation Curves](/public/unity_curves.jpg)
+![Unity Animation Curves](/public/unity_curves.jpg){: width="1944" height="540"}
 
 This information is used at runtime to animate the rigid skeleton which in turn deforms the visual mesh bound to it. Note that animation sequences can be authored in 3 main ways: by hand, from motion capture, or procedurally (for example, a cloth simulation).
 
 Central to all this is our rigid skeleton. The skeleton is composed of a number of bones, typically in the range of 100-200 for main characters (but this number can be much larger, up to 1000 in some cases). Some of these will almost always be animated (such as the pelvis), some are animated procedurally at runtime and thus never authored, while others are only animated in a small subset of animations such as facial bones.
 
-![Hierarchical Skeleton](/public/unity_skeleton.jpg){:height="500"}
+![Hierarchical Skeleton](/public/unity_skeleton.jpg){: width="413" height="500"}
 
 The actual process to generate the final skeleton pose will vary but it generally involves blending a number of animation sequences together. The number of poses blended will vary greatly at runtime, and for a main character it can often range from 6 to 20 poses. Although an interesting topic, we will not go into further detail.
 
 The final visual mesh deformation process is commonly referred to as ‘skinning’. Depending on the video game engine, skinning is typically done either by interpolating 4x4 matrices or dual quaternions. The former is the most common but can yield some artifacts while the later approach is the mathematically correct way to do skinning. Both have their pros and cons but we will not go further into detail since it is not immediately relevant to our topic at hand.
 
-![Skeleton & Visual Mesh](/public/unity_mesh.jpg){:height="500"}
+![Skeleton & Visual Mesh](/public/unity_mesh.jpg){: width="383" height="500"}
 
 # How is it used in AAA video games?
 

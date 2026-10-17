@@ -10,7 +10,7 @@ The [Animation Compression Library v1.3](https://github.com/nfrechette/acl/relea
 
 Morph targets are essentially a set of meshes that get blended together per vertex. It is a way to achieve vertex based animation. Let's use a simple triangle as an example:
 
-![Morph Targets Explained](/public/morph_target_concept.jpg)
+![Morph Targets Explained](/public/morph_target_concept.jpg){: width="800" height="479"}
 
 In blue we have our reference mesh and in green our morph target. To animate our vertices, we apply a scaled displacement to every vertex. This scale factor is called the blend weight. Typically it lies between **0.0** (our reference mesh) and **1.0** (our target mesh). Values in between end up being a linear combination of both:
 
@@ -74,7 +74,7 @@ When a vertex doesn't move, it doesn't matter what precision our blend weight re
 
 This is what the ACL plugin does: when a *Skeletal Mesh* is provided to the compression codec, ACL will use a vertex displacement precision value instead of a generic scalar track precision value. This is intuitive to tune for an artist because the units now have meaning: we can easily find out how much **0.01 cm** represents within the context of our 3D model. Underneath the hood, this translates into unique precision requirements tailored to each morph target blend weight curve. This allows ACL to attain an even lower memory footprint while providing a strict guarantee on the visual fidelity of the animated deformations.
 
-![Curve Compression Example](/public/ue4_curve_compression_codec.jpg)
+![Curve Compression Example](/public/ue4_curve_compression_codec.jpg){: width="907" height="484"}
 
 ## A Boy and His Kite
 

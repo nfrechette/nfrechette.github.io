@@ -186,9 +186,9 @@ I also measured running the test cases with multithreading enabled to see if the
 
 Here are the results for our 3 test cases:
 
-![Test Case #1 Results](/public/matrix_multiplication/testcase1_all.png)
-![Test Case #2 Results](/public/matrix_multiplication/testcase2_all.png)
-![Test Case #3 Results](/public/matrix_multiplication/testcase3_all.png)
+![Test Case #1 Results](/public/matrix_multiplication/testcase1_all.png){: width="1134" height="378"}
+![Test Case #2 Results](/public/matrix_multiplication/testcase2_all.png){: width="1134" height="378"}
+![Test Case #3 Results](/public/matrix_multiplication/testcase3_all.png){: width="1134" height="378"}
 
 A few things are immediately obvious:
 
@@ -197,11 +197,11 @@ A few things are immediately obvious:
 
 Here are the same results but only considering the best 3 variants (**regexp2**, **mem2**, and **inlexp2**) and the best 4 versions (reference, version 0, version 3, and version 4).
 
-![Best Results](/public/matrix_multiplication/best_results.png)
+![Best Results](/public/matrix_multiplication/best_results.png){: width="1134" height="378"}
 
 ## Load/shuffle versus broadcast
 
-![Load/Shuffle VS Broadcast](/public/matrix_multiplication/load_shuffle_vs_broadcast.png)
+![Load/Shuffle VS Broadcast](/public/matrix_multiplication/load_shuffle_vs_broadcast.png){: width="795" height="378"}
 
 Overwhelmingly, we can see that the versions that use broadcast are faster than their counterpart that uses load/shuffle. This is not too surprising: we use fewer registers, as a result fewer registers spill on the stack, and fewer instructions are used. This is more significant when the function isn’t force inlined since in our test cases, whatever we spill on the stack ends up hoisted outside of our loops when inlined.
 
@@ -209,7 +209,7 @@ The fact that we use fewer registers and instructions also has other side effect
 
 ## Output in registers versus memory
 
-![Output: Register VS Memory](/public/matrix_multiplication/output_register_vs_memory.png)
+![Output: Register VS Memory](/public/matrix_multiplication/output_register_vs_memory.png){: width="481" height="288"}
 
 For test cases #1 and #3, passing our return value as an argument is a net win when there is no inlining. This remains true to a lesser extent even when the functions are force inlined which means it helps the compiler make better choices.
 
@@ -217,31 +217,31 @@ However, for test case #2, it can sometimes be a bit slower. It seems that the a
 
 ## Flipped versus expanded
 
-![Flipped VS Expanded](/public/matrix_multiplication/flip_vs_expanded.png)
+![Flipped VS Expanded](/public/matrix_multiplication/flip_vs_expanded.png){: width="481" height="288"}
 
 Looking only at version 0, the behaviour seems to differ depending when the result is passed as an argument or by register. In the **regflip** and **regexp** variants, performance can be faster (test case #2), the same (test case #1), or slower (test case #3). It seems there is high variability with what the compiler chooses to do. On the other hand, with the **regflip2** and **regexp2** variants, performance is generally faster. Test case #2 has about equal performance but as we have seen, that test case seems to favour results being returned by register.
 
 ## Inlining
 
-![Inlining On/Off](/public/matrix_multiplication/inlining_on_off.png)
+![Inlining On/Off](/public/matrix_multiplication/inlining_on_off.png){: width="481" height="288"}
 
 As it turns out, inlining sometimes gives a massive performance gain and sometimes it comes down to about the same. In general, it is best to let the compiler make inlining decisions but sometimes in very hot code, it is desirable to manually force the inlining for performance reasons. It thus makes sense to provide at least 2 versions of matrix multiplication: with and without force inlining.
 
 ## Looping
 
-![Looping VS Unrolled](/public/matrix_multiplication/looping_vs_unrolled.png)
+![Looping VS Unrolled](/public/matrix_multiplication/looping_vs_unrolled.png){: width="481" height="288"}
 
 The looping versions are quite interesting. The 2 versions that use intrinsics perform absolutely terribly. They are worse by far, generally breaking out of the charts above. Strangely, they seem to benefit massively from passing the result as an argument (not shown on the graph above). Even with the handwritten assembly versions, we can see that they are generally slower than our unrolled intrinsic version 0. As it turns out, branching is still not a great idea in hot code even with modern hardware.
 
 ## Is handwritten assembly worth it?
 
-![Handwritten Assembly VS Intrinsics](/public/matrix_multiplication/handwritten_assembly_vs_intrinsics.png)
+![Handwritten Assembly VS Intrinsics](/public/matrix_multiplication/handwritten_assembly_vs_intrinsics.png){: width="481" height="288"}
 
 Looking at our looping versions, it is obvious that carefully crafting the assembly by hand can still give significant results. However, we must be careful when doing so. [In particular, with Visual Studio, hand written assembly functions will never be inlined in x64, even by the linker](https://stackoverflow.com/questions/41208105/making-assembly-function-inline-in-x64-visual-studio). Something to keep in mind.
 
 ## Best of the best
 
-![Reference VS The Best](/public/matrix_multiplication/reference_vs_best.png)
+![Reference VS The Best](/public/matrix_multiplication/reference_vs_best.png){: width="481" height="288"}
 
 In our results, a clear winner stands above all others: version 0 **inlexp2**:
 

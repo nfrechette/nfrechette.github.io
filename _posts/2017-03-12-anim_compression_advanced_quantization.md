@@ -52,7 +52,7 @@ We do have one edge case: when a track has 0 bits per component. This means our 
 
 In order to start our algorithm, we first initialize all our tracks to use the highest bit rate possible. The goal of the algorithm being to lower these values as much as possible while remaining within our accuracy threshold.
 
-![Algorithm Initial State](/public/advanced_quantization_initial.jpg)
+![Algorithm Initial State](/public/advanced_quantization_initial.jpg){: width="1326" height="451"}
 
 ## First Phase
 
@@ -74,7 +74,7 @@ The second phase iterates over all of our tracks and aims to individually lower 
 
 The order in which the tracks are processed matters. I tried two different orderings: starting at the root bone and going down the hierarchy towards the children and the opposite ordering, starting at the leaf bones and going back up towards the root. As it turns out, the distribution of which bit rate was selected by our algorithm changed quite a bit. Note that in the image, the right-most bit rates are very uncommon but they do happen (they are too rare to show up).
 
-![Bit Rate Distribution](/public/advanced_quantization_bitrate_distribution.jpg)
+![Bit Rate Distribution](/public/advanced_quantization_bitrate_distribution.jpg){: width="1332" height="449"}
 
 Starting at the leaf bones, a higher incidence of lower bit rates were selected. This intuitively makes sense since we have more children than we have parents in our hierarchy. On the other hand, we also have a higher incidence of higher bit rates. Again this makes sense since by lowering the children first, we force the parents to retain more bits in order to preserve the accuracy.
 

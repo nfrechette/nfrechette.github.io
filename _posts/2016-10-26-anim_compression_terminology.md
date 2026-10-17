@@ -17,7 +17,7 @@ A skeleton has a well defined bind pose. The bind pose represents the default re
 
 A skeleton has a root bone. The root bone is the bone highest in the hierarchy on which all other bones are parented. This is typically the bone that is animated to move characters about the world when the motion is animation driven.
 
-![Hierarchical Skeleton](/public/unity_skeleton.jpg){:height=“500”}
+![Hierarchical Skeleton](/public/unity_skeleton.jpg){: width="413" height="500"}
 
 # Bone
 

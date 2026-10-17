@@ -18,7 +18,7 @@ At their core implementations that leverage wavelets for compression will be spl
 
 The flow of information can be illustrated like this:
 
-![Wavelet Algorithm Layout](/public/wavelet_compression_process.jpg)
+![Wavelet Algorithm Layout](/public/wavelet_compression_process.jpg){: width="1000" height="500"}
 
 The most important step is, of course, the wavelet function, around which everything is centered. Covering the wavelet function first will help clarify the purpose of every other step.
 
@@ -31,7 +31,7 @@ We will avoid going too in depth on this topic in this series instead we will fo
 
 By definition wavelet functions are recursive. Each application of the function is referred to as a sub-band and will output an equal number of scale and coefficient values each exactly half the original input size. In turn, we can recursively apply the function on the resulting scale values of the previous sub-band. The end result is a single scale value and `N - 1` coefficients where `N` is the input size.
 
-![Recursive Wavelet](/public/wavelet_recursive_1d.png)
+![Recursive Wavelet](/public/wavelet_recursive_1d.png){: width="188" height="235"}
 
 [Haar wavelet](https://en.wikipedia.org/wiki/Haar_wavelet) scale is simply the sum of two input values and the coefficient represents their difference. As far as I know most wavelet functions function similarly which yield coefficients that are as close to zero as possible and exactly zero for a constant input signal.
 

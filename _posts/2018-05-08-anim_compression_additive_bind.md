@@ -79,11 +79,11 @@ Measuring the impact is simple: I simply enabled all three modes one by one and 
 
 Everything has been measured with my desktop using *Visual Studio 2015* with *AVX* support enabled with up to **4** clips being compressed in parallel. All measurements were performed with the upcoming *ACL v0.8* release.
 
-![CMU Results](/public/acl/acl_cmu_bind_additive_results.png)
+![CMU Results](/public/acl/acl_cmu_bind_additive_results.png){: width="448" height="81"}
 
 CMU has no scale and it is thus no surprise that the two additive formats perform the same. The memory footprint and the max error remain overall largely identical but as expected the compression time degrades. No gain is observed from this technique which further highlights how this data set differs from hand authored animations.
 
-![Paragon Results](/public/acl/acl_paragon_bind_additive_results.png)
+![Paragon Results](/public/acl/acl_paragon_bind_additive_results.png){: width="547" height="81"}
 
 Paragon shows the results I was expecting. The memory footprint reduces by about **7.9%** which is quite significant and the max error improves as well. Again, we can see both additive methods performing equally well. The relative space clearly loses out here and fails to show significant gains to compensate for the dramatically worse compression performance.
 

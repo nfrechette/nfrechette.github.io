@@ -4,7 +4,7 @@ title: "Manipulating the sampling time for fun and profit"
 ---
 The [Animation Compression Library](https://github.com/nfrechette/acl) works with uniformly sampled animation clips. For each animated data track, every sample falls at a predictable and regular rate (e.g. 30 samples/frames per second). This is done to keep the decompression code simple and fast: with samples being so regular, they can be packed efficiently, sorted by their timestamp.
 
-![Uniform sampling](/public/uniform_sampling.jpg)
+![Uniform sampling](/public/uniform_sampling.jpg){: width="800" height="534"}
 
 When we decompress, we simply find the surrounding samples to reconstruct the value we need.
 
@@ -71,7 +71,7 @@ When all tracks interpolate with the same rounding mode, we can reconstruct the 
 
 For example, let's say that we have 3 keyframes: A, B, and C. Consider the case where we sample the time just after where B lies (at time `t`).
 
-![Keyframe reconstruction](/public/keyframe_reconstruction.jpg)
+![Keyframe reconstruction](/public/keyframe_reconstruction.jpg){: width="800" height="474"}
 
 If B has been moved to the database and isn't present in memory during decompression, we have to reconstruct our value based on our closest remaining neighbors A and C (an inherently lossy process). When all tracks use the same rounding mode, this is clean and fast since only one interpolation alpha is needed for all tracks:
 
