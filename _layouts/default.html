@@ -47,20 +47,20 @@
           checkbox.checked = false;
         }, false);
 
-        // A keyboard user can scroll a table wrapper only if it has focus.
-        // Only the wrappers that scroll get a tab stop.
-        var wrappers = document.querySelectorAll('.table-wrapper');
-        function updateTableWrappers() {
-          for (var i = 0; i < wrappers.length; i++) {
-            if (wrappers[i].scrollWidth > wrappers[i].clientWidth) {
-              wrappers[i].setAttribute('tabindex', '0');
+        // A keyboard user can scroll a table wrapper or a code block only if it has focus.
+        // Only the elements that scroll get a tab stop.
+        var scrollers = document.querySelectorAll('.table-wrapper, .content pre');
+        function updateScrollers() {
+          for (var i = 0; i < scrollers.length; i++) {
+            if (scrollers[i].scrollWidth > scrollers[i].clientWidth) {
+              scrollers[i].setAttribute('tabindex', '0');
             } else {
-              wrappers[i].removeAttribute('tabindex');
+              scrollers[i].removeAttribute('tabindex');
             }
           }
         }
-        updateTableWrappers();
-        window.addEventListener('resize', updateTableWrappers);
+        updateScrollers();
+        window.addEventListener('resize', updateScrollers);
       })(document);
     </script>
   </body>

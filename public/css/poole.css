@@ -166,10 +166,12 @@ pre {
   padding: 1rem;
   font-size: .8rem;
   line-height: 1.4;
+  /* A long line of code scrolls. It does not wrap, because a wrap in the middle of a word makes code hard to read. */
   white-space: pre;
-  white-space: pre-wrap;
-  word-break: break-all;
-  word-wrap: break-word;
+  overflow-x: auto;
+  /* Some code blocks indent with tabs and others with 4 spaces. The default tab is 8 spaces wide. */
+  -moz-tab-size: 4;
+       tab-size: 4;
   background-color: #f9f9f9;
 }
 pre code {
@@ -186,6 +188,12 @@ pre code {
 }
 .highlight pre {
   margin-bottom: 0;
+}
+/* The "highlight" Liquid tag puts the code in a <figure>. The browser gives a <figure> side margins. */
+figure.highlight {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Gist via GitHub Pages */
