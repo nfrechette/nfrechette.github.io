@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: GDC 2017 Presentation"
+description: "In early 2016 I had the opportunity to write a novel animation compression algorithm for Eidos Montreal as part of the game engine previously used by Rise..."
 ---
 In early 2016 I had the opportunity to write a novel animation compression algorithm for [Eidos Montreal](https://www.eidosmontreal.com/) as part of the game engine previously used by [Rise of the Tomb Raider (2015)](https://en.wikipedia.org/wiki/Rise_of_the_Tomb_Raider). Later in February 2017, I had the pleasure to present it at the [Game Developers Conference (GDC)](https://www.gdconf.com/).
 

@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Animation Compression Library: Paragon Results"
+description: "While working for Epic to improve Unreal 4's own animation compression and decompression, I asked for permission to use the Paragon animations for research..."
+image: https://i.ytimg.com/vi/3OCJCZJWA68/hqdefault.jpg
+twitter:
+  card: summary_large_image
 ---
 While working for Epic to improve Unreal 4's own animation compression and decompression, I asked for permission to use the Paragon animations for research purposes and they generously agreed. Today I have the pleasure to report the findings from that new data set!
 

@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Compressing looping animation clips"
+description: "Animations that loop have a unique property in that the last character pose must exactly match the first, for playback to be seamless as they wrap around."
+image: /public/acl/loop_clamp_mode.jpg
+twitter:
+  card: summary_large_image
 ---
 Animations that loop have a unique property in that the last character pose must exactly match the first, for playback to be seamless as they wrap around. As a result, this means that the repeating first/last pose is redundant. Looping animations are fairly common, and it thus makes sense to try and leverage this in order to reduce the memory footprint. However, there are important caveats with this, and special care must be taken.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Constant Tracks"
+description: "One of the primary advantage of storing bone transforms in local space as opposed to object space is that it reduces dramatically the amount of data that..."
 ---
 One of the primary advantage of storing bone transforms in local space as opposed to object space is that it reduces dramatically the amount of data that changes. For example, if we have two bones connected, and they have their local rotation animated, we end up with two animated tracks in local space, but three tracks in object space. This is true because the rotation changes from the root bone will cause a translation offset on the second bone.
 

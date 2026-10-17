@@ -27,6 +27,19 @@ social:
     - https://x.com/nfrechette6
     - https://github.com/nfrechette
     - https://www.linkedin.com/in/nicholas-frechette-5b75461
+logo:                /public/apple-touch-icon-precomposed.png
+
+# Front matter defaults
+# The site icon is the default social card image. It is small, so the card is the small "summary" card.
+# A post with its own image sets "image:" and "twitter: card: summary_large_image".
+defaults:
+  -
+    scope:
+      path:          ''
+    values:
+      image:         /public/apple-touch-icon-precomposed.png
+      twitter:
+        card:        summary
 
 # Custom vars
 #version:             1.0.0

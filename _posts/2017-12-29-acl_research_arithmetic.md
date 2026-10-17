@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Arithmetic Accuracy and Performance"
+description: "As I mentioned in my previous post, ACL still suffers from some less then ideal accuracy in some exotic situations."
+image: /public/acl/arithmetic_float32_float64_summary.png
+twitter:
+  card: summary_large_image
 ---
 As I mentioned in my [previous post]({% post_url 2017-12-05-acl_paragon %}), [ACL](https://github.com/nfrechette/acl) still suffers from some less then ideal accuracy in some exotic situations. Since the next release will have a strong focus on fixing this, I wanted to investigate using *float64* and [*fixed point* arithmetic](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). It is general knowledge that *float32* arithmetic incurs rounding and can lead to severe accuracy loss in some cases. The question I hoped to answer was whether or not this had a significant impact on ACL. Originally ACL performed the compression entirely with *float64* arithmetic but this was [removed](https://github.com/nfrechette/acl/releases/tag/v0.3.0) because it caused more issues than it was worth but I did not publish numbers to back this claim up. Now we revisit it once and for all.
 

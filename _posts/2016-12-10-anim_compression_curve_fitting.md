@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Animation Compression: Curve Fitting"
+description: "Curve fitting builds on what we last saw with linear key reduction. With it, we saw that we leveraged linear interpolation to remove keys that could easily..."
+image: /public/unity_curves.jpg
+twitter:
+  card: summary_large_image
 ---
 [Curve fitting](https://en.wikipedia.org/wiki/Curve_fitting) builds on what we last saw with [linear key reduction]({% post_url 2016-12-07-anim_compression_key_reduction %}). With it, we saw that we leveraged linear interpolation to remove keys that could easily be predicted. Curve fitting archives the same feat by using a different interpolation method: a spline function.
 

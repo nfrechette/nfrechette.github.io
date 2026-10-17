@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Morph target animation compression"
+description: "The Animation Compression Library v1.3 introduced support for compressing animated floating point tracks but it wasn't until now that I managed to get..."
+image: /public/morph_target_concept.jpg
+twitter:
+  card: summary_large_image
 ---
 The [Animation Compression Library v1.3](https://github.com/nfrechette/acl/releases/tag/v1.3.0) introduced support for compressing animated floating point tracks but it wasn't until now that I managed to get around to trying it inside the [Unreal Engine 4 Plugin](https://github.com/nfrechette/acl-ue4-plugin). Scalar tracks are used in various ways from animating the [Field Of View](https://en.wikipedia.org/wiki/Field_of_view_in_video_games) to animating [Inverse Kinematic](https://en.wikipedia.org/wiki/Inverse_kinematics) blend targets. While they have many practical uses in modern video games, they are most commonly used to animate [morph targets](https://en.wikipedia.org/wiki/Morph_target_animation) (aka blend shapes) in facial and cloth animations.
 

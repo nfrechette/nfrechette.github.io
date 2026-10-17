@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 2"
+description: "Another area where it struggles is decompression performance. When we want to sample a clip at a particular point in time, we have to search and find the..."
+image: /public/offset_map.jpg
+twitter:
+  card: summary_large_image
 ---
 **A quick recap:** animation clips are formed from a set of time series called tracks. Tracks have a fixed number of samples per second and each track has the same length. The [Animation Compression Library](https://github.com/nfrechette/acl) retains every sample while the most commonly used *Unreal Engine* codecs use the popular method of [removing samples that can be linearly interpolated]({% post_url 2016-12-07-anim_compression_key_reduction %}) from their neighbors.
 

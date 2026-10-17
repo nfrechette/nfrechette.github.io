@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Comparing past and present Unreal Engine 4 animation compression"
+description: "Ever since the Animation Compression Library UE4 Plugin was released in July 2018, I have been comparing and tracking its progress against Unreal Engine 4.19.2."
 ---
 Ever since the [Animation Compression Library UE4 Plugin](https://github.com/nfrechette/acl-ue4-plugin) was released in *July 2018*, I have been comparing and tracking its progress against *Unreal Engine 4.19.2*. For the sake of consistency, even when newer UE versions came out, I did not integrate ACL and measure from scratch. This was convenient and practical since animation compression doesn't change very often in UE and the numbers remain fairly close over time. However, in *UE 4.21* significant changes were made and comparing against an earlier release was no longer a fair and accurate comparison.
 

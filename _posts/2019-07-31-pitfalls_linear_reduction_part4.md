@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 4"
+description: "This fourth and final post in the series shows exactly how many samples are removed in practice."
+image: /public/samples_dropped_distribution.png
+twitter:
+  card: summary_large_image
 ---
 **A quick recap:** animation clips are formed from a set of time series called tracks. Tracks have a fixed number of samples per second and each track has the same length. The [Animation Compression Library](https://github.com/nfrechette/acl) retains every sample while *Unreal Engine* uses the popular method of [removing samples that can be linearly interpolated]({% post_url 2016-12-07-anim_compression_key_reduction %}) from their neighbors.
 

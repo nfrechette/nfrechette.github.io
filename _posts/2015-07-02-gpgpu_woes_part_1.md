@@ -1,6 +1,7 @@
 ---
 layout: post
 title: GPGPU woes part 1
+description: "Curiosity about the Servo project from Mozilla finally got the best of me and I looked around to see if I could contribute somehow."
 ---
 Curiosity about the [Servo](https://github.com/servo/servo) project from Mozilla finally got the best of me and I looked around to see if I could contribute somehow. A particular exploratory task caught my eye that involved running the CSS rule matching on the GPU. I forked the [original sample code](https://github.com/nfrechette/selectron) and got to work.
 

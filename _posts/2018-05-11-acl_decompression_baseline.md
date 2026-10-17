@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "ACL decompression performance"
+description: "At long last I finally got around to measuring the decompression performance of ACL. This blog post will detail the baseline performance from which we will..."
+image: /public/acl/acl_decomp_v080_vs2015_x64_playback.png
+twitter:
+  card: summary_large_image
 ---
 At long last I finally got around to measuring the decompression performance of ACL. This blog post will detail the baseline performance from which we will measure future progress. As I have [previously mentioned]({% post_url 2018-04-02-acl_v0.7.0 %}), no effort has been made so far to optimize the decompression and I hope to remedy that following the v1.0 release scheduled around June 2018.
 

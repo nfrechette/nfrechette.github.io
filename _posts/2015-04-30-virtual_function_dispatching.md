@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Virtual function dispatching
+description: "Very often, C++ interviews ask about the virtual table: how it works, how is it implemented and the tricky bits around constructors & destructors."
 ---
 Very often, [C++ interviews ask about the virtual table](https://web.archive.org/web/20150613185256/https://programmers.stackexchange.com/questions/80591/why-is-no-c-interview-complete-if-it-does-not-have-vtable-questions): how it works, how is it implemented and the tricky bits around constructors & destructors. However, rarely are the following questions asked: why is it the way it is and are there alternatives?
 

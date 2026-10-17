@@ -2,6 +2,7 @@
 layout: post
 title: "Animation Compression: Table of Contents"
 toc: "Animation Compression"
+description: "Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade."
 ---
 Character animation compression is an exotic topic that seems to need to be re-approached only about once per decade. Over the course of 2016 I've been developing a novel twist to an older technique and I was lucky enough to be invited to talk about it at the [2017 Game Developers Conference (GDC)](https://www.gdconf.com/). This gave me the sufficient motivation to write this series.
 

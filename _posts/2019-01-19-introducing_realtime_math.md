@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Introducing Realtime Math v1.0"
+description: "Almost two years ago now, I began writing the Animation Compression Library. I set out to build it to be production quality which meant I needed a whole lot..."
 ---
 Almost two years ago now, I began writing the [Animation Compression Library](https://github.com/nfrechette/acl). I set out to build it to be production quality which meant I needed a whole lot of optimized math. At the time, I took a look at the landscape of math libraries and I opted to roll out my own. It has served me well, propelling ACL to success with some of the [fastest compression and decompression]({% post_url 2018-09-08-acl_v1.1.0 %}) performance in the industry. I am now proud to announce that the code has been refactored out into its own open source library: [Realtime Math v1.0 (RTM)](https://github.com/nfrechette/rtm) (MIT license).
 

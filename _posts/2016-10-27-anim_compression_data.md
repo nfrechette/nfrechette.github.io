@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Animation Data"
+description: "Animation clips more or less always boil down to the same thing: a series of animated tracks. There might also be other pre-processed data (such as the..."
 ---
 Animation clips more or less always boil down to the same thing: a series of animated tracks. There might also be other pre-processed data (such as the total root displacement, etc.) but we won’t concern ourselves with this since their impact on compression is usually limited. Instead, we will focus on bone transform tracks: rotation, translation, and scale.
 

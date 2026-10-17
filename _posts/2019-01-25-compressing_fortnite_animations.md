@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Compressing Fortnite Animations"
+description: "New year, new stats! A few months ago, Epic agreed to let me use their Fortnite animations for my open source research with the Animation Compression..."
+image: /public/acl/fortnite_max_error_distribution.png
+twitter:
+  card: summary_large_image
 ---
 New year, new stats! A few months ago, *Epic* agreed to let me use their *Fortnite* animations for my open source research with the [Animation Compression Library (ACL)](https://github.com/nfrechette/acl). Following months of work to refactor *Unreal Engine 4* in order to natively support animation compression plugins, it has finally entered the review stage on *Epic's* end. While I had hoped the changes could make it in time for *Unreal Engine 4.22*, due to unforeseen delays, *4.23* seems a much more likely candidate.
 

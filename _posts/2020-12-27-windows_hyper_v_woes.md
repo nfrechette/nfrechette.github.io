@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Windows Hyper-V woes"
+description: "This weekend, I noticed that AMD Ryzen Master (a great tool to control your CPU when profiling code performance) and VirtualBox both stopped working for me..."
 ---
 This weekend, I noticed that [AMD Ryzen Master](https://www.amd.com/en/products/software/ryzen-master.html) (a great tool to control your CPU when profiling code performance) and [VirtualBox](https://www.virtualbox.org/) both stopped working for me under Windows 10. I wasn't too sure how it happened and I spent a good deal of time chasing what went wrong so I am documenting my process and result here in hope that it might help others as well.
 

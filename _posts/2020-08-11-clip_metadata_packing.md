@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation clip metadata packing"
+description: "In my previous blog post, I analyzed over 15000 animations. This offered a number of key insights about what animation data looks like for compression purposes."
 ---
 In my [previous blog post]({% post_url 2020-08-09-animation_data_numbers %}), I analyzed over 15000 animations. This offered a number of key insights about what animation data looks like for compression purposes. If you haven't read it yet, I suggest you do so first as it covers the terminology and basics for this post. I'll also be using the same datasets as described in the previous post.
 

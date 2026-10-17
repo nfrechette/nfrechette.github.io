@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Animation Compression: Preface"
+image: /public/unity_curves.jpg
+twitter:
+  card: summary_large_image
 ---
 This post is meant as a preface to explain the overall context of what is character animation, how we use it, and why it needs special consideration.
 

@@ -25,6 +25,8 @@ GitHub Pages renders any `.md` file as a page even without front matter (`jekyll
 - Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
 - The home page and the list pages show the excerpt of each post and a link to the full post. The excerpt is the first paragraph of the post. Posts must use LF line endings: in a CRLF file, Jekyll finds no paragraph end, and the excerpt is the full post.
 - If a post starts with an image, a heading, or HTML, set `excerpt:` in the front matter. Jekyll does not convert this value from Markdown, so write it as HTML: `excerpt: "<p>...</p>"`. The SEO tag also uses the excerpt as the page description, unless the post sets `description:`.
+- Give each post a `description:` of 160 characters or fewer, for search results and social cards. Without it, the SEO tag uses the full excerpt.
+- If a post has an image, set `image:` to the best one and add `twitter:` with `card: summary_large_image`. Otherwise the post gets the site icon and a small card, from the defaults in `_config.yml`.
 - `atom.xml` holds the full text of the newest 10 posts. It makes root-relative URLs (`/public/...`) absolute, so do not use protocol-relative URLs (`//host/...`) in posts.
 - Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
 - Give each image its pixel size with a kramdown attribute list: `![Alt](/public/acl/foo.jpg){: width="1200" height="408"}`. The browser then reserves the space before the lazy image loads. `sips -g pixelWidth -g pixelHeight <file>` gives the size. To show an image smaller, set a smaller width and height with the same aspect ratio.

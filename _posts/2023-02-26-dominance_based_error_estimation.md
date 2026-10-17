@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Dominance based error estimation"
+description: "As I've previously written about, the Animation Compression Library measures the error introduced through compression by approximating the skinning..."
+image: /public/acl/long_range_attachments.jpg
+twitter:
+  card: summary_large_image
 ---
 As I've [previously written about]({% post_url 2016-11-01-anim_compression_accuracy %}), the [Animation Compression Library](https://github.com/nfrechette/acl) measures the error introduced through compression by approximating the [skinning deformation](https://en.wikipedia.org/wiki/Skeletal_animation) typically done with a graphical mesh. To do so, we define a rigid shell around each joint: a sphere. It is a crude approximation, but the method is otherwise very flexible, and any other shape could be used: a box, convex, etc. This rigid shell is then transformed using its joint transform at every point in time (provided as input through an animation clip). Using only individual joints, this process works in local space of the joint (local space) as transforms are relative to their parent joint in the skeleton hierarchy. When a joint chain that includes the root joint is used, the process works in local space of the object (or object space). While local space only accounts for a single transform (the joint's), in object space we can account for any number of joints, it depends entirely on the topology of the joint hierarchy. As a result of these extra joints, measuring the error in object space is slower than in local space. Nevertheless, this method is very simple to implement and tune since the resulting error is a 3D displacement between the raw rigid shell and the lossy rigid shell undergoing compression.
 

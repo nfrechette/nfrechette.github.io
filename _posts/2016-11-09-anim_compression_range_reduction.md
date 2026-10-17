@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Animation Compression: Range Reduction"
+image: /public/range_reduction_track.png
+twitter:
+  card: summary_large_image
 ---
 Range reduction is all about exploiting the fact that the values we compress typically have a much smaller range in practice than in theory.
 

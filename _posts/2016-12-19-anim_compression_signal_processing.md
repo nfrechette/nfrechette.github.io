@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Animation Compression: Signal Processing"
+description: "Signal processing algorithm variants come in many forms but the most common and popular approach is to use Wavelets."
+image: /public/wavelet_compression_process.jpg
+twitter:
+  card: summary_large_image
 ---
 [Signal processing](https://en.wikipedia.org/wiki/Signal_processing) algorithm variants come in many forms but the most common and popular approach is to use [Wavelets](https://en.wikipedia.org/wiki/Wavelet). Having utilized this method for all character animation clips on all supported platforms for [Thief (2014)](https://en.wikipedia.org/wiki/Thief_(2014_video_game)) I have a fair amount to share with you.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation data in numbers"
+description: "For a while now, I've been meaning to take some time to instrument the Animation Compression Library (aka ACL) and look more in depth at the animations I have."
 ---
 For a while now, I've been meaning to take some time to instrument the [Animation Compression Library (aka ACL)](https://github.com/nfrechette/acl) and look more in depth at the animations I have. Over the years I've had a lot of ideas on what could be improved and good data is critical in deciding where my time is best spent optimizing. I'm not sure if this will be of interest to many people out there but since I went ahead and did all that work, I might as well publish it!
 

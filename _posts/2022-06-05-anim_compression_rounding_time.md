@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Manipulating the sampling time for fun and profit"
+description: "The Animation Compression Library works with uniformly sampled animation clips. For each animated data track, every sample falls at a predictable and..."
+image: /public/uniform_sampling.jpg
+twitter:
+  card: summary_large_image
 ---
 The [Animation Compression Library](https://github.com/nfrechette/acl) works with uniformly sampled animation clips. For each animated data track, every sample falls at a predictable and regular rate (e.g. 30 samples/frames per second). This is done to keep the decompression code simple and fast: with samples being so regular, they can be packed efficiently, sorted by their timestamp.
 

@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Controlling animation quality through streaming"
+description: "For a few years now, I've had ideas on how to leverage streaming to further improve compression with the Animation Compression Library."
+image: /public/error_contribution_step1.jpg
+twitter:
+  card: summary_large_image
 ---
 For a few years now, I've had ideas on how to leverage streaming to further improve compression with the [Animation Compression Library](https://github.com/nfrechette/acl). Thanks to the support of [NCSOFT](https://www.nc.com/), I've been able to try them out and integrate progressive quality streaming for the upcoming 2.0 release next month.
 

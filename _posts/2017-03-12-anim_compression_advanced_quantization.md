@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Animation Compression: Advanced Quantization"
+description: "I first spoke about this technique at the Game Developers Conference (GDC) in 2017 and the slides for that presentation can be found here."
+image: /public/advanced_quantization_initial.jpg
+twitter:
+  card: summary_large_image
 ---
 I first spoke about this technique at the [Game Developers Conference (GDC)](https://www.gdconf.com/) in 2017 and the slides for that presentation can be found [here](/public/simple_and_powerful_animation_compression_gdc2017.pdf). The idea is to take everything that is good about [simple quantization]({% post_url 2016-11-15-anim_compression_quantization %}) and super charge it. Since simple quantization is generally a foundation for the [other algorithms]({% post_url 2016-11-13-anim_compression_families %}), this new variant can be used just as well for the same purpose.
 

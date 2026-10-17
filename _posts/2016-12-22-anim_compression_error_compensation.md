@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Animation Compression: Error Compensation"
+description: "Unless you use the curves directly authored by the animator for your animation clip, the animation compression you use will end up being lossy in nature and..."
 ---
 Unless you use the curves directly authored by the animator for your animation clip, the animation compression you use will end up being lossy in nature and some amount of fidelity will be lost (possibly visible to the naked eye or not). To combat the loss of accuracy, three error compensation techniques emerged over the years to help push the memory footprint further down while keeping the visual results acceptable: in-place correction, additive correction, and [inverse kinematic](https://en.wikipedia.org/wiki/Inverse_kinematics) correction.
 

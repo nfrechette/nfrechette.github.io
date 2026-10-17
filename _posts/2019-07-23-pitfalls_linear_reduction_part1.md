@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Pitfalls of linear sample reduction: Part 1"
+description: "Two years ago I worked with Epic to try to improve the Unreal Engine animation compression codecs. While I managed to significantly improve the compression..."
+image: /public/segmenting_explained.jpg
+twitter:
+  card: summary_large_image
 ---
 Two years ago I worked with *Epic* to try to improve the *Unreal Engine* animation compression codecs. [While I managed to significantly improve the compression performance]({% post_url 2019-06-14-acl_plugin_v0.4.0 %}), despite my best intentions, a lot of research, and hard work, some of the ideas I tried failed to improve the decompression speed and memory footprint. In the end their numbers just didn't add up when working at the scale *Fortnite* operates at.
 

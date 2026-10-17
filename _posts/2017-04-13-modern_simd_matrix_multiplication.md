@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Optimizing 4x4 matrix multiplication"
+description: "In modern video games, the 4x4 matrix multiplication is an important cornerstone. It is used for a very long list of things: moving individual character..."
+image: /public/matrix_multiplication/testcase1_all.png
+twitter:
+  card: summary_large_image
 ---
 In modern video games, the 4x4 matrix multiplication is an important cornerstone. It is used for a very long list of things: moving individual character joints, physics simulation, rendering, etc. To generate a single video game image (and we typically generate between 25 and 60 per second), several thousand matrix multiplications will take place. Today, we will take an in-depth look at such a fundamental piece of code.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Faster floating point arithmetic with Exclusive OR"
+description: "Today it's time to talk about another floating point arithmetic trick that sometimes can come in very handy with SSE2."
 ---
 
 Today it's time to talk about [another floating point arithmetic trick]({% post_url 2019-05-08-sign_flip_optimization %}) that sometimes can come in very handy with SSE2. This trick isn't novel, and I don't often get to use it but a few days ago inspiration struck me late at night in the middle of a long 3 hour drive. The results inspired this post.

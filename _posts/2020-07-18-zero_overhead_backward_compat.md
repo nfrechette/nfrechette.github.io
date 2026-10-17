@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Zero overhead backward compatibility"
+description: "The Animation Compression Library finally supports backward compatibility (going forward once 2.0 comes out)."
 ---
 The [Animation Compression Library](https://github.com/nfrechette/acl) finally [supports backward compatibility](https://github.com/nfrechette/acl/pull/307) (going forward once 2.0 comes out). I'm really happy with how it turned out so I thought I would write a bit about how the ACL decompression is designed.
 
