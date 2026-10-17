@@ -1,0 +1,33 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+Nicholas Frechette's personal blog (http://nfrechette.github.io), a Jekyll 3.9 site served by GitHub Pages from `master`. It uses the Lanyon theme (`README.md` is Lanyon's stock README, not project docs). Most posts are long-form technical articles about animation compression and the Animation Compression Library (ACL).
+
+## Commands
+
+```bash
+./serve.sh                               # bundle exec jekyll serve --future (local preview at http://localhost:4000)
+bundle exec jekyll build --future        # one-off build into _site/
+```
+
+`--future` is needed so posts dated after today still render. Dependencies are in `Gemfile` (`jekyll ~> 3.9`, `jekyll-paginate`, `kramdown-parser-gfm`). There are no tests or linters; a clean `jekyll build` is the only check. `_site/` is build output and gitignored.
+
+## Posts
+
+- Posts live in `_posts/YYYY-MM-DD-slug.md`; the date and slug in the filename set the URL (`permalink: pretty` → `/YYYY/MM/DD/slug/`). `_posts/template.md` is the minimal front matter starting point (`layout: post`, `title:`). Comments (Disqus) are on by default for posts via `_config.yml` defaults.
+- Work-in-progress drafts are kept untracked in `_posts/` with placeholder dates such as `2024-99-99-...md`. These are not valid dates, so Jekyll will refuse to build while they're there; publishing means renaming the file to the real date.
+- Link to other posts with `{% post_url YYYY-MM-DD-slug %}`, not hard-coded URLs.
+- Images and other assets go in `public/`, usually under a per-topic subfolder (e.g. `public/acl/`, `public/matrix_multiplication/`), and are referenced with absolute paths: `![Alt](/public/acl/foo.jpg)`.
+- Old URLs are kept alive with stub posts using `layout: redirected` plus `redirect_to:` (see `_layouts/redirected.html`); don't delete or rename published posts without leaving one of these.
+
+## Site structure
+
+- `_layouts/` (`default` → `post`/`page`) and `_includes/` (`head`, `sidebar`, `comments`, `google_analytics`) are the theme. Pages with `layout: page` (e.g. `about.md`) automatically appear in the sidebar nav.
+- `acl_viewer/` is a prebuilt, minified web app (ACL glTF viewer) checked in as static output; don't hand-edit it.
+
+## Git
+
+Commit messages are short and imperative. New articles use `Post <topic>` (e.g. `Post ACL 2.1 release`); other changes use plain descriptions like `Fix broken link`.
