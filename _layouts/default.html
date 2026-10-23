@@ -53,6 +53,27 @@
           checkbox.checked = false;
         }, false);
 
+        // A code block gets wider than the text column only if its lines do not fit in the column.
+        // The other code blocks stay aligned with the text. See "wide-code" in poole.css.
+        // The function first removes the class from all the code blocks, then it measures them all,
+        // then it adds the class again. Thus the browser computes the layout only once.
+        var codeBlocks = document.querySelectorAll('.content pre');
+        function updateCodeWidths() {
+          var i;
+          for (i = 0; i < codeBlocks.length; i++) {
+            codeBlocks[i].classList.remove('wide-code');
+          }
+          var isWide = [];
+          for (i = 0; i < codeBlocks.length; i++) {
+            isWide.push(codeBlocks[i].scrollWidth > codeBlocks[i].clientWidth);
+          }
+          for (i = 0; i < codeBlocks.length; i++) {
+            if (isWide[i]) {
+              codeBlocks[i].classList.add('wide-code');
+            }
+          }
+        }
+
         // A keyboard user can scroll a table wrapper or a code block only if it has focus.
         // Only the elements that scroll get a tab stop.
         var scrollers = document.querySelectorAll('.table-wrapper, .content pre');
@@ -65,8 +86,14 @@
             }
           }
         }
-        updateScrollers();
-        window.addEventListener('resize', updateScrollers);
+
+        // The width of a code block changes the elements that scroll, thus updateCodeWidths runs first.
+        function updateLayout() {
+          updateCodeWidths();
+          updateScrollers();
+        }
+        updateLayout();
+        window.addEventListener('resize', updateLayout);
 
         // Each section heading of a post or page links to itself, so a reader can copy a link to the section.
         // Kramdown gives each heading an id. The post titles on the home page have no id, thus they get no link.

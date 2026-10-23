@@ -176,11 +176,14 @@ pre {
   background-color: #f9f9f9;
 }
 /* The text column holds only about 70 characters of code. On a wide screen, a code block
-   extends past the two sides of the text column, to a maximum of 100 characters. It keeps
-   a 5rem margin to each side of the window. "ch" is the width of one character of the code
-   font, thus the width is correct for each font of the font list. A browser without min()
-   and max() ignores these two declarations, and the code block keeps the column width. */
-.content pre {
+   with longer lines extends past the two sides of the text column, to a maximum of 100
+   characters. It keeps a 5rem margin to each side of the window. A script in default.html
+   gives the class "wide-code" only to a code block whose lines are wider than the text
+   column. The other code blocks stay aligned with the text. "ch" is the width of one
+   character of the code font, thus the width is correct for each font of the font list.
+   A browser without min() and max() ignores these two declarations, and the code block
+   keeps the column width. */
+.content pre.wide-code {
   width: max(100%, min(100ch + 2rem, 100vw - 10rem));
   margin-left: min(0px, (100% - min(100ch + 2rem, 100vw - 10rem)) / 2);
 }
