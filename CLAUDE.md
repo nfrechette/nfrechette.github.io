@@ -76,6 +76,18 @@ the specification controls prose only.
   requests. Use only ASCII. For example, use `<->` instead of `↔`, `--` instead of `—`, `->`
   instead of `→`. STE does not permit a Unicode dash either.
 
+### The voice of posts
+
+The prose of a post follows STE, but it also has the personal voice of the published posts, so that it is not dry.
+
+- Use "I" for the decisions, the code, and the measurements of the author. Use "we" when the reader and the author do the math together.
+- Start with the reason for the post. Do not make up a story or an experience of the author. If the post needs one, add a TODO.
+- To start a step, a question is permitted, for example "Can we move the scale past the rotation?".
+- Put a short summary after the first paragraph as `*TL;DR: ...*`, and put each aside in a paragraph as `*Side note: ...*`.
+- Put the key numbers in bold, for example **33%**.
+- Use a word of opinion, for example "sadly", only when a measurement or a proof supports it. Give a recommendation with "I recommend".
+- Do not use contractions or idioms.
+
 ## Git
 
 Commit messages are short and imperative. New articles use `Post <topic>` (e.g. `Post ACL 2.1 release`); other changes use plain descriptions like `Fix broken link`.
