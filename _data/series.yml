@@ -58,3 +58,12 @@
     - 2015-07-07-gpgpu_woes_part_2
     - 2015-07-11-gpgpu_woes_part_3
     - 2016-04-14-gpgpu_woes_part_4
+
+- title: "Representing Affine Transforms"
+  toc: 2026-11-07-transforms_toc
+  posts:
+    - 2026-11-08-transforms_matrix
+    - 2026-11-14-transforms_vq_vqs
+    - 2026-11-21-transforms_vqv
+    - 2026-11-28-transforms_vqm
+    - 2026-12-05-transforms_vqqv
