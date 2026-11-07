@@ -36,6 +36,6 @@ In the types below, the letters have the following meaning:
 | VQS | quaternion, translation, scalar | 8 (8) | Yes | Yes | Uniform only | No |
 | VQV | quaternion, translation, vector3 | 10 (12) | No | Yes | Yes | No (discarded) |
 | VQM | quaternion, translation, 3x3 matrix | 16 (16) | Yes | Yes | Yes | Yes |
-| VQQV | quaternion, translation, vector3, quaternion | 14 (16) | Yes (through a matrix) | Local space only | Yes | Yes |
+| VQQV | quaternion, translation, vector3, quaternion | 14 (16) | Yes (through a matrix) | Authored parts only | Yes | Yes |
 
 *Group*: in exact arithmetic, the product of two transforms is exact and associative, and each transform has an exact inverse.
