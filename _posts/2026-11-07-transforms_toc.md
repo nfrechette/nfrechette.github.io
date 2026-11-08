@@ -34,8 +34,10 @@ In the types below, the letters have the following meaning:
 | Affine matrix | 3x3 matrix, translation | 12 (16) | Yes | No | Yes | Yes |
 | VQ | quaternion, translation | 7 (8) | Yes | Yes | No | No |
 | VQS | quaternion, translation, scalar | 8 (8) | Yes | Yes | Uniform only | No |
-| VQV | quaternion, translation, vector3 | 10 (12) | No | Yes | Yes | No (discarded) |
+| VQV | quaternion, translation, vector3 | 10 (12) | No | Authored parts only | Yes | No (discarded) |
 | VQM | quaternion, translation, 3x3 matrix | 16 (16) | Yes | Yes | Yes | Yes |
 | VQQV | quaternion, translation, vector3, quaternion | 14 (16) | Yes (through a matrix) | Authored parts only | Yes | Yes |
 
 *Group*: in exact arithmetic, the product of two transforms is exact and associative, and each transform has an exact inverse.
+
+*Authored parts only*: the parts that an artist sets interpolate correctly. The parts that come from a product do not. A VQV product discards the shear, thus the interpolation takes a wrong path with a wrong scale. A VQQV product needs a decomposition, thus the interpolation can also jump.
