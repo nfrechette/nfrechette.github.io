@@ -41,7 +41,7 @@ The last column is always `[0, 0, 0, 1]`. Thus RTM stores only the first three c
 
 ## The parts of an affine matrix
 
-Before we look at a matrix that holds everything, we look at each part alone. Each video below applies one part to a square with sides of length 2, in 2D. In 2D, the matrix is 3x3: a 2x2 linear part, and the translation in the last row. The blue row is the image of the X axis, and the orange row is the image of the Y axis. A 3D matrix has the same form, with one more row and one more column.
+Before we look at a matrix that holds everything, we look at each part alone. Each video below applies one part to a shape in 2D, usually a square with sides of length 2. In 2D, the matrix is 3x3: a 2x2 linear part, and the translation in the last row. The blue row is the image of the X axis, and the orange row is the image of the Y axis. A 3D matrix has the same form, with one more row and one more column.
 
 ### Scale
 
@@ -62,6 +62,55 @@ A scale multiplies each axis by one value. The scale values are on the diagonal:
 *A scale of `[1.5, 0.75]` multiplies the length of the X axis by 1.5 and the length of the Y axis by 0.75. Only the diagonal of the matrix changes, and the axes stay orthogonal.*
 
 When `sx`, `sy`, and `sz` are equal, the scale is uniform, and it preserves every angle. A negative value is a reflection along that axis. The determinant `sx * sy * sz` is the change in volume.
+
+### Reflection
+
+A reflection mirrors the space across a plane (in 2D, across a line). The simplest reflection is a scale with one negative value. A scale of -1 on the X axis mirrors each point across the YZ plane:
+
+```
+| -1 0 0 0 |
+|  0 1 0 0 |
+|  0 0 1 0 |
+|  0 0 0 1 |
+```
+
+<video width="1280" height="720" autoplay loop muted playsinline poster="/public/transforms/matrix_reflection_poster.jpg" aria-label="A reflection matrix flips the X axis to the other side of the mirror">
+  <source src="/public/transforms/matrix_reflection.mp4" type="video/mp4">
+  <a href="/public/transforms/matrix_reflection.mp4">A reflection matrix flips the X axis to the other side of the mirror</a>
+</video>
+
+*The X axis flips to the other side of the mirror. On the way, the square becomes flat: the determinant goes from 1 to 0, and then to -1.*
+
+A scale can reflect only across the XY, XZ, or YZ plane. A reflection across any other plane through the origin has values off the diagonal. For example, the mirror that contains the Z axis and the line `y = x` swaps X and Y. For a plane through the origin with the unit normal `n` (a row vector), the reflection is `I - 2 * n^T * n` (`n^T * n` is the outer product and here it creates a 3x3 matrix). This matrix is symmetric, thus it is the same with row vectors and with column vectors. It is orthogonal, as a rotation is: it preserves the lengths of segments and the angles between them. It is also its own inverse: two reflections across the same plane give the identity.
+
+The difference with a rotation is the handedness. A reflection changes a right-handed frame into a left-handed frame (and vice versa). The sign of the determinant tells us which one we have, because each reflected axis multiplies the determinant by -1:
+
+* An odd number of reflected axes gives a negative determinant. The matrix has a reflection.
+* An even number of reflected axes gives a positive determinant. The matrix has no reflection, because two reflections cancel.
+
+Thus a uniform scale of -1 is a reflection in 3D (three axes), but it is a rotation of 180 degrees in 2D (two axes).
+
+Two reflections form a rotation. A scale of `[-1, -1, 1]` is a rotation of 180 degrees about Z. More generally, two reflections across two planes that meet at an angle `a` are a rotation by `2 * a` about the line where the planes meet. In 3D, each rotation is a product of two reflections, and each orthogonal matrix is a product of at most three reflections (the Cartan-Dieudonne theorem).
+
+<video width="1280" height="720" autoplay loop muted playsinline poster="/public/transforms/two_reflections_poster.jpg" aria-label="Two reflections are a rotation by twice the angle between the mirrors">
+  <source src="/public/transforms/two_reflections.mp4" type="video/mp4">
+  <a href="/public/transforms/two_reflections.mp4">Two reflections are a rotation by twice the angle between the mirrors</a>
+</video>
+
+*The first mirror is at 45 degrees, and the second mirror is the Y axis. The angle between them is 45 degrees, thus the two reflections are a rotation by 90 degrees. The determinant is -1 after the first reflection, and 1 after the second. At the end, a rotation brings the rectangle back with no flat step, and the determinant stays 1.*
+
+As a result, a matrix with a reflection has many equivalent forms. A reflection of the X axis is the same as a reflection of the Y axis followed by a rotation of 180 degrees about Z. A decomposition cannot know which axis an artist reflected. It can only find the sign of the determinant.
+
+A reflection has other consequences:
+
+* **It does not interpolate to a rotation.** The determinant is continuous. To go from a positive determinant to a negative determinant, a path must go through 0, and there the object is flat. The videos above show this step. An animation must either snap to the reflection or flatten the object.
+* **A quaternion cannot hold it.** A quaternion holds only a rotation, and a rotation has a determinant of 1. A type with a quaternion must keep the reflection somewhere else, for example as a negative scale value.
+* **It reverses the winding order.** A triangle with its vertices in counterclockwise order becomes clockwise. A renderer uses that order to find the front faces of a mesh. When the determinant of a model matrix is negative, the renderer must swap its cull mode, or it shows the back faces.
+* **It flips the cross product.** For a reflection `M`, `cross(a * M, b * M) = -cross(a, b) * M`. A normal or a tangent frame that the code computes with a cross product after the transform points the wrong way.
+
+The winding order and the cross product are linked through the handedness of the frame. The normal of a triangle is `cross(v1 - v0, v2 - v0)`. In a right-handed frame, this normal points toward a viewer who sees the vertices in counterclockwise order: this is the right-hand rule. In a left-handed frame, it points toward a viewer who sees them in clockwise order: this is the left-hand rule. For example, OpenGL uses counterclockwise front faces by default. Direct3D, which traditionally uses a left-handed frame, uses clockwise front faces by default.
+
+A conversion between a right-handed tool and a left-handed engine is a reflection, for example a negation of the Z axis. Thus when an importer negates an axis, it must also reverse the order of the vertices of each triangle. If it does not, the normals point into the mesh.
 
 ### Rotation
 
@@ -127,7 +176,7 @@ A 3D point has `w = 1`, thus it moves by `t`. A 3D direction has `w = 0`, thus t
 
 A matrix that has all the parts is the product of these matrices. With row vectors, a product applies the transforms from left to right. Thus `S * R * T` applies the scale first, then the rotation, and then the translation. The translation stays alone in the last row, but the 3x3 part mixes the scale, the rotation, and the shear.
 
-Of the four parts, shear causes the most problems. The next sections show where it comes from, and why it matters.
+Of all these parts, shear causes the most problems. The next sections show where it comes from, and why it matters.
 
 ## Rotation as a series of shears
 
