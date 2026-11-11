@@ -220,7 +220,7 @@ R * S = (R * S * R^T) * R
 
 The matrix `R * S * R^T` is the scale `S` along the axes of the rotation. It is symmetric, but it is not diagonal: it holds a scale and a shear. In the example above, it is `[1.5, 0.5; 0.5, 1.5]`.
 
-With a uniform scale, the order does not matter, because a scalar commutes with a rotation. The post about VQ and VQS uses this property.
+With a uniform scale, the order does not matter, because a scalar commutes with a rotation. The [VQ and VQS post]({% post_url 2026-11-14-transforms_vq_vqs %}) uses this property.
 
 This case is common in a hierarchy: a child with a rotation, under a parent with a non-uniform scale. The product of the two transforms applies the rotation of the child first, then the scale of the parent, inducing shear in the process. A matrix holds that shear with no problem. The post about VQV shows a type that cannot.
 
@@ -318,7 +318,7 @@ As the sections above show, the last three drawbacks are all about shear.
 
 The affine matrix is the general solution. It loses nothing when we multiply or invert it, and it is the most hardware-friendly format. But it does not interpolate, it drifts into shear, and its parts are difficult to find again. For this reason, it is generally best to keep the parts apart, and build a matrix only at the end, to transform the vertices.
 
-In the next posts, we look at the types that keep the parts apart. The next post starts with the simplest: a quaternion and a translation.
+In the next posts, we look at the types that keep the parts apart. The [next post]({% post_url 2026-11-14-transforms_vq_vqs %}) starts with the simplest: a quaternion and a translation.
 
 ## References
 
