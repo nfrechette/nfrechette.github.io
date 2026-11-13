@@ -27,6 +27,11 @@ In the types below, the letters have the following meaning:
 * VQM: an affine transformation with non-uniform scale and shear.
 * VQQV: an affine transformation with non-uniform scale and shear. Unlike `VQM` which represents scale and shear as a 3x3 matrix, here it is represented as a scale and orientation.
 
+Note that the list isn't exhaustive. Some notable alternatives that I do not plan to cover at this time:
+* Dual quaternions: a pair of quaternions (rotation and translation) to represent a screw motion. Note that this motion differs from VQ.
+* Motors: a representation equivalent to dual quaternions using Projective Geometric Algebra.
+* Versors: a 32D representation for rotations, translations, uniform scale, inversions, and transversions using Confirmal Geometric Algebra. Despite all its dimensions, it cannot represent non-uniform scale and shear.
+
 ## Quick reference
 
 | Type | Parts | Floats (SIMD storage) | Group | Interpolates | Scale | Shear |
