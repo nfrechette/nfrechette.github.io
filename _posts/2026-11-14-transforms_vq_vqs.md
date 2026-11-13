@@ -120,6 +120,18 @@ VQS transforms also form a group.
 
 A negative uniform scale is a reflection of all three axes (a point reflection). It is still a scalar, thus it still commutes with the rotation, and the multiplication and the inverse stay exact. `vqs_from_matrix` can find it again from a matrix: if the determinant of the matrix is negative and the scale is uniform, all three axes have a reflection.
 
+However, the matrix does not keep the intent of the author. A reflection of one axis, followed by a 180 degree rotation about that axis, gives a reflection of all three axes:
+
+```
+diag(-1, 1, 1) * Rx(180) = diag(-1, 1, 1) * diag(1, -1, -1) = diag(-1, -1, -1)
+```
+
+Thus the scale `[-s, s, s]` with the rotation `Rx(180) * R` gives the same matrix as the scale `-s` with the rotation `R`. A VQS can hold only the second form, and `vqs_from_matrix` always returns it. Does this change the interpolation? If two keys have a reflection on the same axes, it does not. The two keys differ from the intent of the author by the same rotation. A slerp does not change when we multiply its two keys by the same rotation: `slerp(Q * q1, Q * q2, t) = Q * slerp(q1, q2, t)`.
+
+If the sign of the determinant changes between two keys, it does. Any path between the two keys must make the object flat at some point, because the determinant must go through zero. But the author may want only the X axis to flip, and the object then becomes flat on one plane. The VQS scale goes from `s` to `-s`, thus the full object shrinks to a point. The rotation also turns 180 degrees more than the author intended.
+
+This is a risk of every conversion through a matrix: the decomposition is ambiguous, and the matrix does not keep the information that we need to choose. I recommend that you keep the parts as the artist sets them, and that you do not get them back from a matrix.
+
 ## Why it must be uniform
 
 The multiplication works because of one step: we moved the scale of the parent `s2` past the rotation of the child `R1`. That is true only for a scalar, or a scale that is the same on the three axes. Sadly, a non-uniform scale `S2 = diag(sx, sy, sz)` does not commute with a rotation:
