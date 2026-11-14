@@ -147,6 +147,8 @@ The two sides are equal only for special rotations, for example a rotation about
 * **Smaller.** 8 floats (32 bytes) in place of 12 (48 bytes), thus **33%** less memory.
 * **No drift into shear.** The rotation is a quaternion. If it drifts, one normalization gives a valid rotation again. A VQS cannot hold shear at all.
 * **They interpolate.** Each part interpolates on its own: the rotation with a `quat_lerp` (a normalized lerp) or a `quat_slerp`, the translation and the scale with a linear or exponential interpolation.
+
+  *Side note: a dual quaternion also holds a rotation and a translation in 8 floats, and its product looks similar. However, its interpolation can take a different path. A VQ interpolates the rotation and the translation separately, thus the translation moves along a straight line. Screw linear interpolation (ScLERP) on a dual quaternion moves them together along a screw: a rotation about an axis, with a translation along that axis. At each point, the two paths have the same rotation, but not always the same translation.*
 * **No decomposition.** The parts are already separate. An animation clip stores them as separate tracks, and the [Animation Compression Library](https://github.com/nfrechette/acl) compresses each one on its own.
 * **Cheap to invert.** A conjugate, a reciprocal, and one rotation of a vector.
 
