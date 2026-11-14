@@ -22,10 +22,10 @@ In the types below, the letters have the following meaning:
 **Links will be added here once the posts are published.**
 
 * [Affine Matrices]({% post_url 2026-11-08-transforms_matrix %}): 4x4 (or sometimes 3x4) matrices, the tried and true classic. Heavily used in rendering and 3D authoring software (e.g. Maya, Blender).
-* [VQ and VQS]({% post_url 2026-11-14-transforms_vq_vqs %}): a rigid transformation with and without uniform scale. Also called a `TRS` (translation-rotation-scale) or `SQT` (scale-quaternion-translation) transform.
+* [VQ and VQS]({% post_url 2026-11-14-transforms_vq_vqs %}): a rigid transformation with and without uniform scale. Also called a TRS (translation-rotation-scale) or SQT (scale-quaternion-translation) transform.
 * VQV: a rigid transformation with a non-uniform scale.
 * VQM: an affine transformation with non-uniform scale and shear.
-* VQQV: an affine transformation with non-uniform scale and shear. Unlike `VQM` which represents scale and shear as a 3x3 matrix, here it is represented as a scale and orientation.
+* VQQV: an affine transformation with non-uniform scale and shear. Unlike VQM which represents scale and shear as a 3x3 matrix, here it is represented as a scale and orientation.
 
 Note that the list isn't exhaustive. Some notable alternatives that I do not plan to cover at this time:
 * Dual quaternions: a pair of quaternions (rotation and translation) to represent a screw motion. Note that this motion differs from VQ.
