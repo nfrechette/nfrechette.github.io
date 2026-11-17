@@ -140,7 +140,7 @@ The multiplication works because of one step: we moved the scale of the parent `
 R1 * S2 != S2 * R1
 ```
 
-The two sides are equal only for special rotations, for example a rotation about an axis where the two other scale values are equal. In the post about VQV, we will see what happens when we ignore this.
+The two sides are equal only for special rotations, for example a rotation about an axis where the two other scale values are equal. In the [post about VQV]({% post_url 2026-11-21-transforms_vqv %}), we will see what happens when we ignore this.
 
 ## How VQ and VQS improve on matrices
 
@@ -158,4 +158,4 @@ There is one drawback: the transform of a point. `quat_mul_vector3` uses more in
 
 VQ and VQS are compact, they do not drift into shear, they interpolate, and they form a group. Their multiplication works piece by piece because a uniform scale commutes with a rotation. For rigid objects and for objects with a uniform scale, I recommend them over matrices.
 
-However, non-uniform scale is quite useful: a squash and a stretch on a character, or a box that is longer on one axis. In the next post, we add a scale per axis, and we look at the problems that come with it.
+However, non-uniform scale is quite useful: a squash and a stretch on a character, or a box that is longer on one axis. In the [next post]({% post_url 2026-11-21-transforms_vqv %}), we add a scale per axis, and we look at the problems that come with it.
