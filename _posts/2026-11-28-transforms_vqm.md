@@ -147,7 +147,7 @@ Each part interpolates on its own:
 * The scale with an exponential interpolation.
 * The shear with a linear interpolation of its 6 values.
 
-The linear interpolation of a matrix does not work for a rotation, as the [matrix post]({% post_url 2026-11-08-transforms_matrix %}) shows. But in a VQM, the quaternion holds the rotation, and `M` holds only a scale and a shear. Each value of `M` is a valid scale/shear, and the interpolation of two valid values gives a valid value. There is no constraint to break. `vqm_lerp` does this.
+The linear interpolation of a matrix does not work for a rotation, as the [matrix post]({% post_url 2026-11-08-transforms_matrix %}) shows. But in a VQM, the quaternion holds the rotation, and `M` holds only a scale and a shear. Each value of `M` is a valid scale/shear, and the interpolation of two valid values gives a valid value. There is no constraint to break. `vqm_slerp` follows the list above. `vqm_lerp` is cheaper: it interpolates the 9 values of `M` linearly.
 
 The interpolation acts on the parts, not on the matrices. Thus it is correct only when `M` holds no rotation that the quaternion should hold. Take the two VQM transforms of the identity from the section "One matrix, more than one VQM": `[0, identity, I]` and `[0, q90, R90^T]`. Halfway, `vqm_lerp` gives a rotation of 45 degrees, and `M = (I + R90^T) / 2`. That `M` is a rotation of -45 degrees with a scale of 0.7071 on X and Y. The two rotations cancel, but the scale stays. Thus the two keys move no point, but the halfway transform does. This is the problem of the matrix post again: a linear interpolation of a rotation in `M`.
 
