@@ -188,7 +188,7 @@ Thus, when an input scale is negative, `vqv_mul` multiplies two matrices. It rem
 
 VQV adds a scale per axis to VQS, but it does not have a place for the shear that a rotation creates between a scaled parent and its child. Its product discards that shear, its inverse is only a left inverse, and its product is not associative. It is exact when the scale of the parents is uniform, and it is close when the scale is close to 1.
 
-For storage, for example in an animation clip, I recommend VQV: it is compact, and each part interpolates in local space. But in a hierarchy with a non-uniform scale, the transform must keep the shear. In the next post, we replace the scale vector with a 3x3 matrix.
+For storage, for example in an animation clip, I recommend VQV: it is compact, and each part interpolates in local space. But in a hierarchy with a non-uniform scale, the transform must keep the shear. In the [next post]({% post_url 2026-11-28-transforms_vqm %}), we replace the scale vector with a 3x3 matrix.
 
 ## References
 

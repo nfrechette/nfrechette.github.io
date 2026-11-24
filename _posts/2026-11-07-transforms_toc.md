@@ -24,7 +24,7 @@ In the types below, the letters have the following meaning:
 * [Affine Matrices]({% post_url 2026-11-08-transforms_matrix %}): 4x4 (or sometimes 3x4) matrices, the tried and true classic. Heavily used in rendering and 3D authoring software (e.g. Maya, Blender).
 * [VQ and VQS]({% post_url 2026-11-14-transforms_vq_vqs %}): a rotation and a translation, without and with a uniform scale. Also called a TRS (translation-rotation-scale) or SQT (scale-quaternion-translation) transform.
 * [VQV]({% post_url 2026-11-21-transforms_vqv %}): a rotation and a translation with a non-uniform scale (a scale per axis).
-* VQM: an affine transformation with non-uniform scale and shear.
+* [VQM]({% post_url 2026-11-28-transforms_vqm %}): an affine transformation with non-uniform scale and shear.
 * VQQV: an affine transformation with non-uniform scale and shear. Unlike VQM which represents scale and shear as a 3x3 matrix, here it is represented as a scale and orientation.
 
 Note that the list isn't exhaustive. Some notable alternatives that I do not plan to cover at this time:
